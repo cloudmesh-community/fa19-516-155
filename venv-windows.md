@@ -11,7 +11,7 @@
     - python -m venv : searches for `venv` and executes the command
     - ENV3 : is the name of the virtual environment that we want to create
     - `--system-site-packages` : is an optional argument. Adding this argument allows the virtual environment to access global python packages in addition to the locally installed packages. Changes made in the virtual environment are not propogated to the global packages.    
-`
+```python
 C:\Study\IUMSDS\Fall2019\CloudComputing>python -m venv ENV3 --system-site-packages
 
 C:\Study\IUMSDS\Fall2019\CloudComputing>
@@ -34,7 +34,7 @@ C:\Study\IUMSDS\Fall2019\CloudComputing>dir
                4 Dir(s)  49,465,192,448 bytes free
 
 C:\Study\IUMSDS\Fall2019\CloudComputing>
-`
+```
 
 #### b] Using virtualenv
 - Alternatively we can use python package `virtualenv` to create the virtual environment.
@@ -51,7 +51,7 @@ C:\Study\IUMSDS\Fall2019\CloudComputing>
     - This runs the `activate.bat` file which activates the virtual environment.
     - The prompt shows the name of the virtual environment, indicating successful activation of the virtual environment.
     - This command creates a new directory with name as the name of the virtual environment.  
-`
+```python
 C:\Study\IUMSDS\Fall2019\CloudComputing>ENV3\Scripts\activate.bat
 
 (ENV3) C:\Study\IUMSDS\Fall2019\CloudComputing>where python
@@ -60,7 +60,7 @@ C:\Program Files\Python37\python.exe
 C:\Program Files\Python36\python.exe
 
 (ENV3) C:\Study\IUMSDS\Fall2019\CloudComputing>
-`
+```
 
 #### d] Enlisting available packages
 - As we have used `--system-site-packages`, we expect that all python packages available in the global version will be available in the virtual environment as well.
@@ -69,7 +69,7 @@ C:\Program Files\Python36\python.exe
 - Use following command to enlist only locally installed packages :  
     **`pip list`**
 - Use `pip list` command to enlist all packages:    
-`
+```python
 (ENV3) C:\Study\IUMSDS\Fall2019\CloudComputing>pip list
 Package                           Version
 --------------------------------- ---------
@@ -85,25 +85,25 @@ bokeh                             1.3.4
 boto3                             1.9.182
 botocore                          1.12.182
 certifi                           2018.4.16
-`
+```
 
 - To get list of packages installed locally:  
     **`pip list --local`**  
-`
+```python
 (ENV3) C:\Study\IUMSDS\Fall2019\CloudComputing>pip list --local
 Package    Version
 ---------- -------
 pip        19.0.3
 setuptools 40.8.0
-`
+```
 #### e] Deactivating the virtual environment  
 - To deactivate the virtual environment, run following command:  
    **`deactivate`**  
 - This will disconnect the virtual environment.  
-`
+```python
 (ENV3) C:\Study\IUMSDS\Fall2019\CloudComputing>deactivate
 C:\Study\IUMSDS\Fall2019\CloudComputing>
-`
+```
 
 
 
