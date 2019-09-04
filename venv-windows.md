@@ -11,7 +11,7 @@
     - python -m venv : searches for `venv` and executes the command
     - ENV3 : is the name of the virtual environment that we want to create
     - `--system-site-packages` : is an optional argument. Adding this argument allows the virtual environment to access global python packages in addition to the locally installed packages. Changes made in the virtual environment are not propogated to the global packages.    
-```python
+```
 C:\Study\IUMSDS\Fall2019\CloudComputing>python -m venv ENV3 --system-site-packages
 
 C:\Study\IUMSDS\Fall2019\CloudComputing>
@@ -25,7 +25,7 @@ C:\Study\IUMSDS\Fall2019\CloudComputing>dir
 09/03/2019  01:49 AM    <DIR>          .
 09/03/2019  01:49 AM    <DIR>          ..
 09/02/2019  11:18 PM        24,948,243 Cloud Computing.epub
-09/03/2019  01:47 AM    <DIR>          **ENV3**
+09/03/2019  01:47 AM    <DIR>          ENV3
 08/27/2019  11:41 PM           575,178 vonLaszewski-e516-syllabus.epub
 09/02/2019  11:18 AM           590,615 vonLaszewski-e516.epub
 08/28/2019  11:03 PM           626,193 vonLaszewski-writing.epub
@@ -51,7 +51,7 @@ C:\Study\IUMSDS\Fall2019\CloudComputing>
     - This runs the `activate.bat` file which activates the virtual environment.
     - The prompt shows the name of the virtual environment, indicating successful activation of the virtual environment.
     - This command creates a new directory with name as the name of the virtual environment.  
-```python
+```
 C:\Study\IUMSDS\Fall2019\CloudComputing>ENV3\Scripts\activate.bat
 
 (ENV3) C:\Study\IUMSDS\Fall2019\CloudComputing>where python
@@ -69,7 +69,7 @@ C:\Program Files\Python36\python.exe
 - Use following command to enlist only locally installed packages :  
     **`pip list`**
 - Use `pip list` command to enlist all packages:    
-```python
+```
 (ENV3) C:\Study\IUMSDS\Fall2019\CloudComputing>pip list
 Package                           Version
 --------------------------------- ---------
@@ -89,7 +89,7 @@ certifi                           2018.4.16
 
 - To get list of packages installed locally:  
     **`pip list --local`**  
-```python
+```
 (ENV3) C:\Study\IUMSDS\Fall2019\CloudComputing>pip list --local
 Package    Version
 ---------- -------
@@ -100,7 +100,7 @@ setuptools 40.8.0
 - To deactivate the virtual environment, run following command:  
    **`deactivate`**  
 - This will disconnect the virtual environment.  
-```python
+```
 (ENV3) C:\Study\IUMSDS\Fall2019\CloudComputing>deactivate
 C:\Study\IUMSDS\Fall2019\CloudComputing>
 ```
