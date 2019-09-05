@@ -11,6 +11,7 @@
     - python -m venv : searches for `venv` and executes the command
     - ENV3 : is the name of the virtual environment that we want to create
     - `--system-site-packages` : is an optional argument. Adding this argument allows the virtual environment to access global python packages in addition to the locally installed packages. Changes made in the virtual environment are not propogated to the global packages.    
+    - This command creates a new directory with name as the name of the virtual environment.  
 ```
 C:\Study\IUMSDS\Fall2019\CloudComputing>python -m venv ENV3 --system-site-packages
 
@@ -50,7 +51,7 @@ C:\Study\IUMSDS\Fall2019\CloudComputing>
     **`ENV3\Scripts\activate.bat`**
     - This runs the `activate.bat` file which activates the virtual environment.
     - The prompt shows the name of the virtual environment, indicating successful activation of the virtual environment.
-    - This command creates a new directory with name as the name of the virtual environment.  
+
 ```
 C:\Study\IUMSDS\Fall2019\CloudComputing>ENV3\Scripts\activate.bat
 
