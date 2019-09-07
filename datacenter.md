@@ -17,7 +17,8 @@ Facebook targets 100% usage of renewable energy by 2020. In 2018, this
 percentage was 75%. Following are the details of 2018 data:
 
 Total energy consumption of the data center was 488,000 MWh in the year
-2018, which translates to 55707.76 kW.
+2018, which translates to 55707.76 kW [].
+
 [Ref : '<https://sustainability.fb.com/wp-content/uploads/2019/08/2018-Sustainability-Data-Disclosure.pdf>']  
 
 Using following formula the 'IT load' comes out to be:
