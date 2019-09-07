@@ -11,5 +11,7 @@
 - [X] Create virtual environment "ENV3"  
 - [X] Create venv-windows.md  
 - [X] Create notebook.md  
-- [ ] Read topic 'datacenter'  
-- [ ] Complete week 2 exercises
+- [X] Read topic 'datacenter'  
+- [X] Complete week 2 exercises
+- [X] Submit datacenter.md
+- [X] Update google sheet with carbon footprint data
