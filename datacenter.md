@@ -40,8 +40,7 @@ multiplying the results by 5 we get following results -
 |CO2 equivalent in cars|12,873  |  
 
 Facebook has provided an interesting visualization which shows variation
-in PUE of this data center in an interactive manner:
-[Link - '<https://www.facebook.com/PrinevilleDataCenter/app/399244020173259/>']
+in PUE of this data center in an interactive manner [@www-fb-PrinevilleDataCente-app]:
 
 ![Facebook Prineville Datacenter](images/FB_Prineville_DataCenter_PUE.png){#fig:FB_Prineville_DataCenter_PUE}
 
