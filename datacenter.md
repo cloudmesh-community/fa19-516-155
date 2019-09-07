@@ -17,9 +17,7 @@ Facebook targets 100% usage of renewable energy by 2020. In 2018, this
 percentage was 75%. Following are the details of 2018 data:
 
 Total energy consumption of the data center was 488,000 MWh in the year
-2018, which translates to 55707.76 kW [].
-
-[Ref : '<https://sustainability.fb.com/wp-content/uploads/2019/08/2018-Sustainability-Data-Disclosure.pdf>']  
+2018, which translates to 55707.76 kW [@www-facebook-sustainability-report].
 
 Using following formula the 'IT load' comes out to be:
 
@@ -43,7 +41,7 @@ multiplying the results by 5 we get following results -
 Facebook has provided an interesting visualization which shows variation
 in PUE of this data center in an interactive manner [@www-fb-PrinevilleDataCente-app]:
 
-![Facebook Prineville Datacenter](images/FB_Prineville_DataCenter_PUE.png){#fig:FB_Prineville_DataCenter_PUE}
+![Facebook Prineville Datacenter [@www-fb-PrinevilleDataCente-app]](images/FB_Prineville_DataCenter_PUE.png){#fig:FB_Prineville_DataCenter_PUE}
 
 ### References
 
