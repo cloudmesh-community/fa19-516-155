@@ -1,4 +1,7 @@
-# Week 1
+# fa19-516-155
+
+## Week 1
+
 - [X] Create cloud accounts  
 - [X] Fill out cloud accounts form  
 - [X] Update python to version 3.7.4  
@@ -7,7 +10,8 @@
 - [X] Read class notes on - Definition of cloud computing, Class overview, TALLL principle  
 
 
-# Week 2  
+## Week 2  
+
 - [X] Create virtual environment "ENV3"  
 - [X] Create venv-windows.md  
 - [X] Create notebook.md  
