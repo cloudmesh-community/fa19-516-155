@@ -106,8 +106,9 @@ My Footprint `11927 lbs of CO2`
 
 ## E.Datacenter.8: Data center outage
 
-This is a summary of a data center outage effectiong AWS3 
-[@www-AWSS3Out51][@www-Howatypo27:
+This is a summary of a data center outage effecting AWS3 
+[@www-AWSS3Out51] 
+[@www-Howatypo27].
 
 * Data center outages occur due to reasons ranging for power supply
   failures to natural calamities. Such outages disable one or many
