@@ -19,3 +19,12 @@
 - [X] Complete week 2 exercises
 - [X] Submit datacenter.md
 - [X] Update google sheet with carbon footprint data
+
+
+## Week 3   
+
+- [X] Read chapter "Cloud Architecture"  
+- [X] Read chapter "Cloudmesh" from 'Python for cloud computing"  
+- [X] Submit graded "Cloudmesh exercises"  
+- [X] Complete ungraded exercises  
+- [X] Read about docopt  
