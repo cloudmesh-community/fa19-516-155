@@ -32,40 +32,47 @@ TBD
 
 * API:  
 ```
-cdt config --file=[ip_file]
-cdt transfer --data=<file_name>  --copy=[True|False]
-cdt stats
-cdt -h
+  Usage:
+        transfer config [--file=ip_file]
+        transfer [--id=transfer_id] [--data=file_name] [--copy=True|False]
+        transfer status [--id=transfer_id]
+        transfer statistic
+
+  This command is part of CloudMesh's multicloud storage service. Command allows users to transfer
+  files/directories from storage of one Cloud Service Provider (CSP) to storage of other CSP.
+  Current implementation is to transfer data between Azure blob storage and AWS S3 bucket.
+
+  Arguments:
+      transfer_id   A unique id/name assigned by user to each transfer instance
+      file_name     Name of the file/directory to be transferred
+      Boolean       True/False argument for --copy option. When False, data will be removed from source location
+      ip_file       Input file used to configure 'transfer' command
+
+  Options:
+      --id=transfer_id        Specify a unique i/name to the transfer instance
+      --data=file_name        Specify the file/directory name to be transferred
+      --copy=True|False       Specify is the data should be kept in source location after the transfer
+      --file=ip_file          Specify the file to be used for configuration of the transfer instance
+
+  Description:
+      transfer config [options..]
+            Configures source/destination and authentication details to be used by transfer command
+
+      transfer [options..]
+            Transfers file/directory from storage of one CSP to storage of another CSP
+
+      transfer status [options..]
+            Returns status of given transfer instance
+
+      transfer statistic
+            Returns statistics of all transfer processes
+
+  Examples:
+      transfer --id="Dummy transfer" --data=dummy_file.txt --copy=True
 ```
 
 * REST service:
 TBD
-
-
-**Commands**
-* cdt config:
-    This command allows users to configure cloudmesh .yml file providing authentication details to cloud service providers. Additionally it will allow users to set s3_bucket_id and blob_endpoint_id.
-    * s3_bucket_id: Bucket id of the S3 storage to be used for the data transfer.  
-    * blob_endpoint_id: Azure Blob endpoint id to be used for the data transfer.
-    
-* cdt transfer:
-    Command to transfer data from source to target. Uses queuing method to transfer multiple files. If `--copy` parameter is True then the original data of source will be kept as it is, otherwise it will be removed.
-    
-* cdt stats:
-    Provides stats of executed transfer commands
-    
-    
-**Arguments**
- 
-* ip_file: Configuration of AWS and Azure storages can be provided using a .yml file.  
-* file_name: file/directry name to be transferred.  
-
-**Options**
-
-* -h  Help function
-* --file  input config file
-* --data  data to be transferred  
-* --copy  boolean indicating if the data should be copied or moved  
 
 ## Benchmarks
 
