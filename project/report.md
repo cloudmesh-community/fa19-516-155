@@ -34,8 +34,8 @@ TBD
 ```
   Usage:
         transfer config [--file=ip_file]
-        transfer [--id=transfer_id] [--data=file_name] [--copy=True|False]
-        transfer status [--id=transfer_id]
+        transfer --id=<transfer_id> --data=<file_name> [--copy=True|False]
+        transfer status --id=<transfer_id>
         transfer statistic
 
   This command is part of CloudMesh's multicloud storage service. Command allows users to transfer
@@ -53,6 +53,7 @@ TBD
       --data=file_name        Specify the file/directory name to be transferred
       --copy=True|False       Specify is the data should be kept in source location after the transfer
       --file=ip_file          Specify the file to be used for configuration of the transfer instance
+      -h                      Help function
 
   Description:
       transfer config [options..]
