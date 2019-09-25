@@ -1,4 +1,4 @@
-# Cloudmesh Data Transfer service
+# Cloudmesh Data Transfer Service for AWS S3 - Azure Blob
 
 Ketan Pimparkar, [fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155/edit/master/project/report.md)  
 
@@ -23,6 +23,8 @@ Cloudmesh is a multicloud platform. With inclusion of data transfer service, a h
 TBD
 
 ## Technology
+* AWS S3
+* Azure blob storage
 * Python
 * cloudmesh storage
 * OpenAPI 3.0.2
@@ -72,8 +74,10 @@ TBD
       transfer --id="Dummy transfer" --data=dummy_file.txt --copy=True
 ```
 
-* REST service:
+* REST service:  
 TBD
+
+## References  
 
 ## Benchmarks
 
