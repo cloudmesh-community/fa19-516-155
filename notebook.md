@@ -28,3 +28,5 @@
 - [X] Submit graded "Cloudmesh exercises"  
 - [X] Complete ungraded exercises  
 - [X] Read about docopt  
+- [X] Project selection done
+- [X] Created report.md
