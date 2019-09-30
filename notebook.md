@@ -42,3 +42,4 @@
 - [X] Install mongoDB on Windows10
 - [X] Create VM on Chameleon cloud using cloudmesh (`cms vm boot`)
 - [X] Connect to VM using `cms vm ssh`
+- [X] Access MongoDB using 'MongoDB Compass Community' (instead of robo3t)
