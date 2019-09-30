@@ -30,3 +30,15 @@
 - [X] Read about docopt  
 - [X] Project selection done
 - [X] Created report.md
+
+
+## Week 4
+
+- [X] Updated report.md with usage docopt
+- [X] Create VMs on Chameleon cloud using Horizon
+- [X] Access VMs using ssh
+- [X] Terminate VMs
+- [X] Install cloudmesh cloud and storage
+- [X] Install mongoDB on Windows10
+- [X] Create VM on Chameleon cloud using cloudmesh (`cms vm boot`)
+- [X] Connect to VM using `cms vm ssh`
