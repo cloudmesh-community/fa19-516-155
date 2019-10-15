@@ -43,3 +43,15 @@
 - [X] Create VM on Chameleon cloud using cloudmesh (`cms vm boot`)
 - [X] Connect to VM using `cms vm ssh`
 - [X] Access MongoDB using 'MongoDB Compass Community' (instead of robo3t)
+
+
+## Week 5
+
+- [X] Read Hypervisor and IaaS chapters from 'cloud computing' book
+- [X] Install cloudmesh on local machine having Windows 10 Pro
+- [X] Install cloudmesh on AWS EC2 instance having Ubuntu 18.04
+- [X] Create EC2 instance using AWS console
+- [X] Access EC2 instance using ssh
+- [X] Access EC2 instance using cloudmesh
+  - Unresolved problems 
+    - Unable to create a new VM using `cms vm boot`: cms takes chameleon cloud default details from cloudmesh.yaml instead of aws default details
