@@ -2,7 +2,7 @@
 Script performs following tasks:
 [X] Enlist all available virtual machine image lists
 [ ] Enlist all available flavors of VM
-[ ] Enlist all virtual machines
+[X] Enlist all virtual machines
 
 Supported cloud service providers:
 [X] AWS
@@ -27,54 +27,94 @@ class cloudDetails:
         #pprint(yaml_content)
         self.kind = self.yaml_content[f"cloudmesh.cloud.{self.cloudname}.cm.kind"]
         banner(f"Working on {self.kind} cloud service.")
+        if self.cloudname == "aws":
+            #VERBOSE(self.yaml_content[f"cloudmesh.cloud.{self.cloudname}"])
+            self.ACCESS_KEY = self.yaml_content[f"cloudmesh.cloud.{self.cloudname}.credentials.EC2_ACCESS_ID"]
+            self.SECRET_KEY = self.yaml_content[f"cloudmesh.cloud.{self.cloudname}.credentials.EC2_SECRET_KEY"]
+            self.REGION_ID  = self.yaml_content[f"cloudmesh.cloud.{self.cloudname}.credentials.region"]
+            
+            if self.ACCESS_KEY == 'TBD' or self.SECRET_KEY == 'TBD' or self.REGION_ID == 'TBD':
+                Console.error("Critical details missing from .yaml file. TBD not allowed. Please check.")
+        else:
+            Console.error(f"\nProvider {self.cloudname} not supported")
+            raise ValueError(f"Provider {self.cloudname} not supported")
         
     def enlistImages(self):
         banner(f"Fetching image list for {self.cloudname} cloud service.")
         if self.cloudname == "aws":
-            #VERBOSE(self.yaml_content[f"cloudmesh.cloud.{self.cloudname}"])
-            ACCESS_KEY = self.yaml_content[f"cloudmesh.cloud.{self.cloudname}.credentials.EC2_ACCESS_ID"]
-            SECRET_KEY = self.yaml_content[f"cloudmesh.cloud.{self.cloudname}.credentials.EC2_SECRET_KEY"]
-            REGION_ID  = self.yaml_content[f"cloudmesh.cloud.{self.cloudname}.credentials.region"]
-            
-            if ACCESS_KEY == 'TBD' or SECRET_KEY == 'TBD' or REGION_ID == 'TBD':
-                Console.error("Critical details missing from .yaml file. TBD not allowed. Please check.")
             
             try:
                 ec2_instance = boto3.client(
                     'ec2',
-                    aws_access_key_id=ACCESS_KEY,
-                    aws_secret_access_key=SECRET_KEY,
-                    region_name=REGION_ID
+                    aws_access_key_id=self.ACCESS_KEY,
+                    aws_secret_access_key=self.SECRET_KEY,
+                    region_name=self.REGION_ID
                     )
-                
-                #ec2_instance = boto3.client('ec2')
-                
-                #vm_instance_list = ec2_instance.describe_instances()
                 
                 StopWatch.start(f"Image list {self.cloudname}.")
                 
                 image_list = ec2_instance.describe_images()
                 
-                print("\nLength = " , len(image_list['Images']), "\n", type(image_list))
-                #opList = [[i.get('ImageId'), i.get('ImageType'), i.get('Description'), i.get('Name'), i.get('State'), i.get('Public'), i.get('Platform'),i.get('CreationDate')] for i in image_list['Images']]
-                opList = [{'ImageId':i.get('ImageId'), 'ImageType': i.get('ImageType'), 'Description': i.get('Description'), 'Name': i.get('Name'), 'State':i.get('State'),'Public': i.get('Public'),'CreationDate':i.get('CreationDate')} for i in image_list['Images']]
+                opDict = [{'ImageId':i.get('ImageId'), 'ImageType': i.get('ImageType'), 'Description': i.get('Description'), 'Name': i.get('Name'), 'State':i.get('State'),'Public': i.get('Public'),'CreationDate':i.get('CreationDate')} for i in image_list['Images']]
                 
                 StopWatch.stop(f"Image list {self.cloudname}.")
                 t = format(StopWatch.get(f"Image list {self.cloudname}."), '.2f')
                 
-                banner(f"Image list fetched for {self.cloudname} cloud service.\nTotal {len(opList)} images fetched. Time taken {t} \nPrinting first 5 sample images:") 
-                print(Printer.write(opList[:6], output='table'))
+                banner(f"Image list fetched for {self.cloudname} cloud service.\nTotal {len(opDict)} images fetched. Time taken {t} \nPrinting first 5 sample images:") 
+                print(Printer.write(opDict[:6], output='table'))
                 
-            
+                #Saving complete list to a file
+                opFile = f"{self.cloudname}_Image_list.txt"
+                with open(opFile,'w') as fo:
+                    print(Printer.write(opDict, output='table'), file=fo)
+                    
             except Exception as e:
                 Console.error(f"Image list of {self.cloudname} can\'t be fetched. Error:\n{e}")
         else:
             Console.error(f"Provider {self.cloudname} not supported")
             raise ValueError(f"provider {self.cloudname} not supported")
                 
+    def enlistInstances(self):
+        print("\n")
+        banner(f"Fetching instance list for {self.cloudname} cloud service.")
+        if self.cloudname == "aws":
+            
+            try:
+                ec2_instance = boto3.client(
+                    'ec2',
+                    aws_access_key_id=self.ACCESS_KEY,
+                    aws_secret_access_key=self.SECRET_KEY,
+                    region_name=self.REGION_ID
+                    )
+                
+                StopWatch.start(f"Instance list {self.cloudname}.")
+                
+                vm_instance_list = ec2_instance.describe_instances()
+                
+                opDict= [{'ImageId':i.get('ImageId'), 'InstanceId':i.get('InstanceId'), 'InstanceType':i.get('InstanceType'), 'KeyName':i.get('KeyName'), 'LaunchTime':i.get('LaunchTime'), 'VpcId':i.get('VpcId'), 'Zone':i['Placement']['AvailabilityZone'], 'State':i['State']['Name']} for i in vm_instance_list['Reservations'][0]['Instances']]
+                
+                StopWatch.stop(f"Instance list {self.cloudname}.")
+                t = format(StopWatch.get(f"Instance list {self.cloudname}."), '.2f')
+                
+                banner(f"Instance list fetched for {self.cloudname} cloud service.\nTotal {len(opDict)} images fetched. Time taken {t} \nPrinting first 5 sample images:") 
+                print(Printer.write(opDict[:6], output='table'))
+                
+                #Saving complete list to a file
+                opFile = f"{self.cloudname}_Instance_list.txt"
+                with open(opFile,'w') as fo:
+                    print(Printer.write(opDict, output='table'), file=fo)
+                    
+            except Exception as e:
+                Console.error(f"Instance list of {self.cloudname} can\'t be fetched. Error:\n{e}")
+        else:
+            Console.error(f"Provider {self.cloudname} not supported")
+            raise ValueError(f"provider {self.cloudname} not supported")
+
+        
 def main():
     instance = cloudDetails(cloudname='aws')
-    instance.enlistImages()
+    #instance.enlistImages()
+    instance.enlistInstances()
     
 if __name__ == "__main__":
     main()
