@@ -20,7 +20,10 @@ Cloud technology evolves at a very fast rate. Due to which, policies and facilit
 Cloudmesh is a multicloud platform. With inclusion of data transfer service, a highly optimized and simple to use methos will be made available to cloudmesh users.   
 
 ## Architecture
-TBD
+
+* Architecture diagram:  
+
+![CM Transfer Architecture Diagram](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/images/CM_Storage_Transfer_Architecture_Diagram.PNG)
 
 ## Technology
 * AWS S3
@@ -33,6 +36,7 @@ TBD
 ## Usage  
 
 * API:  
+- The code is available [here](https://github.com/cloudmesh-community/fa19-516-155/tree/master/cloudmesh-transfer)
 ```
   Usage:
         transfer config [--file=ip_file]
@@ -77,13 +81,26 @@ TBD
 * REST service:  
 TBD
 
-## References  
-TBD
-
+## References    
+* '<https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-s3?toc=%2fazure%2fstorage%2fblobs%2ftoc.json>'  
+* '<https://boto3.amazonaws.com/v1/documentation/api/latest/index.html?id=docs_gateway>'  
+* '<https://docs.microsoft.com/en-us/azure/python/python-sdk-azure-install>'  
+* '<https://cloudmesh.github.io/cloudmesh-manual/preface/about.html>'    
+  
 ## Benchmarks
 
-TBD - Benchmark report to be created
+TBD - Benchmark report to be created  
 
 ## Testing
 
-TBD - PyTest report to be created
+TBD - PyTest report to be created  
+
+## Progress  
+- [X] Installation of Cloudmesh and mongoDB in Windows10 Pro system  
+- [X] Creation of AWS EC2 instance and S3 buckets  
+- [X] Access AWS account using Cloudmesh CLI  
+- [X] Define architecture of the transfer service  
+- [X] [Define docopt of the transfer service](https://github.com/cloudmesh-community/fa19-516-155/tree/master/cloudmesh-transfer)  
+- [ ] Define test cases
+- [ ] Creation of Azure account
+- [ ] Copy files from local storage to AWS S3 and Azure Blob
