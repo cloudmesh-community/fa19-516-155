@@ -18,6 +18,7 @@ from cloudmesh.configuration.Config import Config
 from cloudmesh.common.util import path_expand
 from pprint import pprint
 import boto3
+import json
 
 class cloudDetails:
     def __init__(self, cloudname='aws', configuration="~/.cloudmesh/cloudmesh.yaml"):
@@ -54,7 +55,7 @@ class cloudDetails:
                 StopWatch.start(f"Image list {self.cloudname}.")
                 
                 image_list = ec2_instance.describe_images()
-                
+                opDict= []
                 opDict = [{'ImageId':i.get('ImageId'), 'ImageType': i.get('ImageType'), 'Description': i.get('Description'), 'Name': i.get('Name'), 'State':i.get('State'),'Public': i.get('Public'),'CreationDate':i.get('CreationDate')} for i in image_list['Images']]
                 
                 StopWatch.stop(f"Image list {self.cloudname}.")
@@ -90,13 +91,13 @@ class cloudDetails:
                 StopWatch.start(f"Instance list {self.cloudname}.")
                 
                 vm_instance_list = ec2_instance.describe_instances()
-                
+                opDict= []
                 opDict= [{'ImageId':i.get('ImageId'), 'InstanceId':i.get('InstanceId'), 'InstanceType':i.get('InstanceType'), 'KeyName':i.get('KeyName'), 'LaunchTime':i.get('LaunchTime'), 'VpcId':i.get('VpcId'), 'Zone':i['Placement']['AvailabilityZone'], 'State':i['State']['Name']} for i in vm_instance_list['Reservations'][0]['Instances']]
                 
                 StopWatch.stop(f"Instance list {self.cloudname}.")
                 t = format(StopWatch.get(f"Instance list {self.cloudname}."), '.2f')
                 
-                banner(f"Instance list fetched for {self.cloudname} cloud service.\nTotal {len(opDict)} images fetched. Time taken {t} \nPrinting first 5 sample images:") 
+                banner(f"Instance list fetched for {self.cloudname} cloud service.\nTotal {len(opDict)} instances fetched. Time taken {t} \nPrinting first 5 sample instances:") 
                 print(Printer.write(opDict[:6], output='table'))
                 
                 #Saving complete list to a file
@@ -110,11 +111,59 @@ class cloudDetails:
             Console.error(f"Provider {self.cloudname} not supported")
             raise ValueError(f"provider {self.cloudname} not supported")
 
+    def enlistFlavors(self):
+        print("\n")
+        banner(f"Fetching list of flavors for {self.cloudname} cloud service.")
+        if self.cloudname == "aws":
+            
+            try:
+                ec2_instance = boto3.client(
+                    'pricing',
+                    aws_access_key_id=str(self.ACCESS_KEY),
+                    aws_secret_access_key=str(self.SECRET_KEY),
+                    region_name='us-east-1'
+                    )
+                
+                StopWatch.start(f"Flavor list {self.cloudname}.")
+                print("CALLING FUNC.")
+                #flavor_list = ec2_instance.describe_services(ServiceCode='AmazonEC2')
+                flavor_list = ec2_instance.get_products(ServiceCode='AmazonEC2')
+                print("CALLED FUNC.")
+                opDict= []
+                for i in flavor_list['PriceList']:
+                    i = json.loads(i)
+                    opDict.append(
+                    {
+                    'productFamily':i['product']['productFamily'],
+                    'memory':i['product']['attributes']['memory'],
+                    'instanceType':i['product']['attributes']['instanceType'],
+                    'tenancy':i['product']['attributes']['tenancy'],
+                    'pubdate':i['publicationDate']                    
+                    }
+                    )                
+                StopWatch.stop(f"Flavor list {self.cloudname}.")
+                t = format(StopWatch.get(f"Flavor list {self.cloudname}."), '.2f')
+                
+                banner(f"Flavor list fetched for {self.cloudname} cloud service.\nTotal {len(opDict)} flavors fetched. Time taken {t} \nPrinting first 5 sample flavors:") 
+                print(Printer.write(opDict[:6], output='table'))
+                
+                #Saving complete list to a file
+                opFile = f"{self.cloudname}_Flavor_list.txt"
+                with open(opFile,'w') as fo:
+                    print(Printer.write(opDict, output='table'), file=fo)
+                
+            except Exception as e:
+                Console.error(f"Flavor list of {self.cloudname} can\'t be fetched. Error:\n{e}")
+        else:
+            Console.error(f"Provider {self.cloudname} not supported")
+            raise ValueError(f"provider {self.cloudname} not supported")
+
         
 def main():
     instance = cloudDetails(cloudname='aws')
-    #instance.enlistImages()
+    instance.enlistImages()
     instance.enlistInstances()
+    instance.enlistFlavors()
     
 if __name__ == "__main__":
     main()
