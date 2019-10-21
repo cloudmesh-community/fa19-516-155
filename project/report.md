@@ -1,6 +1,6 @@
-# Cloudmesh Data Transfer Service for AWS S3 * Azure Blob
+# Cloudmesh Data Transfer Service for AWS S3 and Azure Blob
 
-Ketan Pimparkar, [fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155/edit/master/project/report.md)
+Ketan Pimparkar, [fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155)
 
 ## Abstract
 
@@ -30,7 +30,7 @@ available to cloudmesh users.
 
 * Architecture diagram:
 
-![CM Transfer Architecture Diagram](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/images/CM_Storage_Transfer_Architecture_Diagram.PNG)
+![CM Transfer Architecture Diagram](images/CM_Storage_Transfer_Architecture_Diagram.PNG)
 
 ## Technology
 
@@ -47,54 +47,54 @@ available to cloudmesh users.
 * The code is available [here](https://github.com/cloudmesh-community/fa19-516-155/tree/master/cloudmesh-transfer)
 
 ```
-  Usage:
-        transfer config [--file=ip_file]
-        transfer --id=<transfer_id> --data=<file_name> [--copy=True|False]
-        transfer status --id=<transfer_id>
-        transfer statistic
+Usage:
+    transfer config [--file=ip_file]
+    transfer --id=<transfer_id> --data=<file_name> [--copy=True|False]
+    transfer status --id=<transfer_id>
+    transfer statistic
 
-  This command is part of CloudMesh's multicloud storage service.
-  Command allows users to transfer files/directories from storage of one
-  Cloud Service Provider (CSP) to storage of other CSP. Current
-  implementation is to transfer data between Azure blob storage and AWS
-  S3 bucket.
+This command is part of CloudMesh's multicloud storage service.
+Command allows users to transfer files/directories from storage of one
+Cloud Service Provider (CSP) to storage of other CSP. Current
+implementation is to transfer data between Azure blob storage and AWS
+S3 bucket.
 
-  Arguments:
-      transfer_id   A unique id/name assigned by user to each transfer
-                    instance
-      file_name     Name of the file/directory to be transferred
-      Boolean       True/False argument for --copy option. When False,
-                    data will be removed from source location
-      ip_file       Input file used to configure 'transfer' command
+Arguments:
+  transfer_id   A unique id/name assigned by user to each transfer
+                instance
+  file_name     Name of the file/directory to be transferred
+  Boolean       True/False argument for --copy option. When False,
+                data will be removed from source location
+  ip_file       Input file used to configure 'transfer' command
 
-  Options:
-      --id=transfer_id        Specify a unique i/name to the transfer
-                              instance
-      --data=file_name        Specify the file/directory name to be
-                              transferred
-      --copy=True|False       Specify is the data should be kept in
-                              source location after the transfer
-      --file=ip_file          Specify the file to be used for
-                              configuration of the transfer instance
-      -h                      Help function
+Options:
+  --id=transfer_id        Specify a unique i/name to the transfer
+                          instance
+  --data=file_name        Specify the file/directory name to be
+                          transferred
+  --copy=True|False       Specify is the data should be kept in
+                          source location after the transfer
+  --file=ip_file          Specify the file to be used for
+                          configuration of the transfer instance
+  -h                      Help function
 
-  Description:
-      transfer config [options..]
-            Configures source/destination and authentication details
-            to be used by transfer command
+Description:
+  transfer config [options..]
+        Configures source/destination and authentication details
+        to be used by transfer command
 
-      transfer [options..]
-            Transfers file/directory from storage of one CSP to
-            storage of another CSP
+  transfer [options..]
+        Transfers file/directory from storage of one CSP to
+        storage of another CSP
 
-      transfer status [options..]
-            Returns status of given transfer instance
+  transfer status [options..]
+        Returns status of given transfer instance
 
-      transfer statistic
-            Returns statistics of all transfer processes
+  transfer statistic
+        Returns statistics of all transfer processes
 
-  Examples:
-      transfer --id="Dummy transfer" --data=dummy_file.txt --copy=True
+Examples:
+  transfer --id="Dummy transfer" --data=dummy_file.txt --copy=True
 ```
 
 * REST service:
@@ -110,11 +110,15 @@ TBD
 
 ## Benchmarks
 
-TBD * Benchmark report to be created
+TBD 
+
+* Benchmark report to be created
 
 ## Testing
 
-TBD * PyTest report to be created
+TBD 
+
+* PyTest report to be created
 
 ## Progress
 
