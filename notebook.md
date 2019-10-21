@@ -53,5 +53,9 @@
 - [X] Create EC2 instance using AWS console
 - [X] Access EC2 instance using ssh
 - [X] Access EC2 instance using cloudmesh
-  - Unresolved problems 
-    - Unable to create a new VM using `cms vm boot`: cms takes chameleon cloud default details from cloudmesh.yaml instead of aws default details
+- [ ] Unresolved problems: Unable to create a new VM using `cms vm boot`. cms takes chameleon cloud default details from cloudmesh.yaml instead of aws default details
+
+
+## Week 6
+
+- [X] Program to use cloudmesh.yaml and fetch details from AWS - Program name: 155_fetch_cloud_details.py
