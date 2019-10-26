@@ -30,7 +30,9 @@ available to cloudmesh users.
 
 * Architecture diagram:
 
-![CM Transfer Architecture Diagram](images/CM_Storage_Transfer_Architecture_Diagram.PNG)
+![CM Transfer Architecture Diagram](images/gregor-cloudmesh-storage.png)
+
+Diagram credit: Prof. Gregor  
 
 ## Technology
 
