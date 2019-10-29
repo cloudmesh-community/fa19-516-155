@@ -6,6 +6,7 @@ from cloudmesh.common.console import Console
 from cloudmesh.common.util import path_expand
 from pprint import pprint
 from cloudmesh.common.debug import VERBOSE
+from cloudmesh.shell.command import command, map_parameters
 
 class TransferCommand(PluginCommand):
 
@@ -16,45 +17,69 @@ class TransferCommand(PluginCommand):
         ::
 
           Usage:
-                transfer config [--file=ip_file]
-                transfer --id=<transfer_id> --data=<file_name> [--copy=True|False]
-                transfer status --id=<transfer_id>
-                transfer statistic
+            transfer copy --source=aws:sourceObj --target=azure:targetObj [-r]
+            transfer list --source=aws:sourceObj
+            transfer delete --source=aws:sourceObj
+            transfer status --id=transfer_id
+            transfer statistic
 
-          This command is part of CloudMesh's multicloud storage service. Command allows users to transfer
-          files/directories from storage of one Cloud Service Provider (CSP) to storage of other CSP.
-          Current implementation is to transfer data between Azure blob storage and AWS S3 bucket.
+          This command is part of Cloudmesh's multi-cloud storage service.
+          Command allows users to transfer files/directories from storage of
+          one Cloud Service Provider (CSP) to storage of other CSP.
+          Current implementation is to transfer data between Azure blob
+          storage and AWS S3 bucket.
+          AWS S3/ Azure Blob storage credentials and container details will
+          be fetched from storage section of "~\.cloudmesh\cloudmesh.yaml"
+
 
           Arguments:
-              transfer_id   A unique id/name assigned by user to each transfer instance
-              file_name     Name of the file/directory to be transferred
-              Boolean       True/False argument for --copy option. When False, data will be removed from source location
-              ip_file       Input file used to configure 'transfer' command
+
+            aws:sourceObj   Combination of cloud name and the source object name
+            sourceObj       Source object. Can be file or a directory.
+            azure:targetObj Combination of cloud name and the target object name
+            targetObj       Target object. Can be file or a directory.
+            transfer_id     A unique id/name assigned by cloudmesh to each
+                            transfer instance.
+
 
           Options:
-              --id=transfer_id        Specify a unique i/name to the transfer instance
-              --data=file_name        Specify the file/directory name to be transferred
-              --copy=True|False       Specify is the data should be kept in source location after the transfer
-              --file=ip_file          Specify the file to be used for configuration of the transfer instance
-              -h                      Help function
+
+            --id=transfer_id            Unique id/name of the transfer instance.
+            -h                          Help function.
+            --source=aws:sourceObj      Specify source cloud and source object.
+            --target=azure:targetObj    Specify target cloud and target object.
+            -r                          Recursive transfer for folders.
+
 
           Description:
-              transfer config [options..]
-                    Configures source/destination and authentication details to be used by transfer command
 
-              transfer [options..]
-                    Transfers file/directory from storage of one CSP to storage of another CSP
+            transfer copy --source=<aws:sourceObj> --target=<azure:targetObj> [-r]
+                Copy file/folder from source to target. Source/target CSPs
+                and name of the source/target objects to be provided.
+                Optional argument "-r" indicates recursive copy.
 
-              transfer status [options..]
-                    Returns status of given transfer instance
+            transfer list --source=<aws:sourceObj>
+                Enlists available files on source CSP at source object
 
-              transfer statistic
-                    Returns statistics of all transfer processes
+            transfer delete --source=<aws:sourceObj>
+                Deletes source object from the source CSP.
+
+            transfer status --id=<transfer_id>
+                Returns status of given transfer instance
+
+            transfer statistic
+                Returns statistics of all transfer processes
+
 
           Examples:
-              transfer --id="Dummy transfer" --data=dummy_file.txt --copy=True
+
+            transfer copy --source=aws:sampleFileS3.txt
+            .             --target=azure:sampleFileBlob.txt
         """
-        arguments.FILE = arguments['--file'] or None
+        print("EXECUTING: ")
+        map_parameters(arguments,
+                       "source",
+                       "target")
 
         VERBOSE(arguments)
 
