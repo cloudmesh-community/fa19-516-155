@@ -109,6 +109,8 @@ TBD
 * AWS Boto3 API: <https://boto3.amazonaws.com/v1/documentation/api/latest/index.html?id=docs_gateway>
 * Cloudmesh manual: <https://cloudmesh.github.io/cloudmesh-manual/preface/about.html>
 * Install Azure python SDK: <https://docs.microsoft.com/en-us/azure/python/python-sdk-azure-install>
+* Azure python API usage: <https://github.com/Azure-Samples/storage-blobs-python-quickstart/blob/master/example.py>
+* Cloud computing book by Prof. Grogor: <https://laszewski.github.io/book/cloud/>
 
 ## Benchmarks
 
