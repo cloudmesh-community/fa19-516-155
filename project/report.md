@@ -105,10 +105,10 @@ TBD
 
 ## References
 
-* <https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-s3?toc=%2fazure%2fstorage%2fblobs%2ftoc.json>
-* <https://boto3.amazonaws.com/v1/documentation/api/latest/index.html?id=docs_gateway>
-* <https://docs.microsoft.com/en-us/azure/python/python-sdk-azure-install>
-* <https://cloudmesh.github.io/cloudmesh-manual/preface/about.html>
+* AzCopy: <https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-s3?toc=%2fazure%2fstorage%2fblobs%2ftoc.json>
+* AWS Boto3 API: <https://boto3.amazonaws.com/v1/documentation/api/latest/index.html?id=docs_gateway>
+* Cloudmesh manual: <https://cloudmesh.github.io/cloudmesh-manual/preface/about.html>
+* Install Azure python SDK: <https://docs.microsoft.com/en-us/azure/python/python-sdk-azure-install>
 
 ## Benchmarks
 
@@ -130,5 +130,5 @@ TBD
 * done. Define architecture of the transfer service
 * done. [Define docopt of the transfer service](https://github.com/cloudmesh-community/fa19-516-155/tree/master/cloudmesh-transfer)
 * Define test cases
-* Creation of Azure account
+* done. Creation of Azure account
 * Copy files from local storage to AWS S3 and Azure Blob
