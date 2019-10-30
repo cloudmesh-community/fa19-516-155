@@ -18,8 +18,8 @@ class TransferCommand(PluginCommand):
 
           Usage:
             transfer copy --source=aws:sourceObj --target=azure:targetObj [-r]
-            transfer list --source=aws:sourceObj
-            transfer delete --source=aws:sourceObj
+            transfer list --target=aws:targetObj
+            transfer delete --target=aws:targetObj
             transfer status --id=transfer_id
             transfer statistic
 
@@ -33,7 +33,6 @@ class TransferCommand(PluginCommand):
 
 
           Arguments:
-
             aws:sourceObj   Combination of cloud name and the source object name
             sourceObj       Source object. Can be file or a directory.
             azure:targetObj Combination of cloud name and the target object name
@@ -43,7 +42,6 @@ class TransferCommand(PluginCommand):
 
 
           Options:
-
             --id=transfer_id            Unique id/name of the transfer instance.
             -h                          Help function.
             --source=aws:sourceObj      Specify source cloud and source object.
@@ -52,17 +50,16 @@ class TransferCommand(PluginCommand):
 
 
           Description:
-
             transfer copy --source=<aws:sourceObj> --target=<azure:targetObj> [-r]
                 Copy file/folder from source to target. Source/target CSPs
                 and name of the source/target objects to be provided.
                 Optional argument "-r" indicates recursive copy.
 
-            transfer list --source=<aws:sourceObj>
-                Enlists available files on source CSP at source object
+            transfer list --target=aws:targetObj
+                Enlists available files on target CSP at target object
 
-            transfer delete --source=<aws:sourceObj>
-                Deletes source object from the source CSP.
+            transfer delete --target=aws:targetObj
+                Deletes target object from the target CSP.
 
             transfer status --id=<transfer_id>
                 Returns status of given transfer instance
@@ -72,7 +69,6 @@ class TransferCommand(PluginCommand):
 
 
           Examples:
-
             transfer copy --source=aws:sampleFileS3.txt
             .             --target=azure:sampleFileBlob.txt
         """
