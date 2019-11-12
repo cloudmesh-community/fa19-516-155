@@ -78,11 +78,6 @@ class Provider(StorageABC):
                 self.local_location = self.yaml_content_source['default'][
                     'directory']
 
-            print("===> ", type(self.local_location),
-                  self.local_location.is_file(),
-                  os.path.isfile(self.local_location.parts[-1]),
-                  self.local_location.expanduser().is_file())
-
             if kwargs.get("debug"):
                 print(f"\nLocal location to access {self.local_location}")
 
@@ -94,6 +89,8 @@ class Provider(StorageABC):
                 self.target_kind = self.yaml_content_target["cm"]["kind"]
                 self.target_credentials = self.yaml_content_target[
                                                             "credentials"]
+                self.target_container = self.target_credentials["container"]
+
         except Exception as e:
             Console.error(f"Couldn't access cloudmesh.yaml. Error - {e}")
             return ()
@@ -115,21 +112,24 @@ class Provider(StorageABC):
             if self.target_kind == "awss3":
                 print("Create AWS connection.")
 
-                if 'TBD' == self.credentials["access_key_id"] or \
-                        'TBD' == self.credentials["secret_access_key"] or \
-                        'TBD' == self.credentials["region"]:
+                if 'TBD' == self.target_credentials["access_key_id"] or \
+                        'TBD' == self.target_credentials["secret_access_key"]\
+                        or \
+                        'TBD' == self.target_credentials["region"]:
                     Console.error("Critical details missing from .yaml file. "
                                   "TBD  not allowed. Please check.")
 
                 try:
                     self.s3_client = boto3.client(
                         's3',
-                        aws_access_key_id=self.credentials["access_key_id"],
-                        aws_secret_access_key=self.credentials[
+                        aws_access_key_id=self.target_credentials[
+                            "access_key_id"],
+                        aws_secret_access_key=self.target_credentials[
                             "secret_access_key"],
-                        region_name=self.credentials["region"]
+                        region_name=self.target_credentials["region"]
                     )
-                    Console.ok(f"Successful connection to {self.kind} is made.")
+                    Console.ok(f"Successful connection to {self.target_kind} is "
+                               f"made.")
                 except ClientError as e:
                     Console.error(e, prefix=True, traceflag=True)
 
@@ -148,7 +148,7 @@ class Provider(StorageABC):
         Method to enlist all objects of target location.
 
         :param service: local/aws/azure
-        :param source: target directory or file
+        :param sourceObj: source directory or file
         :param recursive: Boolean to indicate if sub components to be enlisted
         :return: list of lists containing objects from target location
         """
@@ -232,19 +232,59 @@ class Provider(StorageABC):
             return {}
 
 
+    def s3_bucket_exists(self, target_container):
+        """
+        Determine whether bucket_name exists and the user has permission to
+        access it
+
+        :param target_container: S3 bucket name
+        :return: True if the referenced bucket_name exists, otherwise False
+        """
+        try:
+            resp_exists = self.s3_client.head_bucket(Bucket=target_container)
+        except ClientError as e:
+            return False
+        return True
+
+
+    def copy(self, service="local", sourceObj="abcd.txt", target="aws",
+                                    targetObj=None, debug=True):
+        """
+        copy method copies files/directories from local storage to target CSP
+
+        :param service:  "local" for this provider
+        :param sourceObj: A file/directory to be copied
+        :param targetObj: Name of the target object
+        :param debug: Boolean indicating debug mode
+        :return: None
+        """
+        if self.s3_bucket_exists(self.target_container):
+            Console.ok(f"AWS S3 bucket {self.target_container} exists.")
+
+
+
+        else:
+            Console.error(f"AWS S3 bucket {self.target_container} does not "
+                          f"exist.")
+
+
+
 def main():
     print("Instantiating")
     # following instantiating for copy command
-    # instance = Provider(service="local", sourceObj="abcd.txt", target="aws",
-    #                     targetObj=None, debug=True)
+    instance = Provider(service="local", sourceObj="abcd.txt", target="aws",
+                         targetObj=None, debug=True)
 
     # Instantiating for list/delete command
-    instance = Provider(service="local", sourceObj="a",
-                        targetObj=None, debug=True)
+    # instance = Provider(service="local", sourceObj="a",
+    #                    targetObj=None, debug=True)
 
     # instance.list(service="local", sourceObj="a", recursive=True)
 
-    instance.delete(service="local", sourceObj="a", recursive=True)
+    # instance.delete(service="local", sourceObj="a", recursive=True)
+
+    instance.copy(service="local", sourceObj="abcd.txt", target="aws",
+                            targetObj=None, debug=True)
 
 if __name__ == "__main__":
     main()
