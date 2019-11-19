@@ -1,23 +1,17 @@
-import os
-import stat
-from pprint import pprint
-
 import boto3
 from botocore.exceptions import ClientError
 from cloudmesh.storage.StorageABC import StorageABC
-import oyaml as yaml
 from cloudmesh.common.debug import VERBOSE
 from cloudmesh.common.StopWatch import StopWatch
 from cloudmesh.common.console import Console
 from cloudmesh.common.util import banner
-from cloudmesh.common.Printer import Printer
 from cloudmesh.configuration.Config import Config
 
 from pathlib import Path
 from glob import glob
-import os
-import shutil
+import os, shutil, queue
 
+from azure.storage.blob import BlockBlobService
 
 class Provider(StorageABC):
     """
@@ -133,9 +127,21 @@ class Provider(StorageABC):
                 except ClientError as e:
                     Console.error(e, prefix=True, traceflag=True)
 
-            elif self.kind == "azureblob":
-                print("Create Azure connection.")
-                raise NotImplementedError
+            elif self.target_kind == "azureblob":
+                banner("Connecting to Azure Blob Storage.")
+
+                self.azure_acct_name = self.target_credentials['account_name']
+                self.azure_acct_key  = self.target_credentials['account_key']
+                self.target_container= self.target_credentials['container']
+
+                try:
+                    self.blob_service = BlockBlobService(self.azure_acct_name,
+                                                    self.azure_acct_key)
+
+                    print("Successfully connected to Azure Blob storage.")
+                except Exception as e:
+                    print("Connextion to Azure failed:", e)
+
             else:
                 raise NotImplementedError
 
@@ -257,91 +263,147 @@ class Provider(StorageABC):
         """
         # To copy the whole cmStorage directory, pls provide sourceObj=None
 
-        if self.s3_bucket_exists(self.target_container):
-            Console.ok(f"AWS S3 bucket {self.target_container} exists.")
+        # Validating if target S3 bucket/blob container exists
+        if self.target_kind == 'awss3':
+            if self.s3_bucket_exists(self.target_container):
+                Console.ok(f"AWS S3 bucket {self.target_container} exists.")
+            else:
+                Console.error(f"AWS S3 bucket {self.target_container} does not "
+                              f"exist.")
+                return
+        elif self.target_kind == 'azureblob':
+            if self.blob_service.exists(self.target_container):
+                Console.ok(f"Azure blob container {self.target_container} "
+                           f"exists" )
+            else:
+                Console.error(f"Azure blob container {self.target_container} "
+                              f"does not exist.")
+                return
+        else:
+            raise NotImplementedError
 
             # TODO : Check CLI option
             # CLI option
             # aws s3 cp C:\Users\kpimp\cmStorage
             # s3://bucket-iris.json/cmStorage --recursive
 
-            if sourceObj:
-                self.local_location = Path(self.yaml_content_source['default'][
+        # Deciding the source location of file/directory to be copied
+        if sourceObj:
+            self.local_location = Path(self.yaml_content_source['default'][
                                                'directory'], sourceObj)
-                print("=====> local location ", self.local_location)
+            print("=====> local location ", self.local_location)
+        else:
+            sourceObj = "cmStorage"
+            self.local_location = self.yaml_content_source['default'][
+                'directory']
+
+        if targetObj is None:
+            targetObj = sourceObj
+
+        source_path = Path(self.local_location)
+        object_queue = queue.Queue()
+
+        # Creating a queue with all the objects to be copied to S3/Blob
+        try:
+            if source_path.expanduser().is_file():
+
+                print(f"Copying file. Pushed {source_path} to the queue.")
+                os.chdir(os.path.split(self.local_location.expanduser())[0])
+                print("chdir to ", os.getcwd())
+                try:
+                    # TODO: Use cm queue here. Using placeholder queue.
+                    object_queue.put(sourceObj)
+                    # response = self.s3_client.upload_file(sourceObj,
+                    #                                       self.target_container,
+                    #                                       targetObj)
+                    # Console.ok(f"Uploaded: {sourceObj}")
+                except Exception as e:
+                    Console.error(f"Error while uploading {source_path} "
+                                  f"to the queue: \n", e)
+            elif source_path.expanduser().is_dir():
+                print("Copying directory recursively")
+                os.chdir(source_path.expanduser())
+                print("chdir to ", os.getcwd())
+
+                for file in glob('**', recursive=True):
+                    # TODO: This creates files as foldername/filename
+                    # Check how to create directory structure in S3
+                    print(file)
+                    if Path(file).is_file():
+                        # TODO: Use queue here
+                        print(f"Pushed {Path(file)} to the queue {file}.")
+                        targetObj = file
+                        try:
+                            object_queue.put(file)
+                            # response = self.s3_client.upload_file(file,
+                            #                                       self.target_container,
+                            #                                       targetObj)
+                            # Console.ok(f"Uploaded: {file}")
+                        except Exception as e:
+                            Console.error(
+                                f"Error while uploading {source_path} "
+                                f"to the queue: \n", e)
             else:
-                sourceObj = "cmStorage"
-                self.local_location = self.yaml_content_source['default'][
-                    'directory']
+                Console.error(f"Invalid source object type: {source_path}")
+                return
+        except Exception as e:
+            print(e)
 
-            if targetObj is None:
-                targetObj = sourceObj
-
-            source_path = Path(self.local_location)
-
+        # Reading queue and uploading objects to S3/Blob
+        while object_queue.qsize() > 0:
             try:
-                if source_path.expanduser().is_file():
-                    # TODO: Use queue here
-                    print(f"Copying file. Pushed {source_path} to the queue.")
-                    os.chdir(os.path.split(self.local_location.expanduser())[0])
-                    print("chdir to ", os.getcwd())
+                obj = object_queue.get(block=False, timeout=5)
+
+                if self.target_kind == 'awss3':
+
                     try:
-                        response = self.s3_client.upload_file(sourceObj,
+                        response = self.s3_client.upload_file(obj,
                                                               self.target_container,
                                                               targetObj)
-                        Console.ok(f"Uploaded: {sourceObj}")
+                        Console.ok(f"Uploaded {obj} to S3 bucket.")
                     except ClientError as e:
-                        Console.error(f"Error while uploading {source_path} "
-                                      f"to S3 bucket: \n", e)
-                elif source_path.expanduser().is_dir():
-                    print("Copying directory recursively")
-                    os.chdir(source_path.expanduser())
-                    print("chdir to ", os.getcwd())
+                        Console.error(f"{obj} could not be uploaded to S3 "
+                                      f"bucket.")
 
-                    for file in glob('**', recursive=True):
-                        # TODO: This creates files as foldername/filename
-                        # Check how to create directory structure in S3
+                elif self.target_kind == 'azureblob':
 
-                        print(file)
-                        if Path(file).is_file():
-                            # TODO: Use queue here
-                            print(f"Pushed {Path(file)} to the queue {file}.")
-                            targetObj = file
-                            try:
-                                response = self.s3_client.upload_file(file,
-                                                                      self.target_container,
-                                                                      targetObj)
-                                Console.ok(f"Uploaded: {file}")
-                            except ClientError as e:
-                                Console.error(
-                                    f"Error while uploading {source_path} "
-                                    f"to S3 bucket: \n", e)
+                    try:
+                        response = self.blob_service.create_blob_from_path(
+                                self.target_container,
+                                targetObj,
+                                obj)
+                    except Exception as e:
+                        Console.error(f"{obj} could not be uploaded to the "
+                                      f"blob.")
                 else:
-                    Console.error(f"Invalid source object type: {source_path}")
-                    return
-            except Exception as e:
-                print(e)
-
-        else:
-            Console.error(f"AWS S3 bucket {self.target_container} does not "
-                          f"exist.")
-
+                    Console.error("Tried uploading objects to: ", self.target_kind)
+                    raise NotImplementedError
+            except queue.Empty:
+                Console.ok(f"All objects uploaded to {self.container} of "
+                           f"{self.target_kind}")
+                break
 
 def main():
     print("Instantiating")
     # following instantiating for copy command
-    instance = Provider(service="local", sourceObj="abcd.txt", target="aws",
-                        targetObj=None, debug=True)
+    # instance = Provider(service="local", sourceObj="abcd.txt", target="aws",
+    #                     targetObj=None, debug=True)
+
+    instance = Provider(service="local", sourceObj="abcd.txt",
+                        target="azure", targetObj=None, debug=True)
 
     # Instantiating for list/delete command
     # instance = Provider(service="local", sourceObj="a",
     #                    targetObj=None, debug=True)
-
+    #
     # instance.list(service="local", sourceObj="a", recursive=True)
 
     # instance.delete(service="local", sourceObj="a", recursive=True)
 
-    instance.copy(service="local", sourceObj='abcd.txt', target="aws",
+    # instance.copy(service="local", sourceObj='abcd.txt', target="aws",
+    #               targetObj=None, debug=True)
+
+    instance.copy(service="local", sourceObj='abcd.txt', target="azure",
                   targetObj=None, debug=True)
 
 
