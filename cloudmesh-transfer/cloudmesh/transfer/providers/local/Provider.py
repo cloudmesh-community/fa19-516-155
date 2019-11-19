@@ -13,6 +13,7 @@ import os, shutil, queue
 
 from azure.storage.blob import BlockBlobService
 
+# TODO: change StorageABC to StorageNewABC
 class Provider(StorageABC):
     """
     Provider class for local storage.
@@ -89,10 +90,10 @@ class Provider(StorageABC):
             Console.error(f"Couldn't access cloudmesh.yaml. Error - {e}")
             return ()
 
-        if kwargs.get("debug"):
-            VERBOSE(self.yaml_content_source)
-            if kwargs.get('target'):
-                VERBOSE(self.yaml_content_target)
+        # if kwargs.get("debug"):
+        #     VERBOSE(self.yaml_content_source)
+        #     if kwargs.get('target'):
+        #         VERBOSE(self.yaml_content_target)
 
         banner(f"Source CSP: {self.source_kind}")
         if kwargs.get('target'):
