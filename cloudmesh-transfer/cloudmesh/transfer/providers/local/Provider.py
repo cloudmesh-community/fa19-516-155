@@ -50,7 +50,6 @@ class Provider(StorageABC):
             print(kwargs.get('sourceObj'))
             print(kwargs.get('target'))
             print(kwargs.get('targetObj'))
-            print(self.credentials)
 
         # Processing --source/service and --target arguments separately.
         # This is a provider class for local storage hence --source/service will \
