@@ -73,6 +73,7 @@ class TransferCommand(PluginCommand):
             .             --target=azure:sampleFileBlob.txt
         """
         print("EXECUTING: ")
+        # TODO: See is 'recursive' needs to be passed as well
         map_parameters(arguments,
                        "source",
                        "target")
@@ -91,3 +92,8 @@ class TransferCommand(PluginCommand):
 
         Console.error("This is just a sample")
         return ""
+
+
+if __name__ == "__main__":
+    inst = TransferCommand()
+    inst.do_transfer()

@@ -7,6 +7,8 @@ from cloudmesh.common.console import Console
 from cloudmesh.common.util import banner
 from cloudmesh.configuration.Config import Config
 
+
+
 from pathlib import Path
 from glob import glob
 import os, shutil, queue
@@ -357,6 +359,10 @@ class Provider(StorageABC):
                 if self.target_kind == 'awss3':
 
                     try:
+                        # from cloudmesh.storage.provider.awss3.Provider import \
+                        #     Provider as AWSProvider
+                        # provider = AWSProvider()
+                        # provider.create_dir()
                         response = self.s3_client.upload_file(obj,
                                                               self.target_container,
                                                               targetObj)
@@ -378,6 +384,13 @@ class Provider(StorageABC):
                 else:
                     Console.error("Tried uploading objects to: ", self.target_kind)
                     raise NotImplementedError
+
+                # provider.create_dir()
+                # response = provider.put(obj,
+                    #
+                    # self.target_container,
+                    #                                      targetObj)
+
             except queue.Empty:
                 Console.ok(f"All objects uploaded to {self.container} of "
                            f"{self.target_kind}")
