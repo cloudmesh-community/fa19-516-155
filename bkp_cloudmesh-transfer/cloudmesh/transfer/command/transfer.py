@@ -6,9 +6,7 @@ from cloudmesh.common.console import Console
 from cloudmesh.common.util import path_expand
 from cloudmesh.common.debug import VERBOSE
 from cloudmesh.shell.command import command, map_parameters
-from cloudmesh.transfer.Provider import Provider
-from cloudmesh.common.util import banner
-
+#from cloudmesh.transfer.Provider import Provider
 
 import sys
 from pprint import pprint
@@ -91,34 +89,18 @@ class TransferCommand(PluginCommand):
         # PYTHONPATH. It is required so that providers can be imported with
         # cloudmesh coding standard.
 
-        # pprint(sys.path)
-        sys.path.insert(0,
-        r"c:\study\iumsds\fall2019\cloudcomputing\fa19-516-155\cloudmesh-transfer")
+        pprint(sys.path)
 
-        # Extract source and target details from the arguments
-        if arguments.source:
-            source_CSP, source_obj = arguments.source.split(':')
-        else:
-            source_CSP, source_obj = None, None
-        if arguments.target:
-            target_CSP, target_obj = arguments.target.split(':')
-        else:
-            target_CSP, target_obj = None, None
-
-        banner(f'''Working on: source CSP = {source_CSP}
-         source object = {source_obj}
-            target CSP = {target_CSP}
-         target object = {target_obj}''')
+        #m = Manager()
 
         if arguments.FILE:
             print("option a")
+            #m.list(path_expand(arguments.FILE))
 
         elif arguments.list:
             print("option b")
             # m.list("just calling list without parameter")
-
-            provider = Provider(source=None,       source_obj=None,
-                                target=target_CSP, target_obj=target_obj)
+            # provider = Provider('local')
 
         Console.error("This is just a sample")
         return ""
