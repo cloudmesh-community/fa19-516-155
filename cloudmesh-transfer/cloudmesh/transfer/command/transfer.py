@@ -24,9 +24,9 @@ class TransferCommand(PluginCommand):
         ::
 
           Usage:
-            transfer copy --source=aws:sourceObj --target=azure:targetObj [-r]
-            transfer list --target=aws:targetObj
-            transfer delete --target=aws:targetObj
+            transfer copy --source=aws:source_obj --target=azure:target_obj [-r]
+            transfer list --target=aws:target_obj
+            transfer delete --target=aws:target_obj
             transfer status --id=transfer_id
             transfer statistic
 
@@ -40,10 +40,10 @@ class TransferCommand(PluginCommand):
 
 
           Arguments:
-            aws:sourceObj   Combination of cloud name and the source object name
-            sourceObj       Source object. Can be file or a directory.
-            azure:targetObj Combination of cloud name and the target object name
-            targetObj       Target object. Can be file or a directory.
+            aws:source_obj  Combination of cloud name and the source object name
+            source_obj      Source object. Can be file or a directory.
+            azure:target_obj Combination of cloud name and the target object name
+            target_obj      Target object. Can be file or a directory.
             transfer_id     A unique id/name assigned by cloudmesh to each
                             transfer instance.
 
@@ -51,21 +51,22 @@ class TransferCommand(PluginCommand):
           Options:
             --id=transfer_id            Unique id/name of the transfer instance.
             -h                          Help function.
-            --source=aws:sourceObj      Specify source cloud and source object.
-            --target=azure:targetObj    Specify target cloud and target object.
+            --source=aws:source_obj     Specify source cloud and source object.
+            --target=azure:target_obj   Specify target cloud and target object.
             -r                          Recursive transfer for folders.
 
 
           Description:
-            transfer copy --source=<aws:sourceObj> --target=<azure:targetObj> [-r]
+            transfer copy --source=<aws:source_obj>
+            .             --target=<azure:target_obj> [-r]
                 Copy file/folder from source to target. Source/target CSPs
                 and name of the source/target objects to be provided.
                 Optional argument "-r" indicates recursive copy.
 
-            transfer list --target=aws:targetObj
+            transfer list --target=aws:target_obj
                 Enlists available files on target CSP at target object
 
-            transfer delete --target=aws:targetObj
+            transfer delete --target=aws:target_obj
                 Deletes target object from the target CSP.
 
             transfer status --id=<transfer_id>
@@ -114,14 +115,30 @@ class TransferCommand(PluginCommand):
             print("option a")
 
         elif arguments.list:
-            print("option b")
-            # m.list("just calling list without parameter")
+            banner(f"Executing List command for {target_CSP} provider on "
+                   f"{target_obj}.")
 
             provider = Provider(source=None,       source_obj=None,
                                 target=target_CSP, target_obj=target_obj)
 
-        Console.error("This is just a sample")
-        return ""
+            provider.list(source=None, source_obj=None,
+                          target=target_CSP, target_obj=target_obj,
+                          recursive=True)
+
+        elif arguments.delete:
+            banner(f"Executing Delete command for {target_CSP} provider on "
+                   f"{target_obj}")
+
+            provider = Provider(source=None, source_obj=None,
+                                target=target_CSP, target_obj=target_obj)
+
+            provider.delete(source=None, source_obj=None,
+                            target=target_CSP, target_obj=target_obj,
+                            recursive=True)
+
+        else:
+            Console.error("Invalid argument provided.")
+            return ""
 
 
 if __name__ == "__main__":
