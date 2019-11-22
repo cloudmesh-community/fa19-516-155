@@ -1,20 +1,12 @@
-# import boto3
-# from botocore.exceptions import ClientError
 from cloudmesh.storage.StorageNewABC import StorageABC
 from cloudmesh.common.debug import VERBOSE
 from cloudmesh.common.StopWatch import StopWatch
 from cloudmesh.common.console import Console
 from cloudmesh.common.util import banner
-from cloudmesh.configuration.Config import Config
 from cloudmesh.common.console import Console
 from cloudmesh.storage.provider.local.Provider import Provider as \
     StorageLocalProvider
-
-# from cloudmesh.storage.Provider import Provider as StorageProvider
-
 from pathlib import Path
-from glob import glob
-import os, shutil, queue
 from pprint import pprint
 
 # from azure.storage.blob import BlockBlobService
@@ -118,7 +110,7 @@ class Provider(StorageABC):
         # TODO : Print a table using printer utility of cm
         # TODO : NOTE - delete doesn't return the directory name (source)
         Console.ok(f"Deleted following objects from provided object "
-                   f"{target_obj}") 
+                   f"{target_obj}")
         pprint(result)
 
 
