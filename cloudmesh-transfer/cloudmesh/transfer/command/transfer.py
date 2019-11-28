@@ -135,7 +135,19 @@ class TransferCommand(PluginCommand):
             provider.delete(source=None, source_obj=None,
                             target=target_CSP, target_obj=target_obj,
                             recursive=True)
+        elif arguments.copy:
+            # This flow is designed in such a way that copy command is run
+            # in target CSP's provider
 
+            banner(f"Executing Copy command from {source_CSP} to {target_CSP} "
+                   f"providers for {source_obj}")
+
+            provider = Provider(source=source_CSP, source_obj=source_obj,
+                                target=target_CSP, target_obj=target_obj)
+
+            provider.copy(source=source_CSP, source_obj=source_obj,
+                            target=target_CSP, target_obj=target_obj,
+                            recursive=True)
         else:
             Console.error("Invalid argument provided.")
             return ""

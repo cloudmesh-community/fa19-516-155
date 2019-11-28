@@ -43,13 +43,14 @@ class Provider(StorageABC):
     def __init__(self, source=None, source_obj=None, target=None,
                  target_obj=None, config="~/.cloudmesh/cloudmesh.yaml"):
 
-        banner(f"""In AES S3 provider
+        banner(f"""In AWS S3 provider
         source csp = {source}, source object = {source_obj}
         target csp = {target}, target object = {target_obj}""")
 
         # This is a provider for AWS S3 hence initializing storage's AWS S3
         # provider by default
-        self.storage_provider = StorageAwss3Provider(service=target)
+
+        self.storage_provider = StorageAwss3Provider(service='awss3')
 
 
     # TODO - check pass recursive argument from master provider & transfer.py
@@ -99,6 +100,32 @@ class Provider(StorageABC):
                    f"{target_obj}")
         pprint(result)
 
+    def copy(self, source=None, source_obj=None,
+                   target=None, target_obj=None,
+                   recursive=True):
+        print("CALLING AWS S3 PROVIDER'S GET METHOD FOR AWS S3 TO LOCAL COPY")
+
+        if target_obj is None:
+            target_obj = source_obj
+
+        if target == "local":
+            result = self.storage_provider.get(source=source_obj,
+                                               destination=target_obj,
+                                               recursive=recursive)
+        elif target == "awss3":
+            source_obj = str(Path(source_obj).expanduser()).replace("\\", "/")
+
+            result = self.storage_provider.put(source=source_obj,
+                                               destination=target_obj,
+                                               recursive=recursive)
+        else:
+            raise NotImplementedError
+        # TODO : Print a table using printer utility of cm
+
+        Console.ok(f"Copied {source_obj} from {source} to {target}\nTarget "
+                   f"object name is {target_obj} ")
+        pprint(result)
+
 
 if __name__ == "__main__":
     p = Provider(source=None, source_obj=None,
@@ -109,3 +136,11 @@ if __name__ == "__main__":
 
     # p.delete(source=None, source_obj=None,
     #          target="awss3", target_obj="/folder1")
+
+    # p.copy(source="awss3", source_obj="/folder1",
+    #        target="local", target_obj="~\\cmStorage",
+    #        recursive=True)
+
+    p.copy(source="local", source_obj="~\\cmStorage\\folder1",
+           target="awss3", target_obj="/folder1/",
+           recursive=True)
