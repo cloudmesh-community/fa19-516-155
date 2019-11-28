@@ -68,12 +68,11 @@ class Provider(StorageABC):
         :return:
         """
         print("CALLING AZURE BLOB STORAGE PROVIDER'S LIST METHOD")
-        # Storage local provider expects a path relative to the default
-        # directory read from .yaml. Hence:
-        # target_path = Path(target_obj)
-        # relative_target = target_path.relative_to(*target_path.parts[:2])
+
         print(target_obj)
-        result = self.storage_provider.list(source=target_obj, recursive=True)
+        target_obj = target_obj.replace("\\","/")
+        print(target_obj, recursive)
+        result = self.storage_provider.list(source=target_obj, recursive=False)
 
         # TODO : Print a table using printer utility of cm
         pprint(result)
@@ -92,6 +91,7 @@ class Provider(StorageABC):
         """
         print("CALLING AZURE BLOB STORAGE PROVIDER'S DELETE METHOD")
 
+        target_obj = target_obj.replace("\\", "/")
         result = self.storage_provider.delete(source=target_obj, recursive=True)
 
         # TODO : Print a table using printer utility of cm
@@ -131,15 +131,15 @@ if __name__ == "__main__":
     p = Provider(source=None, source_obj=None,
                  target="azure", target_obj="\\")
 
-    p.list(source=None, source_obj=None,
-           target="azure", target_obj="/folder1")
+    # p.list(source=None, source_obj=None,
+    #        target="azure", target_obj="\\folder1")
 
     # p.delete(source=None, source_obj=None,
-    #          target="awss3", target_obj="/folder1")
+    #          target="azure", target_obj="\\folder1")
 
-    # p.copy(source="awss3", source_obj="/folder1",
-    #        target="local", target_obj="~\\cmStorage",
-    #        recursive=True)
+    p.copy(source="azure", source_obj="/folder1",
+           target="local", target_obj="~\\cmStorage",
+           recursive=True)
 
     # p.copy(source="local", source_obj="~\\cmStorage\\folder1",
     #        target="awss3", target_obj="/folder1/",
