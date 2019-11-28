@@ -74,7 +74,7 @@ class Provider(StorageABC):
     def list(self, source=None, source_obj=None,
                    target=None, target_obj=None, recursive=True):
         # VERBOSE(locals())
-        print("MASTER provider LIST ====>\n", source, type(source))
+        print("MASTER provider LIST ====>\n", target, target_obj)
 
         result = self.target_provider.list(source=source,
                                            source_obj=source_obj,

@@ -1,7 +1,6 @@
 from cloudmesh.storage.StorageNewABC import StorageABC
 from cloudmesh.common.debug import VERBOSE
 from cloudmesh.common.StopWatch import StopWatch
-from cloudmesh.common.console import Console
 from cloudmesh.common.util import banner
 from cloudmesh.common.console import Console
 # from cloudmesh.storage.provider.local.Provider import Provider as \

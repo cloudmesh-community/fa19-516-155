@@ -102,7 +102,9 @@ class TransferCommand(PluginCommand):
         else:
             source_CSP, source_obj = None, None
         if arguments.target:
+            print("************** ", arguments.target)
             target_CSP, target_obj = arguments.target.split(':')
+            print("************** ", target_CSP, target_obj )
         else:
             target_CSP, target_obj = None, None
 
@@ -110,6 +112,8 @@ class TransferCommand(PluginCommand):
          source object = {source_obj}
             target CSP = {target_CSP}
          target object = {target_obj}''')
+
+        # return
 
         if arguments.FILE:
             print("option a")
@@ -121,7 +125,7 @@ class TransferCommand(PluginCommand):
             provider = Provider(source=None,       source_obj=None,
                                 target=target_CSP, target_obj=target_obj)
 
-            provider.list(source=None, source_obj=None,
+            provider.list(source=None,       source_obj=None,
                           target=target_CSP, target_obj=target_obj,
                           recursive=True)
 
@@ -129,10 +133,10 @@ class TransferCommand(PluginCommand):
             banner(f"Executing Delete command for {target_CSP} provider on "
                    f"{target_obj}")
 
-            provider = Provider(source=None, source_obj=None,
+            provider = Provider(source=None,       source_obj=None,
                                 target=target_CSP, target_obj=target_obj)
 
-            provider.delete(source=None, source_obj=None,
+            provider.delete(source=None,       source_obj=None,
                             target=target_CSP, target_obj=target_obj,
                             recursive=True)
         elif arguments.copy:
@@ -146,8 +150,8 @@ class TransferCommand(PluginCommand):
                                 target=target_CSP, target_obj=target_obj)
 
             provider.copy(source=source_CSP, source_obj=source_obj,
-                            target=target_CSP, target_obj=target_obj,
-                            recursive=True)
+                          target=target_CSP, target_obj=target_obj,
+                          recursive=True)
         else:
             Console.error("Invalid argument provided.")
             return ""
