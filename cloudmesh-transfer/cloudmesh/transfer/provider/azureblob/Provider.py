@@ -1,6 +1,7 @@
 from cloudmesh.storage.StorageNewABC import StorageABC
 from cloudmesh.common.debug import VERBOSE
 from cloudmesh.common.StopWatch import StopWatch
+from cloudmesh.configuration.Config import Config
 from cloudmesh.common.util import banner
 from cloudmesh.common.console import Console
 from cloudmesh.storage.provider.awss3.Provider import Provider as \
@@ -52,25 +53,24 @@ class Provider(StorageABC):
 
         self.storage_provider = StorageAzureblobProvider(service='azure')
 
-
     # TODO - check pass recursive argument from master provider & transfer.py
 
     def list(self, source=None, source_obj=None,
-                   target=None, target_obj=None,
-                   recursive=True):
+             target=None, target_obj=None,
+             recursive=True):
         """
         To enlist content of "target object"
         :param source:
-        :param source_object:
+        :param source_obj:
         :param target:
-        :param target_object:
+        :param target_obj:
         :param recursive:
         :return:
         """
         print("CALLING AZURE BLOB STORAGE PROVIDER'S LIST METHOD")
 
         print(target_obj)
-        target_obj = target_obj.replace("\\","/")
+        target_obj = target_obj.replace("\\", "/")
         print(target_obj, recursive)
         result = self.storage_provider.list(source=target_obj, recursive=False)
 
@@ -78,14 +78,14 @@ class Provider(StorageABC):
         pprint(result)
 
     def delete(self, source=None, source_obj=None,
-                     target=None, target_obj=None,
-                     recursive=True):
+               target=None, target_obj=None,
+               recursive=True):
         """
         To delete content of "target object"
         :param source:
-        :param source_object:
+        :param source_obj:
         :param target:
-        :param target_object:
+        :param target_obj:
         :param recursive:
         :return:
         """
@@ -101,9 +101,10 @@ class Provider(StorageABC):
         pprint(result)
 
     def copy(self, source=None, source_obj=None,
-                   target=None, target_obj=None,
-                   recursive=True):
-        print("CALLING AWS S3 PROVIDER'S GET METHOD FOR AWS S3 TO LOCAL COPY")
+             target=None, target_obj=None,
+             recursive=True):
+        banner(f"CALLING AZURE BLOB STORAGE PROVIDER'S GET METHOD FOR "
+               f"{source.upper()} TO {target.upper()} COPY")
 
         if target_obj is None:
             target_obj = source_obj
@@ -117,6 +118,22 @@ class Provider(StorageABC):
                                                recursive=recursive)
         elif target == "azure":
             source_obj = str(Path(source_obj).expanduser()).replace("\\", "/")
+
+            if source == "awss3":
+                source_provider = StorageAwss3Provider(service='awss3')
+                config = Config(config_path="~/.cloudmesh/cloudmesh.yaml")
+
+                spec = config["cloudmesh.storage"]
+                local_target = spec["local"]["default"]["directory"]
+                local_target = local_target.replace("\\", "/")
+
+                result = source_provider.get(source=source_obj,
+                                             destination=local_target,
+                                             recursive=recursive)
+                print("Fetched from s3 to local:\n")
+                pprint(result)
+
+                source_obj = Path(Path(local_target).expanduser() / source_obj)
 
             result = self.storage_provider.put(source=source_obj,
                                                destination=target_obj,
@@ -147,3 +164,7 @@ if __name__ == "__main__":
     # p.copy(source="local", source_obj="~\\cmStorage\\folder1",
     #        target="azure", target_obj="\\folder1",
     #        recursive=True)
+
+    p.copy(source="awss3", source_obj="abcd.txt",
+           target="azure", target_obj="\\folder1",
+           recursive=True)
