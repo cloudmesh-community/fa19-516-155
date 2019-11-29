@@ -108,11 +108,14 @@ class Provider(StorageABC):
         if target_obj is None:
             target_obj = source_obj
 
+        target_obj = target_obj.replace("\\", "/")
+        source_obj = source_obj.replace("\\", "/")
+
         if target == "local":
             result = self.storage_provider.get(source=source_obj,
                                                destination=target_obj,
                                                recursive=recursive)
-        elif target == "awss3":
+        elif target == "azure":
             source_obj = str(Path(source_obj).expanduser()).replace("\\", "/")
 
             result = self.storage_provider.put(source=source_obj,
@@ -137,10 +140,10 @@ if __name__ == "__main__":
     # p.delete(source=None, source_obj=None,
     #          target="azure", target_obj="\\folder1")
 
-    p.copy(source="azure", source_obj="/folder1",
-           target="local", target_obj="~\\cmStorage",
-           recursive=True)
+    # p.copy(source="azure", source_obj="\\folder1",
+    #        target="local", target_obj="~\\cmStorage",
+    #        recursive=True)
 
     # p.copy(source="local", source_obj="~\\cmStorage\\folder1",
-    #        target="awss3", target_obj="/folder1/",
+    #        target="azure", target_obj="\\folder1",
     #        recursive=True)
