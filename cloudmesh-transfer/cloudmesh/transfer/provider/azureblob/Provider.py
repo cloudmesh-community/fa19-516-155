@@ -132,6 +132,7 @@ class Provider(StorageABC):
                                              recursive=recursive)
                 print("Fetched from s3 to local:\n")
                 pprint(result)
+                # TODO: return error if get fails, no put required
 
                 source_obj = Path(Path(local_target).expanduser() / source_obj)
 
@@ -164,7 +165,7 @@ if __name__ == "__main__":
     # p.copy(source="local", source_obj="~\\cmStorage\\folder1",
     #        target="azure", target_obj="\\folder1",
     #        recursive=True)
-
     p.copy(source="awss3", source_obj="abcd.txt",
            target="azure", target_obj="\\folder1",
            recursive=True)
+

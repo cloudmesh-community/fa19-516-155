@@ -3,9 +3,11 @@ from cloudmesh.common.debug import VERBOSE
 from cloudmesh.common.StopWatch import StopWatch
 from cloudmesh.common.util import banner
 from cloudmesh.common.console import Console
+from cloudmesh.configuration.Config import Config
 # from cloudmesh.storage.provider.local.Provider import Provider as \
 #     StorageLocalProvider
-
+from cloudmesh.storage.provider.azureblob.Provider import Provider as \
+    StorageAzureblobProvider
 from cloudmesh.storage.provider.awss3.Provider import Provider as \
     StorageAwss3Provider
 from pathlib import Path
@@ -107,12 +109,33 @@ class Provider(StorageABC):
         if target_obj is None:
             target_obj = source_obj
 
+        target_obj = target_obj.replace("\\", "/")
+        source_obj = source_obj.replace("\\", "/")
+
         if target == "local":
             result = self.storage_provider.get(source=source_obj,
                                                destination=target_obj,
                                                recursive=recursive)
         elif target == "awss3":
             source_obj = str(Path(source_obj).expanduser()).replace("\\", "/")
+
+            if source == "azure":
+                source_provider = StorageAzureblobProvider(service="azure")
+                config = Config(config_path="~/.cloudmesh/cloudmesh.yaml")
+
+                spec = config["cloudmesh.storage"]
+                local_target = spec["local"]["default"]["directory"]
+                local_target = local_target.replace("\\", "/")
+
+                result = source_provider.get(source=source_obj,
+                                             destination=local_target,
+                                             recursive=recursive)
+                print("Fetched from azure blob to local:\n")
+                pprint(result)
+                # TODO: return error here itself if the source object is not
+                # found
+
+                source_obj = Path(Path(local_target).expanduser() / source_obj)
 
             result = self.storage_provider.put(source=source_obj,
                                                destination=target_obj,
@@ -140,6 +163,10 @@ if __name__ == "__main__":
     #        target="local", target_obj="~\\cmStorage",
     #        recursive=True)
 
-    p.copy(source="local", source_obj="~\\cmStorage\\folder1",
-           target="awss3", target_obj="/folder1/",
+    # p.copy(source="local", source_obj="~\\cmStorage\\folder1",
+    #        target="awss3", target_obj="/folder1/",
+    #        recursive=True)
+
+    p.copy(source="azure", source_obj="\\folder1\\abcd.txt",
+           target="awss3", target_obj="\\",
            recursive=True)
