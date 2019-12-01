@@ -6,6 +6,7 @@ from cloudmesh.common.util import banner
 from cloudmesh.common.console import Console
 from cloudmesh.storage.provider.local.Provider import Provider as \
     StorageLocalProvider
+from cloudmesh.common.Printer import Printer
 from pathlib import Path
 from pprint import pprint
 
@@ -47,12 +48,7 @@ class Provider(StorageABC):
         source csp = {source}, source object = {source_obj}
         target csp = {target}, target object = {target_obj}""")
 
-        # if source
-        # source_provider = init source storage provider
-        # same for target_provider
-
-        # TODO: initialize storage local provider for list delete
-        # initialize storage aws/azure for copy to/from local
+        self.storage_provider = StorageLocalProvider(service=target)
 
     # TODO - check pass recursive argument from master provider & transfer.py
 
@@ -72,15 +68,28 @@ class Provider(StorageABC):
         # Storage local provider expects a path relative to the default
         # directory read from .yaml. Hence:
         target_path = Path(target_obj)
-        relative_target = target_path.relative_to(*target_path.parts[:2])
+        relative_target = str(target_path.relative_to(*target_path.parts[:2]))
+        # print("=======> ", relative_target)
+        result = self.storage_provider.list(source=relative_target)
 
-        # TODO: Move this init to init class
+        op_result = []
+        for idx, i in enumerate(result):
+            op_dict = dict()
+            op_dict['idx'] = idx+1
+            op_dict['name'] = i['name']
+            op_dict['size'] = i['size']
+            op_dict['created'] = i['creation']
+            op_dict['type'] = 'File' if i['file'] is True else 'Dir'
+            op_result.append(op_dict)
 
-        storage_provider = StorageLocalProvider(service=target)
-        result = storage_provider.list(source=relative_target)
-
-        # TODO : Print a table using printer utility of cm
-        pprint(result)
+        # pprint(op_result)
+        table = Printer.flatwrite(op_result,
+                                  sort_keys=["idx"],
+                            order=["idx", "name", "size", "type", "created"],
+                            header=["S.No.", "Name", "Size", "Type",
+                                    "Creation"],)
+        print(table)
+        return op_result
 
     def delete(self, source=None, source_obj=None,
                      target=None, target_obj=None,
@@ -94,31 +103,54 @@ class Provider(StorageABC):
         :param recursive:
         :return:
         """
-        print("CALLING LOCAL PROVIDER'S LIST METHOD")
+        print("CALLING LOCAL PROVIDER'S DELETE METHOD")
         # Storage local provider expects a path relative to the default
         # directory read from .yaml. Hence:
-        target_path = Path(target_obj)
-        relative_target = target_path.relative_to(*target_path.parts[:2])
+        target_path = Path(target_obj).expanduser()
+        if target_path.is_absolute():
+            relative_target = str(target_path.relative_to(*target_path.parts[:2]))
+        else:
+            relative_target = str(target_path)
 
-        print("IN TRANSFER LOCAL PROCIDER FOR DELETE.")
         print(target_path, "\n", relative_target)
-        # TODO: Move this init to init class
 
-        storage_provider = StorageLocalProvider(service=target)
-        result = storage_provider.delete(source=relative_target)
+        try:
+            result = self.storage_provider.delete(source=relative_target)
+            Console.ok(f"Deleted following objects from {target} storage. ")
 
-        # TODO : Print a table using printer utility of cm
-        # TODO : NOTE - delete doesn't return the directory name (source)
-        Console.ok(f"Deleted following objects from provided object "
-                   f"{target_obj}")
-        pprint(result)
+            op_result = []
+            for idx, i in enumerate(result):
+                op_dict = dict()
+                op_dict['idx'] = idx + 1
+                op_dict['name'] = i['name']
+                op_dict['size'] = i['size']
+                op_dict['created'] = i['creation']
+                op_dict['type'] = 'File' if i['file'] is True else 'Dir'
+                op_result.append(op_dict)
+
+            # pprint(op_result)
+            table = Printer.flatwrite(op_result,
+                                      sort_keys=["idx"],
+                                      order=["idx", "name", "size", "type",
+                                             "created"],
+                                      header=["S.No.", "Name", "Size", "Type",
+                                              "Creation"], )
+            print(table)
+            return op_result
+
+        except FileNotFoundError as n:
+            return Console.error(f"\nObject {target_obj} not found in "
+                                 f"{target} storage.")
+        except Exception as e:
+            return Console.error(f"Error occurred: {e}")
 
 
 if __name__ == "__main__":
     p = Provider(source=None, source_obj=None,
                  target="local", target_obj="~\cmStorage")
-    # p.list(source=None, source_obj=None,
-    #        target="local", target_obj="~\cmStorage")
 
-    p.delete(source=None, source_obj=None,
-           target="local", target_obj="~\\cmStorage\\b")
+    p.list(source=None, source_obj=None,
+           target="local", target_obj="~\cmStorage")
+
+    # p.delete(source=None, source_obj=None,
+    #          target="local", target_obj="abcd.txt")
