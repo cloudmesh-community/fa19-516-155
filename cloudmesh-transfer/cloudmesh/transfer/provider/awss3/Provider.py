@@ -134,8 +134,19 @@ class Provider(StorageABC):
                 pprint(result)
                 # TODO: return error here itself if the source object is not
                 # found
+                if result is None:
+                    return Console.error(f"Object {source_obj} couldn't be "
+                                         f"fetched from {source}. Please "
+                                         f"check'")
+                else:
+                    print(len(result[0]['name']))
 
-                source_obj = Path(Path(local_target).expanduser() / source_obj)
+                # Removing root from the source_obj
+                temp_p = Path(source_obj)
+                source_obj = str(temp_p).replace(temp_p.root, "", 1)
+                source_obj = str(Path(Path(local_target).expanduser() /
+                                    source_obj))
+                print(source_obj)
 
             result = self.storage_provider.put(source=source_obj,
                                                destination=target_obj,
@@ -166,7 +177,7 @@ if __name__ == "__main__":
     # p.copy(source="local", source_obj="~\\cmStorage\\folder1",
     #        target="awss3", target_obj="/folder1/",
     #        recursive=True)
-
-    p.copy(source="azure", source_obj="\\folder1\\abcd.txt",
-           target="awss3", target_obj="\\",
-           recursive=True)
+# TODO : Following command did not create folder1 in AWS S3. Check.
+    # p.copy(source="azure", source_obj="\\folder1\\",
+    #        target="awss3", target_obj="\\",
+    #        recursive=True)
