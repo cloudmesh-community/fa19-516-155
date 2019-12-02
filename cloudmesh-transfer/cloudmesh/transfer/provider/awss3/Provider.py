@@ -12,6 +12,7 @@ from cloudmesh.storage.provider.awss3.Provider import Provider as \
     StorageAwss3Provider
 from pathlib import Path
 from pprint import pprint
+from cloudmesh.common.Printer import Printer
 
 # from azure.storage.blob import BlockBlobService
 
@@ -56,6 +57,33 @@ class Provider(StorageABC):
 
     # TODO - check pass recursive argument from master provider & transfer.py
 
+    @staticmethod
+    def print_table(result, status=None, source=None, target=None):
+        op_result = []
+        for idx, i in enumerate(result):
+            op_dict = dict()
+            op_dict['idx'] = idx + 1
+            op_dict['source'] = source
+            op_dict['name'] = i['fileName']
+            op_dict['size'] = i['contentLength']
+            op_dict['lastmodified'] = i['lastModificationDate']
+            op_dict['type'] = 'File'
+            op_dict['status'] = status
+            op_dict['target'] = target
+            op_result.append(op_dict)
+
+        # pprint(op_result)
+        table = Printer.flatwrite(op_result,
+                                  sort_keys=["idx"],
+                                  order=["idx", "source", "target", "name",
+                                         "size", "type", "lastmodified",
+                                         "status"],
+                                  header=["S.No.", "Source CSP",
+                                          "Target CSP", "Name", "Size",
+                                          "Type", "Creation", "Status"])
+        print(table)
+        return op_result
+
     def list(self, source=None, source_obj=None,
                    target=None, target_obj=None,
                    recursive=True):
@@ -69,15 +97,12 @@ class Provider(StorageABC):
         :return:
         """
         print("CALLING AWS S3 PROVIDER'S LIST METHOD")
-        # Storage local provider expects a path relative to the default
-        # directory read from .yaml. Hence:
-        # target_path = Path(target_obj)
-        # relative_target = target_path.relative_to(*target_path.parts[:2])
 
         result = self.storage_provider.list(source=target_obj, recursive=True)
 
-        # TODO : Print a table using printer utility of cm
-        pprint(result)
+        # pprint(result)
+        return self.print_table(result, status='Available', source=source,
+                                target=target)
 
     def delete(self, source=None, source_obj=None,
                      target=None, target_obj=None,
@@ -95,11 +120,14 @@ class Provider(StorageABC):
 
         result = self.storage_provider.delete(source=target_obj, recursive=True)
 
-        # TODO : Print a table using printer utility of cm
+        if len(result) == 0:
+            return Console.error(f"Object {target_obj} couldn't be delete from "
+                          f"{target} CSP. Please check.")
+        else:
+            Console.ok(f"Deleted following objects from {target} CSP:\n ")
 
-        Console.ok(f"Deleted following objects from provided object "
-                   f"{target_obj}")
-        pprint(result)
+            return self.print_table(result, status='Deleted', source=source,
+                                    target=target)
 
     def copy(self, source=None, source_obj=None,
                    target=None, target_obj=None,
@@ -153,11 +181,16 @@ class Provider(StorageABC):
                                                recursive=recursive)
         else:
             raise NotImplementedError
-        # TODO : Print a table using printer utility of cm
 
-        Console.ok(f"Copied {source_obj} from {source} to {target}\nTarget "
-                   f"object name is {target_obj} ")
-        pprint(result)
+        if len(result) == 0:
+            return Console.error(f"Object {source_obj} couldn't be copied from "
+                                 f"{source} to {target}. Please check.")
+        else:
+            Console.ok(f"Copied {source_obj} from {source} to {target}\nTarget "
+                       f"object name is {target_obj} ")
+            # pprint(result)
+            return self.print_table(result, status='Copied', source=source,
+                                    target=target)
 
 
 if __name__ == "__main__":
@@ -174,9 +207,9 @@ if __name__ == "__main__":
     #        target="local", target_obj="~\\cmStorage",
     #        recursive=True)
 
-    # p.copy(source="local", source_obj="~\\cmStorage\\folder1",
-    #        target="awss3", target_obj="/folder1/",
-    #        recursive=True)
+    p.copy(source="local", source_obj="~\\cmStorage\\folder1",
+           target="awss3", target_obj="/folder1/",
+           recursive=True)
 # TODO : Following command did not create folder1 in AWS S3. Check.
     # p.copy(source="azure", source_obj="\\folder1\\",
     #        target="awss3", target_obj="\\",

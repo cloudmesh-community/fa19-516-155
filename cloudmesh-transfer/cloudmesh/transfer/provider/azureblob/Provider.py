@@ -10,6 +10,7 @@ from cloudmesh.storage.provider.azureblob.Provider import Provider as \
     StorageAzureblobProvider
 from pathlib import Path
 from pprint import pprint
+from cloudmesh.common.Printer import Printer
 
 
 class Provider(StorageABC):
@@ -55,6 +56,33 @@ class Provider(StorageABC):
 
     # TODO - check pass recursive argument from master provider & transfer.py
 
+    @staticmethod
+    def print_table(result, status=None, source=None, target=None):
+        op_result = []
+        for idx, i in enumerate(result):
+            op_dict = dict()
+            op_dict['idx'] = idx + 1
+            op_dict['source'] = source
+            op_dict['name'] = i['name']
+            op_dict['size'] = i['cm']['size']
+            op_dict['lastmodified'] = "Not Available"
+            op_dict['type'] = 'File'
+            op_dict['status'] = status
+            op_dict['target'] = target
+            op_result.append(op_dict)
+
+        # pprint(op_result)
+        table = Printer.flatwrite(op_result,
+                                  sort_keys=["idx"],
+                                  order=["idx", "source", "target", "name",
+                                         "size", "type", "lastmodified",
+                                         "status"],
+                                  header=["S.No.", "Source CSP",
+                                          "Target CSP", "Name", "Size",
+                                          "Type", "Creation", "Status"])
+        print(table)
+        return op_result
+
     def list(self, source=None, source_obj=None,
              target=None, target_obj=None,
              recursive=True):
@@ -74,8 +102,16 @@ class Provider(StorageABC):
         print(target_obj, recursive)
         result = self.storage_provider.list(source=target_obj, recursive=False)
 
-        # TODO : Print a table using printer utility of cm
-        pprint(result)
+        if result is None:
+            return Console.error(f"List of object(s) couldn't be fetched from " 
+                                 f"{target} CSP for object {target_obj}. "
+                                 f"Please check.")
+        else:
+            Console.ok(f"\nList of objects from {target} CSP for object " 
+                       f"{target_obj}:\n")
+            # pprint(result)
+            return self.print_table(result, status="Available",
+                                    source=source, target=target)
 
     def delete(self, source=None, source_obj=None,
                target=None, target_obj=None,
@@ -95,10 +131,16 @@ class Provider(StorageABC):
         result = self.storage_provider.delete(source=target_obj, recursive=True)
 
         # TODO : Print a table using printer utility of cm
-
-        Console.ok(f"Deleted following objects from provided object "
-                   f"{target_obj}")
-        pprint(result)
+        if result is None:
+            return Console.error(f"Objects couldn't be deleted from " 
+                                 f"{target} CSP for object {target_obj}. "
+                                 f"Please check.")
+        else:
+            Console.ok(f"Deleted following objects from provided object "
+                       f"{target_obj}")
+            # pprint(result)
+            return self.print_table(result, status="Deleted", source=source,
+                                    target=target)
 
     def copy(self, source=None, source_obj=None,
              target=None, target_obj=None,
@@ -141,11 +183,16 @@ class Provider(StorageABC):
                                                recursive=recursive)
         else:
             raise NotImplementedError
-        # TODO : Print a table using printer utility of cm
 
-        Console.ok(f"Copied {source_obj} from {source} to {target}\nTarget "
-                   f"object name is {target_obj} ")
-        pprint(result)
+        if result is None:
+            return Console.error(f"Object {source_obj} couldn't be copied "
+                                 f"from {source} to {target}. Please check.")
+        else:
+            Console.ok(f"Copied {source_obj} from {source} to {target}\nTarget "
+                       f"object name is {target_obj} ")
+            pprint(result)
+            return self.print_table(result, status="Copied", source=source,
+                                    target=target)
 
 
 if __name__ == "__main__":

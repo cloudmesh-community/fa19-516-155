@@ -48,7 +48,9 @@ class Provider(StorageABC):
         source csp = {source}, source object = {source_obj}
         target csp = {target}, target object = {target_obj}""")
 
-        self.storage_provider = StorageLocalProvider(service=target)
+        # Transfer local provider should always connect to storage local
+        # provider hence using service = "local" by default
+        self.storage_provider = StorageLocalProvider(service="local")
 
     # TODO - check pass recursive argument from master provider & transfer.py
 
@@ -58,9 +60,9 @@ class Provider(StorageABC):
         """
         To enlist content of "target object"
         :param source:
-        :param source_object:
+        :param source_obj:
         :param target:
-        :param target_object:
+        :param target_obj:
         :param recursive:
         :return:
         """
@@ -76,18 +78,25 @@ class Provider(StorageABC):
         for idx, i in enumerate(result):
             op_dict = dict()
             op_dict['idx'] = idx+1
+            op_dict['CSP'] = target
             op_dict['name'] = i['name']
             op_dict['size'] = i['size']
             op_dict['created'] = i['creation']
             op_dict['type'] = 'File' if i['file'] is True else 'Dir'
+            op_dict['source'] = source
+            op_dict['target'] = target
+            op_dict['status'] = 'Available'
             op_result.append(op_dict)
 
         # pprint(op_result)
         table = Printer.flatwrite(op_result,
                                   sort_keys=["idx"],
-                            order=["idx", "name", "size", "type", "created"],
-                            header=["S.No.", "Name", "Size", "Type",
-                                    "Creation"],)
+                                  order=["idx", "source", "target", "name",
+                                         "size", "type", "created",
+                                         "status"],
+                                  header=["S.No.", "Source CSP",
+                                          "Target CSP", "Name", "Size",
+                                          "Type", "Creation", "Status"])
         print(table)
         return op_result
 
@@ -126,15 +135,20 @@ class Provider(StorageABC):
                 op_dict['size'] = i['size']
                 op_dict['created'] = i['creation']
                 op_dict['type'] = 'File' if i['file'] is True else 'Dir'
+                op_dict['source'] = source
+                op_dict['target'] = target
+                op_dict['status'] = 'Deleted'
                 op_result.append(op_dict)
 
             # pprint(op_result)
             table = Printer.flatwrite(op_result,
                                       sort_keys=["idx"],
-                                      order=["idx", "name", "size", "type",
-                                             "created"],
-                                      header=["S.No.", "Name", "Size", "Type",
-                                              "Creation"], )
+                                      order=["idx", "source", "target", "name",
+                                             "size", "type", "created",
+                                             "status"],
+                                      header=["S.No.", "Source CSP",
+                                              "Target CSP", "Name", "Size",
+                                              "Type", "Creation", "Status"])
             print(table)
             return op_result
 
