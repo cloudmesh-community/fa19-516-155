@@ -183,6 +183,7 @@ changed to use `cms storage` providers.
 ### .yaml file configuration
 * Location of .yaml file: C:\Users\{User}\.cloudmesh\cloudmesh.yaml
 * Local storage configuration:
+<pre>
     storage:
         local:
           cm:
@@ -199,8 +200,10 @@ changed to use `cms storage` providers.
           credentials:
             userid: None
             password: None
+</pre>
     * default.directory is the location of local storage
 * AWS S3 storage configuration:
+<pre>
     awss3:
       cm:
         active: false
@@ -217,7 +220,9 @@ changed to use `cms storage` providers.
         secret_access_key: XXX
         bucket: XXX
         region: us-east-2
+</pre>
 * Azure Blob storage configuration:
+<pre>
     azure:
       cm:
         active: false
@@ -239,7 +244,7 @@ changed to use `cms storage` providers.
         AZURE_APPLICATION_ID: xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
         AZURE_SECRET_KEY: TBD
         AZURE_REGION: northcentralus    """
-
+</pre>
 ### azcopy installation
 
 TBD
