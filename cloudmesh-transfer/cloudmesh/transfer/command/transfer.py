@@ -102,9 +102,9 @@ class TransferCommand(PluginCommand):
         else:
             source_CSP, source_obj = None, None
         if arguments.target:
-            print("************** ", arguments.target)
+            # print("************** ", arguments.target)
             target_CSP, target_obj = arguments.target.split(':')
-            print("************** ", target_CSP, target_obj )
+            # print("************** ", target_CSP, target_obj )
         else:
             target_CSP, target_obj = None, None
 

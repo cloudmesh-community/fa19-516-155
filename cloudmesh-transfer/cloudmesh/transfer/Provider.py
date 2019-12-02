@@ -104,21 +104,21 @@ class Provider(StorageABC):
                                                source_obj=source_obj,
                                                target=target,
                                                target_obj=target_obj,
-                                               recursive=True)
+                                               recursive=recursive)
         elif source == "local":
             print(f"Source is local hence redirected to {target} provider.")
             result = self.target_provider.copy(source=source,
                                                source_obj=source_obj,
                                                target=target,
                                                target_obj=target_obj,
-                                               recursive=True)
+                                               recursive=recursive)
         else:
             # For S3-blob and blob-S3 copy, connecting to target provider
             result = self.target_provider.copy(source=source,
                                                source_obj=source_obj,
                                                target=target,
                                                target_obj=target_obj,
-                                               recursive=True)
+                                               recursive=recursive)
 
         return result
 

@@ -130,7 +130,6 @@ class Provider(StorageABC):
         target_obj = target_obj.replace("\\", "/")
         result = self.storage_provider.delete(source=target_obj, recursive=True)
 
-        # TODO : Print a table using printer utility of cm
         if result is None:
             return Console.error(f"Objects couldn't be deleted from " 
                                  f"{target} CSP for object {target_obj}. "
@@ -155,6 +154,7 @@ class Provider(StorageABC):
         source_obj = source_obj.replace("\\", "/")
 
         if target == "local":
+
             result = self.storage_provider.get(source=source_obj,
                                                destination=target_obj,
                                                recursive=recursive)
@@ -173,7 +173,7 @@ class Provider(StorageABC):
                                              destination=local_target,
                                              recursive=recursive)
                 print("Fetched from s3 to local:\n")
-                pprint(result)
+                # pprint(result)
                 # TODO: return error if get fails, no put required
 
                 source_obj = Path(Path(local_target).expanduser() / source_obj)
