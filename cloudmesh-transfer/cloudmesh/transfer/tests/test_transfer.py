@@ -1,7 +1,8 @@
 ###############################################################
-# pytest -v --capture=no tests/test_transfer_awss3.py
-# pytest -v tests/test_transfer_awss3.py
-# pytest -v --capture=no tests/test_transfer_awss3.py:TestTransferS3Local.<METHIDNAME>
+# pytest -v --capture=no tests/test_transfer.py
+# pytest -v --capture=no -W ignore::DeprecationWarning tests/test_transfer.py
+# pytest -v --capture=no -W ignore::DeprecationWarning
+#               tests/test_transfer.py::TestTransferS3Local::<METHOD>
 ###############################################################
 import os
 from pathlib import Path
@@ -15,15 +16,8 @@ from cloudmesh.common.util import banner
 from cloudmesh.common.util import path_expand
 from cloudmesh.common.util import writefile
 from cloudmesh.common.variables import Variables
-from cloudmesh.storage.Provider import Provider
-from cloudmesh.transfer.provider.awss3.Provider import Provider as AwsProvider
-from cloudmesh.transfer.provider.azureblob.Provider import \
-    Provider as AzureblobProvider
-from cloudmesh.transfer.provider.local.Provider import Provider as LocalProvider
 from cloudmesh.transfer.Provider import Provider
 from cloudmesh.configuration.Config import Config
-
-from pprint import pprint
 
 # cms set storage=awss3
 
