@@ -229,3 +229,37 @@ $ cms transfer delete --target=awss3:"test_transfer_local_azure.txt"
 | 1     |            | awss3      | test_transfer_local_azure.txt | 10   | File | Mon, 02 Dec 2019 10:28:21 GMT | Deleted |
 +-------+------------+------------+-------------------------------+------+------+-------------------------------+---------+
 ```
+
+## Programming Interface
+
+Cloudmesh transfer provides a simple programming API interface that user can
+use to implement methods such as list, delete and copy. We highlight a simple
+example for enlisting objects form the local storage provider:
+
+```python
+from cloudmesh.transfer.Provider import Provider
+from pprint import pprint
+
+target_CSP = "local"
+target_obj = "sample_file.txt"
+
+provider = Provider(source=None, source_obj=None,
+                    target=target_CSP, target_obj=target_obj)
+
+result = provider.list(source=None, source_obj=None,
+                       target=target_CSP, target_obj=target_obj,
+                       recursive=True)
+
+pprint(result)
+```
+
+## Pytests
+
+Script to test the transfer service can be accessed under tests folder using
+the following pytest commands:
+
+```bash
+pytest -v --capture=no tests/test_transfer.py
+```
+
+* Results: [Pytest execution report and benchmark details](https://github.com/cloudmesh-community/fa19-516-155/blob/master/cloudmesh-transfer/cloudmesh/transfer/tests/transfer-kpimpark.md)
