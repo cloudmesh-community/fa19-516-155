@@ -1,0 +1,65 @@
+openapi: 3.0.0
+
+info:
+
+  title: cms_transfer_utility
+
+  description: A simple service to execute cms_transfer using OpenAPI 3.0
+
+  license:
+
+    name: Apache 2.0
+
+  version: 0.0.1
+
+
+
+servers:
+
+  - url: http://localhost:8080/cms_transfer
+
+
+
+paths:
+
+  /list:
+
+    get:
+
+      summary: Returns list of objects from source CSP
+
+      operationId: cms_transfer_rest.list
+
+      responses:
+
+        '200':
+
+          description: object info
+
+          content:
+
+            application/json:
+
+              schema:
+
+                $ref: "#/components/schemas/list"
+
+
+
+components:
+
+  schemas:
+
+    list:
+
+      type: "object"
+
+      required:
+
+        - "model"
+
+      properties:
+
+        model:
+
+          type: "string"

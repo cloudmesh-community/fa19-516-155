@@ -249,6 +249,8 @@ TBD
 * done. Benchmarks
 * done. PyTest execution report
 * done. Update report.md
+* done. Create `cms transfer` manual
+* done. Validate formatting of report.md and manual with mdl
 
 ## Limitations
 
