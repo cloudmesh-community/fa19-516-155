@@ -1,3 +1,4 @@
+
 # Cloudmesh Data Transfer Service for AWS S3 and Azure Blob
 
 Ketan Pimparkar, [fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155)
@@ -100,14 +101,13 @@ Diagram credit: Prof. Gregor
 
 |Function|Command|Provider|
 |-----|-------|--------|
-|**list**|cms transfer list --target=local:"~\\cmStorage\\b"|transfer.Provider|
-|||> transfer.local.Provider|
+|**list**|cms transfer list --target=local:"~\\cmStorage\\b"|transfer.Provider > transfer.local.Provider|
 ||cms transfer list --target=awss3: |transfer.Provider > transfer.awss3.Provider|
 ||cms transfer list --target=azure:"\\folder1" |transfer.Provider > transfer.azureblob.Provider|
-|<b>delete</b>|cms transfer delete --target=local:"~\\cmStorage\\b"| transfer.Provider > transfer.local.Provider|
+|**delete**|cms transfer delete --target=local:"~\\cmStorage\\b"| transfer.Provider > transfer.local.Provider|
 ||cms transfer delete --target=awss3:"folder1\\a1.txt"|transfer.Provider > transfer.awss3.Provider|
 ||cms transfer delete --target=azure:"\\folder1\\abcd.txt"|transfer.Provider > transfer.azureblob.Provider|
-|<b>copy</b>|cms transfer copy --source=awss3:"/folder1" --target=local:"~\\cmStorage\\folder1"|transfer.Provider > transfer.awss3.Provider|
+|**copy**|cms transfer copy --source=awss3:"/folder1"--target=local:"~\\cmStorage\\folder1"|transfer.Provider > transfer.awss3.Provider|
 ||cms transfer copy --source=local:"~\\cmStorage\\folder1" --target=awss3:"/folder1\/"|transfer.Provider > transfer.awss3.Provider|
 ||cms transfer copy --source=azure:a1.txt --target=local:"~\\cmStorage\\folder1"|transfer.Provider > transfer.azureblob.Provider|
 ||cms transfer copy --source=local:"~\\cmStorage\\folder1" --target=azure:"\\folder1"|transfer.Provider > transfer.azureblob.Provider|
@@ -115,15 +115,6 @@ Diagram credit: Prof. Gregor
 * REST service:
 
 TBD
-
-## References
-
-* AzCopy: <https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-s3?toc=%2fazure%2fstorage%2fblobs%2ftoc.json>
-* AWS Boto3 API: <https://boto3.amazonaws.com/v1/documentation/api/latest/index.html?id=docs_gateway>
-* Cloudmesh manual: <https://cloudmesh.github.io/cloudmesh-manual/preface/about.html>
-* Install Azure python SDK: <https://docs.microsoft.com/en-us/azure/python/python-sdk-azure-install>
-* Azure python API usage: <https://github.com/Azure-Samples/storage-blobs-python-quickstart/blob/master/example.py>
-* Cloud computing book by Prof. Grogor: <https://laszewski.github.io/book/cloud/>
 
 ## Benchmarks
 
@@ -165,15 +156,15 @@ available at [Transfer Benchmarks](https://github.com/cloudmesh-community/fa19-5
 
 ## Project direction
 
-* Initially `transfer` command was thought as part of `cms storage`. 
-Modifications to `cms storage` were done to incorporate `transfer`.
-* This approach was changed later on to make `cms transfer` an independent 
-command.
-* Initial development of `cms transfer` was done by using native python API 
-of AWS S3 `Boto3` and Azure Blob `BlockBlobService`. This approach was 
-changed to use `cms storage` providers.
-* Code developed with native API was then discarded. It can be found at this 
-[location](https://github.com/cloudmesh-community/fa19-516-155/tree/master/bkp_cloudmesh-transfer).
+* Initially `transfer` command was thought as part of `cms storage`.
+  Modifications to `cms storage` were done to incorporate `transfer`.
+* This approach was changed later on to make `cms transfer` an independent
+  command.
+* Initial development of `cms transfer` was done by using native python API
+  of AWS S3 `Boto3` and Azure Blob `BlockBlobService`. This approach was
+  changed to use `cms storage` providers.
+* Code developed with native API was then discarded. It can be found at this
+  [location](https://github.com/cloudmesh-community/fa19-516-155/tree/master/bkp_cloudmesh-transfer).
 
 ## Configuration
 
@@ -276,4 +267,12 @@ TBD
 * `transfer` command is developed and tested on Windows 10 Pro
 * Currently `transfer` command uses local storage as intermediate storage for
  copying objects between two CSPs
- 
+
+## References
+
+* AzCopy: <https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-s3?toc=%2fazure%2fstorage%2fblobs%2ftoc.json>
+* AWS Boto3 API: <https://boto3.amazonaws.com/v1/documentation/api/latest/index.html?id=docs_gateway>
+* Cloudmesh manual: <https://cloudmesh.github.io/cloudmesh-manual/preface/about.html>
+* Install Azure python SDK: <https://docs.microsoft.com/en-us/azure/python/python-sdk-azure-install>
+* Azure python API usage: <https://github.com/Azure-Samples/storage-blobs-python-quickstart/blob/master/example.py>
+* Cloud computing book by Prof. Grogor: <https://laszewski.github.io/book/cloud/>
