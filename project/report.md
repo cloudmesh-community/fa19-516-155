@@ -3,7 +3,7 @@
 
 Ketan Pimparkar, [fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155)
 
-## Abstract
+## Objective
 
 Provide cloudmesh users an API and REST service to transfer files,
 directories from data storage of one cloud service provider to other
@@ -121,20 +121,6 @@ TBD
 Benchmarking done with cloudmesh's stopwatch utility. Detailed results are
 available at [Transfer Benchmarks](https://github.com/cloudmesh-community/fa19-516-155/blob/master/cloudmesh-transfer/cloudmesh/transfer/tests/transfer-kpimpark.md)
 
-| timer                         | time  | start               | tag | node                 | user | system  | mac_version | win_version                     |
-|-------------------------------|-------|---------------------|-----|----------------------|------|---------|-------------|---------------------------------|
-| List local for awss3 provider | 0.005 | 2019-12-02 10:28:11 |     | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
-| Transfer local to awss3       | 2.147 | 2019-12-02 10:28:11 |     | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
-| List s3 for awss3 provider    | 1.493 | 2019-12-02 10:28:13 |     | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
-| Transfer awss3 to local       | 1.097 | 2019-12-02 10:28:15 |     | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
-| Transfer awss3 to azure       | 1.836 | 2019-12-02 10:28:16 |     | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
-| Transfer local to azure.      | 0.603 | 2019-12-02 10:28:18 |     | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
-| List azure.                   | 0.555 | 2019-12-02 10:28:18 |     | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
-| Transfer azure to local.      | 1.12  | 2019-12-02 10:28:20 |     | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
-| Delete s3                     | 1.086 | 2019-12-02 10:28:21 |     | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
-| Delete local                  | 0.048 | 2019-12-02 10:28:22 |     | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
-| Delete azure                  | 0.646 | 2019-12-02 10:28:22 |     | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
-
 ## Testing
 
 * Following PyTests are created to test the working of transfer command.
@@ -165,10 +151,12 @@ available at [Transfer Benchmarks](https://github.com/cloudmesh-community/fa19-5
   changed to use `cms storage` providers.
 * Code developed with native API was then discarded. It can be found at this
   [location](https://github.com/cloudmesh-community/fa19-516-155/tree/master/bkp_cloudmesh-transfer).
-
+* As per the current approach, list/delete/copy methods are implemented using
+  cloudmesh storage providers. [Code location](https://github.com/cloudmesh-community/fa19-516-155/tree/master/cloudmesh-transfer)
+  
 ## Configuration
 
-.yaml file configuration and `azcopy` installation is required:
+Cloudmesh .yaml file configuration and `azcopy` installation is required:
 
 ### .yaml file configuration
 
