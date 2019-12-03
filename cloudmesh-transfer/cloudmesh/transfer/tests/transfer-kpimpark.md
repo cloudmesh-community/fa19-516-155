@@ -1,5 +1,5 @@
 
-<pre>
+```bash
 (ENV3) C:\Study\IUMSDS\Fall2019\CloudComputing\fa19-516-155\cloudmesh-transfer\cloudmesh\transfer>pytest -v --capture=no tests/test_transfer.py
 ======================================================================================= test session starts ========================================================================================
 platform win32 -- Python 3.7.4, pytest-5.2.2, py-1.8.0, pluggy-0.13.0 -- c:\study\iumsds\fall2019\cloudcomputing\env3\scripts\python.exe
@@ -947,4 +947,4 @@ c:\study\iumsds\fall2019\cloudcomputing\env3\lib\site-packages\_pytest\mark\stru
 ================================================================================= 13 passed, 6 warnings in 14.53s ==================================================================================
 
 (ENV3) C:\Study\IUMSDS\Fall2019\CloudComputing\fa19-516-155\cloudmesh-transfer\cloudmesh\transfer>
-</pre>
+```
