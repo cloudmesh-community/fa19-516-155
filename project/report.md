@@ -2,8 +2,6 @@
 
 Ketan Pimparkar, [fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155)
 
-**NOTE: Markdown syntax is yet to be validated. ETA - 12/02 EoD** 
-
 ## Abstract
 
 Provide cloudmesh users an API and REST service to transfer files,
@@ -30,7 +28,7 @@ available to cloudmesh users.
 
 ![CM Transfer Architecture Diagram](images/gregor-cloudmesh-storage.png)
 
-Diagram credit: Prof. Gregor  
+Diagram credit: Prof. Gregor
 
 ## Technology
 
@@ -48,9 +46,9 @@ Diagram credit: Prof. Gregor
 
 ```
      Usage:
-       transfer copy --source=aws:source_obj --target=azure:target_obj [-r]
-       transfer list --target=aws:target_obj
-       transfer delete --target=aws:target_obj
+       transfer copy --source=awss3:source_obj --target=azure:target_obj [-r]
+       transfer list --target=awss3:target_obj
+       transfer delete --target=awss3:target_obj
 
 
      This command is part of Cloudmesh's multi-cloud storage service.
@@ -63,12 +61,12 @@ Diagram credit: Prof. Gregor
 
 
      Arguments:
-       aws:source_obj  Combination of cloud name and the source object name
-       source_obj      Source object. Can be file or a directory.
-       azure:target_obj Combination of cloud name and the target object name
-       target_obj      Target object. Can be file or a directory.
-       transfer_id     A unique id/name assigned by cloudmesh to each
-                       transfer instance.
+       awss3:source_obj  Combination of cloud name and the source object name
+       source_obj        Source object. Can be file or a directory.
+       azure:target_obj  Combination of cloud name and the target object name
+       target_obj        Target object. Can be file or a directory.
+       transfer_id       A unique id/name assigned by cloudmesh to each
+                         transfer instance.
 
 
      Options:
@@ -80,20 +78,20 @@ Diagram credit: Prof. Gregor
 
 
      Description:
-       transfer copy --source=<aws:source_obj>
+       transfer copy --source=<awss3:source_obj>
                      --target=<azure:target_obj> [-r]
            Copy file/folder from source to target. Source/target CSPs
            and name of the source/target objects to be provided.
            Optional argument "-r" indicates recursive copy.
 
-       transfer list --target=aws:target_obj
+       transfer list --target=awss3:target_obj
            Enlists available files on target CSP at target object
 
-       transfer delete --target=aws:target_obj
+       transfer delete --target=awss3:target_obj
            Deletes target object from the target CSP.
 
      Examples:
-       transfer copy --source=aws:sampleFileS3.txt
+       transfer copy --source=awss3:sampleFileS3.txt
                      --target=azure:sampleFileBlob.txt
 
 ```
@@ -102,7 +100,8 @@ Diagram credit: Prof. Gregor
 
 |Function|Command|Provider|
 |-----|-------|--------|
-|<b>list</b>|cms transfer list --target=local:"~\\cmStorage\\b"| transfer.Provider > transfer.local.Provider|
+|**list**|cms transfer list --target=local:"~\\cmStorage\\b"|transfer.Provider|
+|||> transfer.local.Provider|
 ||cms transfer list --target=awss3: |transfer.Provider > transfer.awss3.Provider|
 ||cms transfer list --target=azure:"\\folder1" |transfer.Provider > transfer.azureblob.Provider|
 |<b>delete</b>|cms transfer delete --target=local:"~\\cmStorage\\b"| transfer.Provider > transfer.local.Provider|
@@ -128,7 +127,7 @@ TBD
 
 ## Benchmarks
 
-Benchmarking done with cloudmesh's stopwatch utility. Detailed results are 
+Benchmarking done with cloudmesh's stopwatch utility. Detailed results are
 available at [Transfer Benchmarks](https://github.com/cloudmesh-community/fa19-516-155/blob/master/cloudmesh-transfer/cloudmesh/transfer/tests/transfer-kpimpark.md)
 
 | timer                         | time  | start               | tag | node                 | user | system  | mac_version | win_version                     |
@@ -145,26 +144,24 @@ available at [Transfer Benchmarks](https://github.com/cloudmesh-community/fa19-5
 | Delete local                  | 0.048 | 2019-12-02 10:28:22 |     | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
 | Delete azure                  | 0.646 | 2019-12-02 10:28:22 |     | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
 
-
 ## Testing
 
 * Following PyTests are created to test the working of transfer command.
-    * List local.
-    * List s3.
-    * List azure.                  
-    * Transfer local to awss3      
-    * Transfer awss3 to local      
-    * Transfer awss3 to azure      
-    * Transfer azure to awss3
-    * Transfer local to azure.     
-    * Transfer azure to local.     
-    * Delete s3                    
-    * Delete local                 
-    * Delete azure     
+  * List local.
+  * List s3.
+  * List azure.
+  * Transfer local to awss3
+  * Transfer awss3 to local
+  * Transfer awss3 to azure
+  * Transfer azure to awss3
+  * Transfer local to azure.
+  * Transfer azure to local.
+  * Delete s3
+  * Delete local
+  * Delete azure
 
 * PyTests are available at this [location](https://github.com/cloudmesh-community/fa19-516-155/blob/master/cloudmesh-transfer/cloudmesh/transfer/tests/test_transfer.py)
 * [Results of PyTest execution.](https://github.com/cloudmesh-community/fa19-516-155/blob/master/cloudmesh-transfer/cloudmesh/transfer/tests/transfer-kpimpark.md)
-
 
 ## Project direction
 
@@ -174,16 +171,20 @@ Modifications to `cms storage` were done to incorporate `transfer`.
 command.
 * Initial development of `cms transfer` was done by using native python API 
 of AWS S3 `Boto3` and Azure Blob `BlockBlobService`. This approach was 
-changed to use `cms storage` providers. 
+changed to use `cms storage` providers.
 * Code developed with native API was then discarded. It can be found at this 
 [location](https://github.com/cloudmesh-community/fa19-516-155/tree/master/bkp_cloudmesh-transfer).
-    
+
 ## Configuration
 
+.yaml file configuration and `azcopy` installation is required:
+
 ### .yaml file configuration
+
 * Location of .yaml file: C:\Users\{User}\.cloudmesh\cloudmesh.yaml
 * Local storage configuration:
-<pre>
+
+```bash
     storage:
         local:
           cm:
@@ -200,10 +201,12 @@ changed to use `cms storage` providers.
           credentials:
             userid: None
             password: None
-</pre>
-    * default.directory is the location of local storage
+```
+
+* default.directory is the location of local storage
 * AWS S3 storage configuration:
-<pre>
+
+```bash
     awss3:
       cm:
         active: false
@@ -220,9 +223,11 @@ changed to use `cms storage` providers.
         secret_access_key: XXX
         bucket: XXX
         region: us-east-2
-</pre>
+```
+
 * Azure Blob storage configuration:
-<pre>
+
+```bash
     azure:
       cm:
         active: false
@@ -244,7 +249,8 @@ changed to use `cms storage` providers.
         AZURE_APPLICATION_ID: xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
         AZURE_SECRET_KEY: TBD
         AZURE_REGION: northcentralus    """
-</pre>
+```
+
 ### azcopy installation
 
 TBD
@@ -264,7 +270,6 @@ TBD
 * done. Benchmarks
 * done. PyTest execution report
 * done. Update report.md
-
 
 ## Limitations
 
