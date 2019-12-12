@@ -13,7 +13,7 @@ methods will be made available to cloudmesh users.
 
 The code of cloudmesh transfer utility is available at:
 
-* [Source code](https://github.com/cloudmesh-community/fa19-516-155/tree/master/cloudmesh-transfer)
+* [CODE REPOSITORY: cloudmesh-transfer](https://github.com/cloudmesh/cloudmesh-transfer)
 
 ## Configuration
 
@@ -262,10 +262,11 @@ the following pytest commands:
 pytest -v --capture=no tests/test_transfer.py
 ```
 
-* Results: [Pytest execution report and benchmark details](https://github.com/cloudmesh-community/fa19-516-155/blob/master/cloudmesh-transfer/cloudmesh/transfer/tests/transfer-kpimpark.md)
+* [transfer pytests](https://github.com/cloudmesh/cloudmesh-transfer/blob/master/cloudmesh/transfer/tests/test_transfer.py)
+* [Pytest execution report and benchmark details](https://github.com/cloudmesh-community/fa19-516-155/blob/master/cloudmesh-transfer/cloudmesh/transfer/tests/transfer-kpimparkar.txt)
 
 ## Links
 
 For additional details:
 
-* [cms transfer report](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/report.md)
+* [cms transfer project report](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/report.md)

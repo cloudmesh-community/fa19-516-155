@@ -53,6 +53,7 @@ Diagram credit: Prof. Gregor
 
 ## Usage
 
+* [cms transfer manual](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/transfer.md)
 * The code developed for `cms transfer` command is available [here](https://github.com/cloudmesh/cloudmesh-transfer)
 
 ```
@@ -172,7 +173,7 @@ Benchmarking on `cms transfer` with cloudmesh's stopwatch utility.
 
 * Results of pytest execution:
   * [Results cms transfer pytests](https://github.com/cloudmesh/cloudmesh-transfer/tree/master/cloudmesh/transfer/tests)
-  * [Results cms storage pytests](../project/test_storage_awss3_without_copy.txt)
+  * [Results cms storage pytests](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/test_storage_with_copy.txt)
 
 ## Project direction
 
@@ -185,7 +186,7 @@ Benchmarking on `cms transfer` with cloudmesh's stopwatch utility.
     of AWS S3 `Boto3` and Azure Blob `BlockBlobService`. This approach was
     changed to use `cms storage` providers.
   * Code developed with native API was then discarded. It can be found at this
-    [location](../bkp_cloudmesh-transfer).
+    [location](https://github.com/cloudmesh-community/fa19-516-155/tree/master/bkp_cloudmesh-transfer).
   * As per the current approach, list/delete/copy methods are implemented using
     cloudmesh storage providers. [cms-transfer](https://github.com/cloudmesh/cloudmesh-transfer)
   * Usage of azcopy was made less important due to time availability.
