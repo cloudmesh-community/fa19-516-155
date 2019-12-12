@@ -1,9 +1,19 @@
 # Cloudmesh Data Transfer Service for AWS S3 and Azure Blob
 
-Ketan Pimparkar, [fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155)
+Ketan Pimparkar
 
-:o2: see the report.md file for others, they have links that you need to include 
+kpimpar@iu.edu
 
+[fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155)
+
+[Contributors](https://github.com/cloudmesh-community/fa19-516-155/graphs/contributors)
+
+[Insights](https://github.com/cloudmesh-community/fa19-516-155/pulse/monthly)
+
+### Code Repository
+
+[CODE REPOSITORY: cloudmesh-transfer](https://github.com/cloudmesh/cloudmesh-transfer)  
+[CODE REPOSITORY: cloudmesh-storage](https://github.com/cloudmesh/cloudmesh-storage)
 
 ## Objective
 
