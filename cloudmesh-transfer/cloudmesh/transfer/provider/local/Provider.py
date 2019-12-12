@@ -10,8 +10,6 @@ from cloudmesh.common.Printer import Printer
 from pathlib import Path
 from pprint import pprint
 
-# from azure.storage.blob import BlockBlobService
-
 
 class Provider(StorageABC):
     """
@@ -52,19 +50,16 @@ class Provider(StorageABC):
         # provider hence using service = "local" by default
         self.storage_provider = StorageLocalProvider(service="local")
 
-    # TODO - check pass recursive argument from master provider & transfer.py
-
     def list(self, source=None, source_obj=None,
-                   target=None, target_obj=None,
-                   recursive=True):
+             target=None, target_obj=None, recursive=True):
         """
         To enlist content of "target object"
-        :param source:
-        :param source_obj:
-        :param target:
-        :param target_obj:
-        :param recursive:
-        :return:
+        :param source: source CSP - awss3/azure/local, None for list method
+        :param source_obj: It can be file or folder, None for list method
+        :param target: target CSP - awss3/azure/local
+        :param target_obj: It can be file or folder
+        :param recursive: enlist directories/sub-directories
+        :return: dictionary enlisting objects
         """
         print("CALLING LOCAL PROVIDER'S LIST METHOD")
         # Storage local provider expects a path relative to the default
@@ -105,12 +100,12 @@ class Provider(StorageABC):
                      recursive=True):
         """
         To delete content of "target object"
-        :param source:
-        :param source_object:
-        :param target:
-        :param target_object:
-        :param recursive:
-        :return:
+        :param source: source CSP - awss3/azure/local, None for delete method
+        :param source_obj: It can be file or folder, None for delete method
+        :param target: target CSP - awss3/azure/local
+        :param target_obj: It can be file or folder
+        :param recursive: enlist directories/sub-directories
+        :return: dictionary enlisting deleted objects
         """
         print("CALLING LOCAL PROVIDER'S DELETE METHOD")
         # Storage local provider expects a path relative to the default
@@ -159,12 +154,12 @@ class Provider(StorageABC):
             return Console.error(f"Error occurred: {e}")
 
 
-if __name__ == "__main__":
-    p = Provider(source=None, source_obj=None,
-                 target="local", target_obj="~\cmStorage")
-
-    p.list(source=None, source_obj=None,
-           target="local", target_obj="~\cmStorage")
-
-    # p.delete(source=None, source_obj=None,
-    #          target="local", target_obj="abcd.txt")
+# if __name__ == "__main__":
+#     p = Provider(source=None, source_obj=None,
+#                  target="local", target_obj="~\cmStorage")
+#
+#     p.list(source=None, source_obj=None,
+#            target="local", target_obj="~\cmStorage")
+#
+#     # p.delete(source=None, source_obj=None,
+#     #          target="local", target_obj="abcd.txt")

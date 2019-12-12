@@ -54,8 +54,6 @@ class Provider(StorageABC):
 
         self.storage_provider = StorageAzureblobProvider(service='azure')
 
-    # TODO - check pass recursive argument from master provider & transfer.py
-
     @staticmethod
     def print_table(result, status=None, source=None, target=None):
         op_result = []
@@ -88,12 +86,12 @@ class Provider(StorageABC):
              recursive=True):
         """
         To enlist content of "target object"
-        :param source:
-        :param source_obj:
-        :param target:
-        :param target_obj:
-        :param recursive:
-        :return:
+        :param source: source CSP - awss3/azure/local, None for list method
+        :param source_obj: It can be file or folder, None for list method
+        :param target: target CSP - awss3/azure/local
+        :param target_obj: It can be file or folder
+        :param recursive: enlist directories/sub-directories
+        :return: dictionary enlisting objects
         """
         print("CALLING AZURE BLOB STORAGE PROVIDER'S LIST METHOD")
 
@@ -118,12 +116,12 @@ class Provider(StorageABC):
                recursive=True):
         """
         To delete content of "target object"
-        :param source:
-        :param source_obj:
-        :param target:
-        :param target_obj:
-        :param recursive:
-        :return:
+        :param source: source CSP - awss3/azure/local, None for delete method
+        :param source_obj: It can be file or folder, None for delete method
+        :param target: target CSP - awss3/azure/local
+        :param target_obj: It can be file or folder
+        :param recursive: enlist directories/sub-directories
+        :return: dictionary enlisting deleted objects
         """
         print("CALLING AZURE BLOB STORAGE PROVIDER'S DELETE METHOD")
 
@@ -144,6 +142,15 @@ class Provider(StorageABC):
     def copy(self, source=None, source_obj=None,
              target=None, target_obj=None,
              recursive=True):
+        """
+        Copy objects from source to target storage
+        :param source: source CSP - awss3/azure/local
+        :param source_obj: It can be file or folder
+        :param target: target CSP - awss3/azure/local
+        :param target_obj: It can be file or folder
+        :param recursive: enlist directories/sub-directories
+        :return: dictionary enlisting copied objects
+        """
         banner(f"CALLING AZURE BLOB STORAGE PROVIDER'S GET METHOD FOR "
                f"{source.upper()} TO {target.upper()} COPY")
 
@@ -195,24 +202,24 @@ class Provider(StorageABC):
                                     target=target)
 
 
-if __name__ == "__main__":
-    p = Provider(source=None, source_obj=None,
-                 target="azure", target_obj="\\")
-
-    # p.list(source=None, source_obj=None,
-    #        target="azure", target_obj="\\folder1")
-
-    # p.delete(source=None, source_obj=None,
-    #          target="azure", target_obj="\\folder1")
-
-    # p.copy(source="azure", source_obj="\\folder1",
-    #        target="local", target_obj="~\\cmStorage",
-    #        recursive=True)
-
-    # p.copy(source="local", source_obj="~\\cmStorage\\folder1",
-    #        target="azure", target_obj="\\folder1",
-    #        recursive=True)
-    p.copy(source="awss3", source_obj="abcd.txt",
-           target="azure", target_obj="\\folder1",
-           recursive=True)
+# if __name__ == "__main__":
+#     p = Provider(source=None, source_obj=None,
+#                  target="azure", target_obj="\\")
+#
+#     # p.list(source=None, source_obj=None,
+#     #        target="azure", target_obj="\\folder1")
+#
+#     # p.delete(source=None, source_obj=None,
+#     #          target="azure", target_obj="\\folder1")
+#
+#     # p.copy(source="azure", source_obj="\\folder1",
+#     #        target="local", target_obj="~\\cmStorage",
+#     #        recursive=True)
+#
+#     # p.copy(source="local", source_obj="~\\cmStorage\\folder1",
+#     #        target="azure", target_obj="\\folder1",
+#     #        recursive=True)
+#     p.copy(source="awss3", source_obj="abcd.txt",
+#            target="azure", target_obj="\\folder1",
+#            recursive=True)
 

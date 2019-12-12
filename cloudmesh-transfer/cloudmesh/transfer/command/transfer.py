@@ -8,11 +8,7 @@ from cloudmesh.common.debug import VERBOSE
 from cloudmesh.shell.command import command, map_parameters
 from cloudmesh.transfer.Provider import Provider
 from cloudmesh.common.util import banner
-
-
 import sys
-from pprint import pprint
-
 
 
 class TransferCommand(PluginCommand):
@@ -75,7 +71,7 @@ class TransferCommand(PluginCommand):
         """
 
         print("EXECUTING: ")
-        # TODO: See is 'recursive' needs to be passed as well
+
         map_parameters(arguments,
                        "source",
                        "target")
@@ -87,8 +83,11 @@ class TransferCommand(PluginCommand):
         # providers with cloudmesh coding standards.
 
         # pprint(sys.path)
-        sys.path.insert(0,
-        r"c:\study\iumsds\fall2019\cloudcomputing\fa19-516-155\cloudmesh-transfer")
+        try:
+            sys.path.insert(0,
+            r"c:\study\iumsds\fall2019\cloudcomputing\fa19-516-155\cloudmesh-transfer")
+        except Exception as e:
+            print("PYTHONPATH not updated.")
 
         # Extract source and target details from the arguments
         if arguments.source:
@@ -151,9 +150,9 @@ class TransferCommand(PluginCommand):
             return ""
 
 
-if __name__ == "__main__":
-    try:
-        inst = TransferCommand()
-        inst.do_transfer('list --target=local:a')
-    except Exception as e:
-        print(e)
+# if __name__ == "__main__":
+#     try:
+#         inst = TransferCommand()
+#         inst.do_transfer('list --target=local:a')
+#     except Exception as e:
+#         print(e)

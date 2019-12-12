@@ -73,6 +73,15 @@ class Provider(StorageABC):
     #    @DatabaseUpdate()
     def list(self, source=None, source_obj=None,
                    target=None, target_obj=None, recursive=True):
+        """
+        To enlist content of "target object"
+        :param source: source CSP - awss3/azure/local, None for list method
+        :param source_obj: It can be file or folder, None for list method
+        :param target: target CSP - awss3/azure/local
+        :param target_obj: It can be file or folder
+        :param recursive: enlist directories/sub-directories
+        :return: dictionary enlisting objects
+        """
         # VERBOSE(locals())
         print("MASTER provider LIST ====>\n", target, target_obj)
 
@@ -84,7 +93,16 @@ class Provider(StorageABC):
         return result
 
     def delete(self, source=None, source_obj=None,
-                   target=None, target_obj=None, recursive=True):
+               target=None, target_obj=None, recursive=True):
+        """
+        To delete content of "target object"
+        :param source: source CSP - awss3/azure/local, None for delete method
+        :param source_obj: It can be file or folder, None for delete method
+        :param target: target CSP - awss3/azure/local
+        :param target_obj: It can be file or folder
+        :param recursive: enlist directories/sub-directories
+        :return: dictionary enlisting deleted objects
+        """
         print("\nMASTER provider DELETE ====>\n", source, target)
 
         result = self.target_provider.delete(source=source,
@@ -95,7 +113,16 @@ class Provider(StorageABC):
         return result
 
     def copy(self, source=None, source_obj=None,
-                   target=None, target_obj=None, recursive=True):
+             target=None, target_obj=None, recursive=True):
+        """
+        Copy objects from source to target storage
+        :param source: source CSP - awss3/azure/local
+        :param source_obj: It can be file or folder
+        :param target: target CSP - awss3/azure/local
+        :param target_obj: It can be file or folder
+        :param recursive: enlist directories/sub-directories
+        :return: dictionary enlisting copied objects
+        """
         print(f"\nMASTER provider COPY from {source} to {target}")
 
         if target == "local":

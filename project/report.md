@@ -17,10 +17,9 @@ kpimpark@iu.edu
 
 ## Objective
 
-Provide cloudmesh users an API and REST service to transfer files,
-directories from data storage of one cloud service provider to other
-cloud service provider. This package will consider AWS S3 and Azure Blob
-storage for current implementation.
+Provide cloudmesh users an API to transfer files,directories from data
+storage of one cloud service provider to other cloud service provider. This
+package will consider AWS S3 and Azure Blob storage for current implementation.
 
 ## Motivation
 
@@ -54,8 +53,7 @@ Diagram credit: Prof. Gregor
 
 ## Usage
 
-* API:
-* The code is available [here](https://github.com/cloudmesh-community/fa19-516-155/tree/master/cloudmesh-transfer)
+* The code developed for `cms transfer` command is available [here](https://github.com/cloudmesh/cloudmesh-transfer)
 
 ```
      Usage:
@@ -124,14 +122,33 @@ Diagram credit: Prof. Gregor
 ||cms transfer copy --source=azure:a1.txt --target=local:"~\\cmStorage\\folder1"|transfer.Provider > transfer.azureblob.Provider|
 ||cms transfer copy --source=local:"~\\cmStorage\\folder1" --target=azure:"\\folder1"|transfer.Provider > transfer.azureblob.Provider|
 
+* cms storage copy command:
+
+Due to change in project direction, code modifications were done to `cms
+stoarge` in addition to `cms transfer` to implement object copy between two
+storage providers. This code is available in `transfer` [branch of cloudmesh
+storage.](https://github.com/cloudmesh/cloudmesh-storage)
+
+```
+   Usage:
+       storage copy SOURCE DESTINATION [--recursive]
+
+   Description:
+       storage copy SOURCE DESTINATION
+       Copies objects from SOURCE CSP to DESTINATION CSP
+       SOURCE: awss3:"source_object_name"
+       DESTINATION: azure:"target_object_name"
+```
+
 * REST service:
 
 TBD
 
 ## Benchmarks
 
-Benchmarking done with cloudmesh's stopwatch utility. Detailed results are
-available at [Transfer Benchmarks](https://github.com/cloudmesh-community/fa19-516-155/blob/master/cloudmesh-transfer/cloudmesh/transfer/tests/transfer-kpimpark.md)
+Benchmarking on `cms transfer` with cloudmesh's stopwatch utility.
+
+[Transfer Benchmarks](https://github.com/cloudmesh/cloudmesh-transfer/blob/master/cloudmesh/transfer/tests/transfer-kpimparkar.txt)
 
 ## Testing
 
@@ -149,22 +166,36 @@ available at [Transfer Benchmarks](https://github.com/cloudmesh-community/fa19-5
   * Delete local
   * Delete azure
 
-* PyTests are available at this [location](https://github.com/cloudmesh-community/fa19-516-155/blob/master/cloudmesh-transfer/cloudmesh/transfer/tests/test_transfer.py)
-* [Results of PyTest execution.](https://github.com/cloudmesh-community/fa19-516-155/blob/master/cloudmesh-transfer/cloudmesh/transfer/tests/transfer-kpimpark.md)
+* PyTests:
+  * [cms transfer pytests](https://github.com/cloudmesh/cloudmesh-transfer/blob/master/cloudmesh/transfer/tests/test_transfer.py)
+  * [cms storage pytests](https://github.com/cloudmesh/cloudmesh-storage/blob/transfer/tests/test_storage.py)
+
+* Results of pytest execution:
+  * [Results cms transfer pytests](https://github.com/cloudmesh/cloudmesh-transfer/tree/master/cloudmesh/transfer/tests)
+  * [Results cms storage pytests](../project/test_storage_awss3_without_copy.txt)
 
 ## Project direction
 
-* Initially `transfer` command was thought as part of `cms storage`.
-  Modifications to `cms storage` were done to incorporate `transfer`.
-* This approach was changed later on to make `cms transfer` an independent
-  command.
-* Initial development of `cms transfer` was done by using native python API
-  of AWS S3 `Boto3` and Azure Blob `BlockBlobService`. This approach was
-  changed to use `cms storage` providers.
-* Code developed with native API was then discarded. It can be found at this
-  [location](https://github.com/cloudmesh-community/fa19-516-155/tree/master/bkp_cloudmesh-transfer).
-* As per the current approach, list/delete/copy methods are implemented using
-  cloudmesh storage providers. [Code location](https://github.com/cloudmesh-community/fa19-516-155/tree/master/cloudmesh-transfer)
+* `cms transfer` command:
+  * Initially `transfer` command was thought as part of `cms storage`.
+    Modifications to `cms storage` were done to incorporate `transfer`.
+  * This approach was changed later on to make `cms transfer` an independent
+    command.
+  * Initial development of `cms transfer` was done by using native python API
+    of AWS S3 `Boto3` and Azure Blob `BlockBlobService`. This approach was
+    changed to use `cms storage` providers.
+  * Code developed with native API was then discarded. It can be found at this
+    [location](../bkp_cloudmesh-transfer).
+  * As per the current approach, list/delete/copy methods are implemented using
+    cloudmesh storage providers. [cms-transfer](https://github.com/cloudmesh/cloudmesh-transfer)
+  * Usage of azcopy was made less important due to time availability.
+
+* `cms storage copy` command:
+  * After code review of `cms transfer`, it was instructed to integrate a
+    `copy` method in `cms storage`. This code is available at [cms-storage](https://github.com/cloudmesh/cloudmesh-storage/tree/transfer)
+
+* cms cloud 1_local modifications:
+  * Modifications to the 1_local test were done for windows. [Code](https://github.com/cloudmesh/cloudmesh-cloud/tree/master/tests/1_local)
 
 ## Configuration
 
@@ -263,6 +294,8 @@ TBD
 * done. Update report.md
 * done. Create `cms transfer` manual
 * done. Validate formatting of report.md and manual with mdl
+* done. Integrate `copy` method in `cms storage`
+* done. Add pytest for `copy` and run `cms storage` pytests
 
 ## Limitations
 
