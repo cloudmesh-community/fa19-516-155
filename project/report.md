@@ -2,7 +2,7 @@
 
 Ketan Pimparkar
 
-kpimpar@iu.edu
+kpimpark@iu.edu
 
 [fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155)
 
