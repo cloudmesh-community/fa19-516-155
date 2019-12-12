@@ -10,9 +10,9 @@ kpimpark@iu.edu
 
 [Insights](https://github.com/cloudmesh-community/fa19-516-155/pulse/monthly)
 
-### Code Repository
+## Code Repository
 
-[CODE REPOSITORY: cloudmesh-transfer](https://github.com/cloudmesh/cloudmesh-transfer)  
+[CODE REPOSITORY: cloudmesh-transfer](https://github.com/cloudmesh/cloudmesh-transfer)
 [CODE REPOSITORY: cloudmesh-storage](https://github.com/cloudmesh/cloudmesh-storage)
 
 ## Objective
@@ -165,7 +165,7 @@ available at [Transfer Benchmarks](https://github.com/cloudmesh-community/fa19-5
   [location](https://github.com/cloudmesh-community/fa19-516-155/tree/master/bkp_cloudmesh-transfer).
 * As per the current approach, list/delete/copy methods are implemented using
   cloudmesh storage providers. [Code location](https://github.com/cloudmesh-community/fa19-516-155/tree/master/cloudmesh-transfer)
-  
+
 ## Configuration
 
 Cloudmesh .yaml file configuration and `azcopy` installation is required:
