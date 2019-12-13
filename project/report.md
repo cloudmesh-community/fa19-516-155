@@ -141,10 +141,6 @@ storage.](https://github.com/cloudmesh/cloudmesh-storage)
        DESTINATION: azure:"target_object_name"
 ```
 
-* REST service:
-
-TBD
-
 ## Benchmarks
 
 Benchmarking on `cms transfer` with cloudmesh's stopwatch utility.
@@ -173,7 +169,8 @@ Benchmarking on `cms transfer` with cloudmesh's stopwatch utility.
 
 * Results of pytest execution:
   * [Results cms transfer pytests](https://github.com/cloudmesh/cloudmesh-transfer/tree/master/cloudmesh/transfer/tests)
-  * [Results cms storage pytests](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/test_storage_with_copy.txt)
+  * [Results cms storage pytests for aws](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/test_storage_with_copy.txt)
+  * [Results cms storage pytests for azure](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/test_storage_azure_with_copy.txt)
 
 ## Project direction
 
@@ -284,7 +281,7 @@ TBD
 * done. Creation of AWS EC2 instance and S3 buckets
 * done. Access AWS account using Cloudmesh CLI
 * done. Define architecture of the transfer service
-* done. [Define docopt of the transfer service](https://github.com/cloudmesh-community/fa19-516-155/tree/master/cloudmesh-transfer)
+* done. Define [docopt](https://github.com/cloudmesh-community/fa19-516-155/tree/master/cloudmesh-transfer) of the transfer service
 * done. Define test cases
 * done. Creation of Azure account
 * done. Use cms list/delete/get/put in Transfer command
@@ -293,10 +290,11 @@ TBD
 * done. Benchmarks
 * done. PyTest execution report
 * done. Update report.md
-* done. Create `cms transfer` manual
+* done. Create `cms transfer` [manual](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/transfer.md)
 * done. Validate formatting of report.md and manual with mdl
 * done. Integrate `copy` method in `cms storage`
 * done. Add pytest for `copy` and run `cms storage` pytests
+* Update storage manual
 
 ## Limitations
 
