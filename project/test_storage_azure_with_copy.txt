@@ -1,0 +1,810 @@
+(ENV3) C:\Study\IUMSDS\Fall2019\CloudComputing\cm\cloudmesh-storage>pytest -v --capture=no tests/test_storage.py
+======================================================================================= test session starts ========================================================================================
+platform win32 -- Python 3.7.4, pytest-5.2.2, py-1.8.0, pluggy-0.13.0 -- c:\study\iumsds\fall2019\cloudcomputing\env3\scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Study\IUMSDS\Fall2019\CloudComputing\cm\cloudmesh-storage, inifile: pytest.ini
+collecting ... [34m
+# ----------------------------------------------------------------------
+# variables.dict()
+# ----------------------------------------------------------------------
+# 26:<module> .\tests\test_storage.py
+# ----------------------------------------------------------------------
+# {'cloud': 'chameleon',
+#  'cloudmesh.data.mongo.MODE': 'native',
+#  'cluster': 'clustera',
+#  'debug': 'True',
+#  'experiment': 'base',
+#  'group': 'cloudmesh',
+#  'key': '155',
+#  'storage': 'azure',
+#  'storage2': 'awss3',
+#  'timer': 'False',
+#  'trace': 'True',
+#  'verbose': '10',
+#  'vm': '155-Ketan-4'}
+# ----------------------------------------------------------------------
+[0m
+Test run for azure
+provider: <cloudmesh.storage.Provider.Provider object at 0x00000232A5F92988> azureblob
+collected 12 items
+
+tests/test_storage.py::TestStorage::test_create_local_source
+[35m
+# ######################################################################
+# test_create_local_source \tests\test_storage.py 53
+# ######################################################################
+[0m
+
+TESTDIR: C:\Users\kpimp\.cloudmesh\storage\test\a
+
+TESTDIR: C:\Users\kpimp\.cloudmesh\storage\test\a\b
+
+TESTDIR: C:\Users\kpimp\.cloudmesh\storage\test\a\b\c
+PASSED
+tests/test_storage.py::TestStorage::test_put
+[35m
+# ######################################################################
+# test_put \tests\test_storage.py 66
+# ######################################################################
+[0m
+
+[35m
+# ######################################################################
+# put c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 246
+# ######################################################################
+[0m
+[31mERROR: Directory or File does not exist: C:\Study\IUMSDS\Fall2019\CloudComputing\cm\cloudmesh-storage\~/.cloudmesh/storage/test/[0m
+[]
+PASSED
+tests/test_storage.py::TestStorage::test_put_recursive
+[35m
+# ######################################################################
+# test_put_recursive \tests\test_storage.py 88
+# ######################################################################
+[0m
+
+[35m
+# ######################################################################
+# put c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 246
+# ######################################################################
+[0m
+[31mERROR: Directory or File does not exist: C:\Study\IUMSDS\Fall2019\CloudComputing\cm\cloudmesh-storage\~/.cloudmesh/storage/test/[0m
+[]
+PASSED
+tests/test_storage.py::TestStorage::test_get
+[35m
+# ######################################################################
+# test_get \tests\test_storage.py 110
+# ######################################################################
+[0m
+
+[35m
+# ######################################################################
+# get c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 91
+# ######################################################################
+[0m
+File  :  a.txt
+Folder:
+[31mERROR: Local directory not found or file already exists: {src_path}[0m
+[]
+PASSED
+tests/test_storage.py::TestStorage::test_list
+[35m
+# ######################################################################
+# test_list \tests\test_storage.py 121
+# ######################################################################
+[0m
+
+[35m
+# ######################################################################
+# list c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 502
+# ######################################################################
+[0m
+File  :  None
+Folder:
+[34m##########################################################################################
+List of files in the folder /:[0m
+['a.txt', 'a1.txt', 'anew.txt', 'test_transfer_local_azure.txt', 'test_transfer_local_s3.txt']
+[34m##########################################################################################[0m
+[KCloudmesh Database Update |################################| 5/5
+{'cm': {'cloud': 'azure',
+        'collection': 'azure-storage',
+        'created': '2',
+        'kind': 'storage',
+        'modified': '2019-12-13 18:22:55.873172',
+        'name': 'a.txt',
+        'size': 12,
+        'status': 'exists',
+        'updated': '2'},
+ 'content': None,
+ 'deleted': False,
+ 'metadata': None,
+ 'name': 'a.txt',
+ 'properties': {'append_blob_committed_block_count': None,
+                'blob_tier': 'Cool',
+                'blob_tier_change_time': None,
+                'blob_tier_inferred': True,
+                'blob_type': 'BlockBlob',
+                'content_length': 12,
+                'content_range': None,
+                'deleted_time': None,
+                'etag': '0x8D77FF600AAE277',
+                'page_blob_sequence_number': None,
+                'remaining_retention_days': None,
+                'server_encrypted': True},
+ 'snapshot': None}
+{'cm': {'cloud': 'azure',
+        'collection': 'azure-storage',
+        'created': '2',
+        'kind': 'storage',
+        'modified': '2019-12-13 18:22:55.879945',
+        'name': 'a1.txt',
+        'size': 0,
+        'status': 'exists',
+        'updated': '2'},
+ 'content': None,
+ 'deleted': False,
+ 'metadata': None,
+ 'name': 'a1.txt',
+ 'properties': {'append_blob_committed_block_count': None,
+                'blob_tier': 'Cool',
+                'blob_tier_change_time': None,
+                'blob_tier_inferred': True,
+                'blob_type': 'BlockBlob',
+                'content_length': 0,
+                'content_range': None,
+                'deleted_time': None,
+                'etag': '0x8D77FF659605D40',
+                'page_blob_sequence_number': None,
+                'remaining_retention_days': None,
+                'server_encrypted': True},
+ 'snapshot': None}
+{'_id': ObjectId('5df3d6ffb807f3e46466cfbb'),
+ 'cm': {'cloud': 'azure',
+        'collection': 'azure-storage',
+        'created': '2019-12-13 18:22:55.882944',
+        'kind': 'storage',
+        'modified': '2019-12-13 18:22:55.882944',
+        'name': 'anew.txt',
+        'size': 0,
+        'status': 'exists',
+        'updated': '2'},
+ 'content': None,
+ 'deleted': False,
+ 'metadata': None,
+ 'name': 'anew.txt',
+ 'properties': {'append_blob_committed_block_count': None,
+                'blob_tier': 'Cool',
+                'blob_tier_change_time': None,
+                'blob_tier_inferred': True,
+                'blob_type': 'BlockBlob',
+                'content_length': 0,
+                'content_range': None,
+                'deleted_time': None,
+                'etag': '0x8D77E0C7CA0796A',
+                'page_blob_sequence_number': None,
+                'remaining_retention_days': None,
+                'server_encrypted': True},
+ 'snapshot': None}
+{'cm': {'cloud': 'azure',
+        'collection': 'azure-storage',
+        'created': '2',
+        'kind': 'storage',
+        'modified': '2019-12-13 18:22:55.887082',
+        'name': 'test_transfer_local_azure.txt',
+        'size': 10,
+        'status': 'exists',
+        'updated': '2'},
+ 'content': None,
+ 'deleted': False,
+ 'metadata': None,
+ 'name': 'test_transfer_local_azure.txt',
+ 'properties': {'append_blob_committed_block_count': None,
+                'blob_tier': 'Cool',
+                'blob_tier_change_time': None,
+                'blob_tier_inferred': True,
+                'blob_type': 'BlockBlob',
+                'content_length': 10,
+                'content_range': None,
+                'deleted_time': None,
+                'etag': '0x8D77858DC04714D',
+                'page_blob_sequence_number': None,
+                'remaining_retention_days': None,
+                'server_encrypted': True},
+ 'snapshot': None}
+{'_id': ObjectId('5df3d6ffb807f3e46466cfbc'),
+ 'cm': {'cloud': 'azure',
+        'collection': 'azure-storage',
+        'created': '2019-12-13 18:22:55.889929',
+        'kind': 'storage',
+        'modified': '2019-12-13 18:22:55.889929',
+        'name': 'test_transfer_local_s3.txt',
+        'size': 10,
+        'status': 'exists',
+        'updated': '2'},
+ 'content': None,
+ 'deleted': False,
+ 'metadata': None,
+ 'name': 'test_transfer_local_s3.txt',
+ 'properties': {'append_blob_committed_block_count': None,
+                'blob_tier': 'Cool',
+                'blob_tier_change_time': None,
+                'blob_tier_inferred': True,
+                'blob_type': 'BlockBlob',
+                'content_length': 10,
+                'content_range': None,
+                'deleted_time': None,
+                'etag': '0x8D7771258B74914',
+                'page_blob_sequence_number': None,
+                'remaining_retention_days': None,
+                'server_encrypted': True},
+ 'snapshot': None}
+PASSED
+tests/test_storage.py::TestStorage::test_list_dir_only
+[35m
+# ######################################################################
+# test_list_dir_only \tests\test_storage.py 132
+# ######################################################################
+[0m
+
+[35m
+# ######################################################################
+# list c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 502
+# ######################################################################
+[0m
+File  :  None
+Folder:
+[34m##########################################################################################
+List of files in the folder /:[0m
+['a.txt', 'a1.txt', 'anew.txt', 'test_transfer_local_azure.txt', 'test_transfer_local_s3.txt']
+[34m##########################################################################################[0m
+[KCloudmesh Database Update |################################| 5/5
+{'cm': {'cloud': 'azure',
+        'collection': 'azure-storage',
+        'created': '2',
+        'kind': 'storage',
+        'modified': '2019-12-13 18:22:56.938742',
+        'name': 'a.txt',
+        'size': 12,
+        'status': 'exists',
+        'updated': '2'},
+ 'content': None,
+ 'deleted': False,
+ 'metadata': None,
+ 'name': 'a.txt',
+ 'properties': {'append_blob_committed_block_count': None,
+                'blob_tier': 'Cool',
+                'blob_tier_change_time': None,
+                'blob_tier_inferred': True,
+                'blob_type': 'BlockBlob',
+                'content_length': 12,
+                'content_range': None,
+                'deleted_time': None,
+                'etag': '0x8D77FF600AAE277',
+                'page_blob_sequence_number': None,
+                'remaining_retention_days': None,
+                'server_encrypted': True},
+ 'snapshot': None}
+{'cm': {'cloud': 'azure',
+        'collection': 'azure-storage',
+        'created': '2',
+        'kind': 'storage',
+        'modified': '2019-12-13 18:22:56.942709',
+        'name': 'a1.txt',
+        'size': 0,
+        'status': 'exists',
+        'updated': '2'},
+ 'content': None,
+ 'deleted': False,
+ 'metadata': None,
+ 'name': 'a1.txt',
+ 'properties': {'append_blob_committed_block_count': None,
+                'blob_tier': 'Cool',
+                'blob_tier_change_time': None,
+                'blob_tier_inferred': True,
+                'blob_type': 'BlockBlob',
+                'content_length': 0,
+                'content_range': None,
+                'deleted_time': None,
+                'etag': '0x8D77FF659605D40',
+                'page_blob_sequence_number': None,
+                'remaining_retention_days': None,
+                'server_encrypted': True},
+ 'snapshot': None}
+{'cm': {'cloud': 'azure',
+        'collection': 'azure-storage',
+        'created': '2',
+        'kind': 'storage',
+        'modified': '2019-12-13 18:22:56.946148',
+        'name': 'anew.txt',
+        'size': 0,
+        'status': 'exists',
+        'updated': '2'},
+ 'content': None,
+ 'deleted': False,
+ 'metadata': None,
+ 'name': 'anew.txt',
+ 'properties': {'append_blob_committed_block_count': None,
+                'blob_tier': 'Cool',
+                'blob_tier_change_time': None,
+                'blob_tier_inferred': True,
+                'blob_type': 'BlockBlob',
+                'content_length': 0,
+                'content_range': None,
+                'deleted_time': None,
+                'etag': '0x8D77E0C7CA0796A',
+                'page_blob_sequence_number': None,
+                'remaining_retention_days': None,
+                'server_encrypted': True},
+ 'snapshot': None}
+{'cm': {'cloud': 'azure',
+        'collection': 'azure-storage',
+        'created': '2',
+        'kind': 'storage',
+        'modified': '2019-12-13 18:22:56.948775',
+        'name': 'test_transfer_local_azure.txt',
+        'size': 10,
+        'status': 'exists',
+        'updated': '2'},
+ 'content': None,
+ 'deleted': False,
+ 'metadata': None,
+ 'name': 'test_transfer_local_azure.txt',
+ 'properties': {'append_blob_committed_block_count': None,
+                'blob_tier': 'Cool',
+                'blob_tier_change_time': None,
+                'blob_tier_inferred': True,
+                'blob_type': 'BlockBlob',
+                'content_length': 10,
+                'content_range': None,
+                'deleted_time': None,
+                'etag': '0x8D77858DC04714D',
+                'page_blob_sequence_number': None,
+                'remaining_retention_days': None,
+                'server_encrypted': True},
+ 'snapshot': None}
+{'cm': {'cloud': 'azure',
+        'collection': 'azure-storage',
+        'created': '2',
+        'kind': 'storage',
+        'modified': '2019-12-13 18:22:56.951687',
+        'name': 'test_transfer_local_s3.txt',
+        'size': 10,
+        'status': 'exists',
+        'updated': '2'},
+ 'content': None,
+ 'deleted': False,
+ 'metadata': None,
+ 'name': 'test_transfer_local_s3.txt',
+ 'properties': {'append_blob_committed_block_count': None,
+                'blob_tier': 'Cool',
+                'blob_tier_change_time': None,
+                'blob_tier_inferred': True,
+                'blob_type': 'BlockBlob',
+                'content_length': 10,
+                'content_range': None,
+                'deleted_time': None,
+                'etag': '0x8D7771258B74914',
+                'page_blob_sequence_number': None,
+                'remaining_retention_days': None,
+                'server_encrypted': True},
+ 'snapshot': None}
+PASSED
+tests/test_storage.py::TestStorage::test_search
+[35m
+# ######################################################################
+# test_search \tests\test_storage.py 144
+# ######################################################################
+[0m
+
+[35m
+# ######################################################################
+# search c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 448
+# ######################################################################
+[0m
+[{'cm': {'cloud': 'azure',
+         'created': '2',
+         'kind': 'storage',
+         'name': 'a.txt',
+         'size': 12,
+         'status': 'exists',
+         'updated': '2'},
+  'content': None,
+  'deleted': False,
+  'metadata': None,
+  'name': 'a.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': 'Cool',
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': True,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 12,
+                 'content_range': None,
+                 'deleted_time': None,
+                 'etag': '0x8D77FF600AAE277',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+[{'cm': {'cloud': 'azure',
+         'created': '2',
+         'kind': 'storage',
+         'name': 'a.txt',
+         'size': 12,
+         'status': 'exists',
+         'updated': '2'},
+  'content': None,
+  'deleted': False,
+  'metadata': None,
+  'name': 'a.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': 'Cool',
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': True,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 12,
+                 'content_range': None,
+                 'deleted_time': None,
+                 'etag': '0x8D77FF600AAE277',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+PASSED
+tests/test_storage.py::TestStorage::test_create_dir
+[35m
+# ######################################################################
+# test_create_dir \tests\test_storage.py 155
+# ######################################################################
+[0m
+
+[35m
+# ######################################################################
+# create_dir c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 390
+# ######################################################################
+[0m
+[34m
+# ----------------------------------------------------------------------
+# Please note: Directory in Azure is a virtual folder, hence creating it with a uni-byte file - dummy.txt
+# ----------------------------------------------------------------------
+[0m
+{'cm': {'cloud': 'azure',
+        'created': '2',
+        'kind': 'storage',
+        'name': 'reated_dir/dummy.txt',
+        'size': 1,
+        'status': 'exists',
+        'updated': '2'},
+ 'content': b' ',
+ 'deleted': False,
+ 'metadata': {},
+ 'name': 'reated_dir/dummy.txt',
+ 'properties': {'append_blob_committed_block_count': None,
+                'blob_tier': None,
+                'blob_tier_change_time': None,
+                'blob_tier_inferred': False,
+                'blob_type': 'BlockBlob',
+                'content_length': 1,
+                'content_range': 'bytes 0-0/1',
+                'deleted_time': None,
+                'etag': '"0x8D77FF97986C349"',
+                'page_blob_sequence_number': None,
+                'remaining_retention_days': None,
+                'server_encrypted': True},
+ 'snapshot': None}
+[KCloudmesh Database Update |################################| 1/1
+[{'_id': ObjectId('5df3d702b807f3e46466cfbd'),
+  'cm': {'cloud': 'azure',
+         'collection': 'azure-storage',
+         'created': '2019-12-13 18:22:58.406700',
+         'kind': 'storage',
+         'modified': '2019-12-13 18:22:58.406700',
+         'name': 'reated_dir/dummy.txt',
+         'size': 1,
+         'status': 'exists',
+         'updated': '2'},
+  'content': b' ',
+  'deleted': False,
+  'metadata': {},
+  'name': 'reated_dir/dummy.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': None,
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': False,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 1,
+                 'content_range': 'bytes 0-0/1',
+                 'deleted_time': None,
+                 'etag': '"0x8D77FF97986C349"',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+PASSED
+tests/test_storage.py::TestStorage::test_delete
+[35m
+# ######################################################################
+# test_delete \tests\test_storage.py 166
+# ######################################################################
+[0m
+
+[35m
+# ######################################################################
+# delete c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 333
+# ######################################################################
+[0m
+File  :  None
+Folder:  created_dir
+[31mERROR: File does not exist: created_dir[0m
+PASSED
+tests/test_storage.py::TestStorage::test_copy_local
+[35m
+# ######################################################################
+# test_copy_local \tests\test_storage.py 173
+# ######################################################################
+[0m
+CALL GET METHOD OF azureblob PROVIDER.
+
+[35m
+# ######################################################################
+# get c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 91
+# ######################################################################
+[0m
+File  :  a.txt
+Folder:  None
+[KCloudmesh Database Update |################################| 1/1
+[{'cm': {'cloud': 'azure',
+         'collection': 'azure-storage',
+         'created': '2',
+         'kind': 'storage',
+         'modified': '2019-12-13 18:22:59.578954',
+         'name': 'a.txt',
+         'size': 12,
+         'status': 'exists',
+         'updated': '2'},
+  'content': None,
+  'deleted': False,
+  'metadata': {},
+  'name': 'a.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': None,
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': False,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 12,
+                 'content_range': 'bytes 0-11/12',
+                 'deleted_time': None,
+                 'etag': '"0x8D77FF600AAE277"',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+CALL PUT METHOD OF azureblob PROVIDER.
+
+[35m
+# ######################################################################
+# put c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 246
+# ######################################################################
+[0m
+[{'cm': {'cloud': 'azure',
+         'created': '2',
+         'kind': 'storage',
+         'name': 'a.txt',
+         'size': 12,
+         'status': 'exists',
+         'updated': '2'},
+  'content': b'',
+  'deleted': False,
+  'metadata': {},
+  'name': 'a.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': 'Cool',
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': True,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 12,
+                 'content_range': None,
+                 'deleted_time': None,
+                 'etag': '"0x8D77FF97AAC17E5"',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+[KCloudmesh Database Update |################################| 1/1
+[{'cm': {'cloud': 'azure',
+         'collection': 'azure-storage',
+         'created': '2',
+         'kind': 'storage',
+         'modified': '2019-12-13 18:23:00.336591',
+         'name': 'a.txt',
+         'size': 12,
+         'status': 'exists',
+         'updated': '2'},
+  'content': b'',
+  'deleted': False,
+  'metadata': {},
+  'name': 'a.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': 'Cool',
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': True,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 12,
+                 'content_range': None,
+                 'deleted_time': None,
+                 'etag': '"0x8D77FF97AAC17E5"',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+PASSED
+tests/test_storage.py::TestStorage::test_copy_cloud
+[35m
+# ######################################################################
+# test_copy_cloud \tests\test_storage.py 197
+# ######################################################################
+[0m
+Test run for copy awss3:a1.txt azure:/
+[34m
+# ----------------------------------------------------------------------
+# f"Copy from {source} to {destination}."
+# ----------------------------------------------------------------------
+# 169:copy c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\Provider.py
+# ----------------------------------------------------------------------
+# 'Copy from awss3 to azure:/.'
+# ----------------------------------------------------------------------
+[0m
+{'action': 'get',
+ 'destination': 'C:\\Users\\kpimp\\cmStorage',
+ 'message': 'Source downloaded',
+ 'objlist': [{'contentLength': '0',
+              'fileName': 'a1.txt',
+              'lastModificationDate': 'Fri, 13 Dec 2019 18:00:37 GMT'}],
+ 'recursive': False,
+ 'source': 'a1.txt'}
+[32mFetched a1.txt from awss3 CSP[0m
+
+[35m
+# ######################################################################
+# put c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 246
+# ######################################################################
+[0m
+[{'cm': {'cloud': 'azure',
+         'created': '2',
+         'kind': 'storage',
+         'name': 'a1.txt',
+         'size': 0,
+         'status': 'exists',
+         'updated': '2'},
+  'content': b'',
+  'deleted': False,
+  'metadata': {},
+  'name': 'a1.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': 'Cool',
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': True,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 0,
+                 'content_range': None,
+                 'deleted_time': None,
+                 'etag': '"0x8D77FF97C9FDE88"',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+[32mCopied C:\Users\kpimp\cmStorage\a1.txt to azure CSP[0m
+[KCloudmesh Database Update |################################| 1/1
+[{'cm': {'cloud': 'azure',
+         'collection': 'azure-storage',
+         'created': '2',
+         'kind': 'storage',
+         'modified': '2019-12-13 18:23:03.640955',
+         'name': 'a1.txt',
+         'size': 0,
+         'status': 'exists',
+         'updated': '2'},
+  'content': b'',
+  'deleted': False,
+  'metadata': {},
+  'name': 'a1.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': 'Cool',
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': True,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 0,
+                 'content_range': None,
+                 'deleted_time': None,
+                 'etag': '"0x8D77FF97C9FDE88"',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+provider2: <cloudmesh.storage.Provider.Provider object at 0x00000232A61C3148> awss3
+Test run for copy azure:a1.txt awss3:/
+[34m
+# ----------------------------------------------------------------------
+# f"Copy from {source} to {destination}."
+# ----------------------------------------------------------------------
+# 169:copy c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\Provider.py
+# ----------------------------------------------------------------------
+# 'Copy from azure to awss3:/.'
+# ----------------------------------------------------------------------
+[0m
+
+[35m
+# ######################################################################
+# get c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 91
+# ######################################################################
+[0m
+File  :  a1.txt
+Folder:  None
+[32mFetched a1.txt from azure CSP[0m
+{'action': 'put',
+ 'destination': '\\',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\a1.txt'}
+{'action': 'put',
+ 'destination': '\\',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '0',
+              'fileName': 'a1.txt',
+              'lastModificationDate': 'Fri, 13 Dec 2019 18:23:04 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\a1.txt'}
+[32mCopied C:\Users\kpimp\cmStorage\a1.txt to awss3 CSP[0m
+[KCloudmesh Database Update |################################| 1/1
+[{'cm': {'cloud': 'awss3',
+         'collection': 'awss3-storage',
+         'created': '2019-12-12 04:03:23.009085',
+         'kind': 'storage',
+         'modified': '2019-12-13 18:23:05.817629',
+         'name': 'a1.txt'},
+  'contentLength': '0',
+  'fileName': 'a1.txt',
+  'lastModificationDate': 'Fri, 13 Dec 2019 18:23:04 GMT'}]
+PASSED
+tests/test_storage.py::TestStorage::test_benchmark
++----------------------+-------+---------------------+-------+----------------------+------+---------+-------------+---------------------------------+
+| timer                | time  | start               | tag   | node                 | user | system  | mac_version | win_version                     |
++----------------------+-------+---------------------+-------+----------------------+------+---------+-------------+---------------------------------+
+| create source        | 0.008 | 2019-12-13 18:22:53 | azure | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| put                  | 0.136 | 2019-12-13 18:22:54 | azure | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| get                  | 0.116 | 2019-12-13 18:22:54 | azure | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| list                 | 0.69  | 2019-12-13 18:22:56 | azure | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| search               | 0.388 | 2019-12-13 18:22:57 | azure | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| create dir           | 0.591 | 2019-12-13 18:22:57 | azure | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| delete               | 0.384 | 2019-12-13 18:22:58 | azure | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy azure to local  | 0.656 | 2019-12-13 18:22:58 | azure | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy local to azure  | 0.701 | 2019-12-13 18:22:59 | azure | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy awss3 to azure  | 3.197 | 2019-12-13 18:23:00 | azure | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy azure to awss3  | 2.116 | 2019-12-13 18:23:03 | azure | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| benchmark_start_stop | 0.0   | 2019-12-13 18:23:05 | azure | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
++----------------------+-------+---------------------+-------+----------------------+------+---------+-------------+---------------------------------+
+
+csv,timer,time,starttag,node,user,system,mac_version,win_version
+#csv,create source,0.008,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,put,0.136,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,get,0.116,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,list,0.69,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,search,0.388,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,create dir,0.591,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,delete,0.384,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy azure to local,0.656,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy local to azure,0.701,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy awss3 to azure,3.197,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy azure to awss3,2.116,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,benchmark_start_stop,0.0,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+
+PASSED
+
+========================================================================================= warnings summary =========================================================================================
+c:\study\iumsds\fall2019\cloudcomputing\env3\lib\site-packages\win32\lib\pywintypes.py:2
+  c:\study\iumsds\fall2019\cloudcomputing\env3\lib\site-packages\win32\lib\pywintypes.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+    import imp, sys, os
+
+-- Docs: https://docs.pytest.org/en/latest/warnings.html
+================================================================================= 12 passed, 1 warnings in 14.62s ==================================================================================
+[?25h
+(ENV3) C:\Study\IUMSDS\Fall2019\CloudComputing\cm\cloudmesh-storage>
