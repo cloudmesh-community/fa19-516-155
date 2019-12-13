@@ -103,7 +103,7 @@ class Provider(StorageABC):
         :param recursive: enlist directories/sub-directories
         :return: dictionary enlisting deleted objects
         """
-        print("\nMASTER provider DELETE ====>\n", source, target)
+        print("\nMASTER provider DELETE ====>\n", source, target, target_obj)
 
         result = self.target_provider.delete(source=source,
                                              source_obj=source_obj,

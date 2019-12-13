@@ -95,10 +95,14 @@ class Provider(StorageABC):
         """
         print("CALLING AZURE BLOB STORAGE PROVIDER'S LIST METHOD")
 
-        print(target_obj)
-        target_obj = target_obj.replace("\\", "/")
-        print(target_obj, recursive)
-        result = self.storage_provider.list(source=target_obj, recursive=False)
+        # print("=============> ", target_obj)
+        if target_obj:
+            target_obj = target_obj.replace("\\", "/")
+        else:
+            target_obj = '/'
+        # print(target_obj, recursive)
+        result = self.storage_provider.list(source=target_obj,
+                                            recursive=recursive)
 
         if result is None:
             return Console.error(f"List of object(s) couldn't be fetched from " 
@@ -212,9 +216,9 @@ class Provider(StorageABC):
 #     # p.delete(source=None, source_obj=None,
 #     #          target="azure", target_obj="\\folder1")
 #
-#     # p.copy(source="azure", source_obj="\\folder1",
-#     #        target="local", target_obj="~\\cmStorage",
-#     #        recursive=True)
+    # p.copy(source="azure", source_obj="a.txt",
+    #        target="local", target_obj="~/cmStorage",
+    #        recursive=True)
 #
 #     # p.copy(source="local", source_obj="~\\cmStorage\\folder1",
 #     #        target="azure", target_obj="\\folder1",

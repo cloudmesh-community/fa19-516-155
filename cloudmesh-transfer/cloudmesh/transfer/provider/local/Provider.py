@@ -64,10 +64,16 @@ class Provider(StorageABC):
         print("CALLING LOCAL PROVIDER'S LIST METHOD")
         # Storage local provider expects a path relative to the default
         # directory read from .yaml. Hence:
-        target_path = Path(target_obj)
-        relative_target = str(target_path.relative_to(*target_path.parts[:2]))
-        # print("=======> ", relative_target)
-        result = self.storage_provider.list(source=relative_target)
+        if target_obj:
+            target_path = Path(target_obj)
+            relative_target = str(target_path.relative_to(*target_path.parts[:2]))
+            # print("=======> ", relative_target)
+        else:
+            relative_target = '/'
+
+        result = self.storage_provider.list(source=relative_target,
+                                            recursive=recursive)
+
 
         op_result = []
         for idx, i in enumerate(result):
@@ -111,12 +117,13 @@ class Provider(StorageABC):
         # Storage local provider expects a path relative to the default
         # directory read from .yaml. Hence:
         target_path = Path(target_obj).expanduser()
+        print("===========> ", target_path)
         if target_path.is_absolute():
             relative_target = str(target_path.relative_to(*target_path.parts[:2]))
         else:
             relative_target = str(target_path)
 
-        print(target_path, "\n", relative_target)
+        print("===========> ", target_path, "\n", relative_target)
 
         try:
             result = self.storage_provider.delete(source=relative_target)
@@ -151,15 +158,16 @@ class Provider(StorageABC):
             return Console.error(f"\nObject {target_obj} not found in "
                                  f"{target} storage.")
         except Exception as e:
+            print(e)
             return Console.error(f"Error occurred: {e}")
 
 
 # if __name__ == "__main__":
-#     p = Provider(source=None, source_obj=None,
-#                  target="local", target_obj="~\cmStorage")
+    # p = Provider(source=None, source_obj=None,
+    #              target="local", target_obj="~\cmStorage")
 #
 #     p.list(source=None, source_obj=None,
 #            target="local", target_obj="~\cmStorage")
 #
-#     # p.delete(source=None, source_obj=None,
-#     #          target="local", target_obj="abcd.txt")
+    # p.delete(source=None, source_obj=None,
+    #          target="local", target_obj="abcd.txt")

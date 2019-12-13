@@ -110,18 +110,41 @@ Diagram credit: Prof. Gregor
 
 * Providers for `cms transfer`:
 
-|Function|Command|Provider|
-|-----|-------|--------|
-|**list**|cms transfer list --target=local:"~\\cmStorage\\b"|transfer.Provider > transfer.local.Provider|
-||cms transfer list --target=awss3: |transfer.Provider > transfer.awss3.Provider|
-||cms transfer list --target=azure:"\\folder1" |transfer.Provider > transfer.azureblob.Provider|
-|**delete**|cms transfer delete --target=local:"~\\cmStorage\\b"| transfer.Provider > transfer.local.Provider|
-||cms transfer delete --target=awss3:"folder1\\a1.txt"|transfer.Provider > transfer.awss3.Provider|
-||cms transfer delete --target=azure:"\\folder1\\abcd.txt"|transfer.Provider > transfer.azureblob.Provider|
-|**copy**|cms transfer copy --source=awss3:"/folder1"--target=local:"~\\cmStorage\\folder1"|transfer.Provider > transfer.awss3.Provider|
-||cms transfer copy --source=local:"~\\cmStorage\\folder1" --target=awss3:"/folder1\/"|transfer.Provider > transfer.awss3.Provider|
-||cms transfer copy --source=azure:a1.txt --target=local:"~\\cmStorage\\folder1"|transfer.Provider > transfer.azureblob.Provider|
-||cms transfer copy --source=local:"~\\cmStorage\\folder1" --target=azure:"\\folder1"|transfer.Provider > transfer.azureblob.Provider|
+|**Function**|**Details**|
+|-|-|
+|**list**|**enlilst objects from the target storage provider**|
+|**Provider**| transfer.Provider > transfer.{taregt_storage}.Provider|
+|**Commands**|cms transfer list --target=local:|
+||cms transfer list --target=local:'~/cmStorage/a'|
+||cms transfer list --target=local:"~\\cmStorage\\a"|
+||cms transfer list --target=awss3:|
+||cms transfer list --target=awss3:'/folder1'|
+||cms transfer list --target=awss3:"\\folder1"|
+||cms transfer list --target=azure:|
+||cms transfer list --target=azure:'/folder1'|
+||cms transfer list --target=azure:"\\folder1"|
+||
+|**delete**|**delete objects from target storage provider**|
+|**Provider**| transfer.Provider > transfer.{target_storage}.Provider|
+|**Commands**|cms transfer delete --target=local:'xyz.txt'|
+||cms transfer delete --target=local:'a/a1.txt'|
+||cms transfer delete --target=awss3:a.txt|
+||cms transfer delete --target=awss3:'/folder1/fghh.txt'|
+||cms transfer delete --target=awss3:'/folder1'|
+||cms transfer delete --target=azure:anew.txt|
+||cms transfer delete --target=azure:'/a1.txt'|
+||cms transfer delete --target=azure:'/folder1'|
+||
+|**copy**|**copy objects from source storage provider to target storage provider**|
+|**Provider**|transfer.Provider > transfer.{target_storage}.Provider|
+|**Commands**|cms transfer copy --source=local:'~\cmStorage\a.txt' --target=awss3:|
+||cms transfer copy --source=local:'~\cmStorage\a.txt' --target=azure:|
+||cms transfer copy --source=awss3:a.txt --target=local:'~/cmStorage'|
+||cms transfer copy --source=azure:'a.txt' --target=local:'~/cmStorage/'|
+||cms transfer copy --source=awss3:anew.txt --target=azure:|
+||cms transfer copy --source=awss3:anew.txt --target=azure:'/folder1'|
+||cms transfer copy --source=azure:anew.txt --target=awss3:|
+||cms transfer copy --source=azure:anew.txt --target=awss3:'/folder1'|
 
 * cms storage copy command:
 
@@ -281,7 +304,7 @@ TBD
 * done. Creation of AWS EC2 instance and S3 buckets
 * done. Access AWS account using Cloudmesh CLI
 * done. Define architecture of the transfer service
-* done. Define [docopt](https://github.com/cloudmesh-community/fa19-516-155/tree/master/cloudmesh-transfer) of the transfer service
+* done. Define docopt of the transfer service.
 * done. Define test cases
 * done. Creation of Azure account
 * done. Use cms list/delete/get/put in Transfer command
