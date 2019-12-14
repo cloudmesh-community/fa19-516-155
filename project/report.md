@@ -109,7 +109,7 @@ Diagram credit: Prof. Gregor
 
 ```
 
-* Providers for `cms transfer`:
+* Sample commands for `cms transfer`:
 
 |**Function**|**Details**|
 |-|-|
@@ -164,6 +164,18 @@ storage.](https://github.com/cloudmesh/cloudmesh-storage)
        SOURCE: awss3:"source_object_name"
        DESTINATION: azure:"target_object_name"
 ```
+
+* Sample commands for `cms storage copy`:
+
+|Source|Target|storage copy command|
+|-|-|-|
+|awss3|local|cms storage copy awss3:'/a1.txt' local:'/cmStorage'|
+|local|awss3|cms storage copy local:"~\cmStorage\folder1/" awss3:"/folder1/" --recursive|
+|local|azure|cms storage copy local:"~\cmStorage\a1.txt" azure:'/folder1' --recursive|
+|||cms storage copy local:"~\cmStorage\a1.txt" azure:'/' --recursive|
+|azure|local|cms storage copy azure:'test_transfer_local_azure.txt' local:'~/cmStorage/'|
+|awss3|azure|cms storage copy awss3:"anew.txt" azure:'/'|
+|azure|awss3|cms storage copy azure:"anew.txt" awss3:'/'|
 
 ## Benchmarks
 
