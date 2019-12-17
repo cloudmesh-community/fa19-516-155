@@ -1,26 +1,17 @@
 # Cloudmesh Data Transfer Service for AWS S3 and Azure Blob
 
-Ketan Pimparkar
+Ketan Pimparkar, kpimpark@iu.edu, [fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155)
 
-kpimpark@iu.edu
-
-[fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155)
-
-[Contributors](https://github.com/cloudmesh-community/fa19-516-155/graphs/contributors)
-
-[Insights](https://github.com/cloudmesh-community/fa19-516-155/pulse/monthly)
-
-## Code Repository
-
-[CODE REPOSITORY: cloudmesh-transfer](https://github.com/cloudmesh/cloudmesh-transfer)
-
-[CODE REPOSITORY: cloudmesh-storage](https://github.com/cloudmesh/cloudmesh-storage)
+* [Contributors](https://github.com/cloudmesh-community/fa19-516-155/graphs/contributors)
+* [Insights](https://github.com/cloudmesh-community/fa19-516-155/pulse/monthly)
+* [Code](https://github.com/cloudmesh/cloudmesh-storage)
 
 ## Objective
 
 Provide cloudmesh users an API to transfer files,directories from data
-storage of one cloud service provider to other cloud service provider. This
-package will consider AWS S3 and Azure Blob storage for current implementation.
+storage of one cloud service provider to other cloud service provider.
+This package will consider AWS S3 and Azure Blob storage for current
+implementation.
 
 ## Motivation
 
@@ -58,65 +49,75 @@ Diagram credit: Prof. Gregor
 * The code developed for `cms transfer` command is available [here](https://github.com/cloudmesh/cloudmesh-transfer)
 
 ```
-     Usage:
-       transfer copy --source=awss3:source_obj --target=azure:target_obj [-r]
-       transfer list --target=awss3:target_obj
-       transfer delete --target=awss3:target_obj
+ Usage:
+   transfer copy --source=awss3:source_obj --target=azure:target_obj [-r]
+   transfer list --target=awss3:target_obj
+   transfer delete --target=awss3:target_obj
 
 
-     This command is part of Cloudmesh's multi-cloud storage service.
-     Command allows users to transfer files/directories from storage of
-     one Cloud Service Provider (CSP) to storage of other CSP.
-     Current implementation is to transfer data between Azure blob
-     storage and AWS S3 bucket.
-     AWS S3/ Azure Blob storage credentials and container details will
-     be fetched from storage section of "~\.cloudmesh\cloudmesh.yaml"
+ This command is part of Cloudmesh's multi-cloud storage service.
+ Command allows users to transfer files/directories from storage of
+ one Cloud Service Provider (CSP) to storage of other CSP.
+ Current implementation is to transfer data between Azure blob
+ storage and AWS S3 bucket.
+ AWS S3/ Azure Blob storage credentials and container details will
+ be fetched from storage section of "~\.cloudmesh\cloudmesh.yaml"
 
 
-     Arguments:
-       awss3:source_obj  Combination of cloud name and the source object name
-       source_obj        Source object. Can be file or a directory.
-       azure:target_obj  Combination of cloud name and the target object name
-       target_obj        Target object. Can be file or a directory.
-       transfer_id       A unique id/name assigned by cloudmesh to each
-                         transfer instance.
+ Arguments:
+   awss3:source_obj  Combination of cloud name and the source object name
+   source_obj        Source object. Can be file or a directory.
+   azure:target_obj  Combination of cloud name and the target object name
+   target_obj        Target object. Can be file or a directory.
+   transfer_id       A unique id/name assigned by cloudmesh to each
+                     transfer instance.
 
 
-     Options:
-       --id=transfer_id            Unique id/name of the transfer instance.
-       -h                          Help function.
-       --source=aws:source_obj     Specify source cloud and source object.
-       --target=azure:target_obj   Specify target cloud and target object.
-       -r                          Recursive transfer for folders.
+ Options:
+   --id=transfer_id            Unique id/name of the transfer instance.
+   -h                          Help function.
+   --source=aws:source_obj     Specify source cloud and source object.
+   --target=azure:target_obj   Specify target cloud and target object.
+   -r                          Recursive transfer for folders.
 
 
-     Description:
-       transfer copy --source=<awss3:source_obj>
-                     --target=<azure:target_obj> [-r]
-           Copy file/folder from source to target. Source/target CSPs
-           and name of the source/target objects to be provided.
-           Optional argument "-r" indicates recursive copy.
+ Description:
+   transfer copy --source=<awss3:source_obj>
+                 --target=<azure:target_obj> [-r]
+       Copy file/folder from source to target. Source/target CSPs
+       and name of the source/target objects to be provided.
+       Optional argument "-r" indicates recursive copy.
 
-       transfer list --target=awss3:target_obj
-           Enlists available files on target CSP at target object
+   transfer list --target=awss3:target_obj
+       Enlists available files on target CSP at target object
 
-       transfer delete --target=awss3:target_obj
-           Deletes target object from the target CSP.
+   transfer delete --target=awss3:target_obj
+       Deletes target object from the target CSP.
 
-     Examples:
-       transfer copy --source=awss3:sampleFileS3.txt
-                     --target=azure:sampleFileBlob.txt
+ Examples:
+   transfer copy --source=awss3:sampleFileS3.txt
+                 --target=azure:sampleFileBlob.txt
 
 ```
 
-* Sample commands for `cms transfer`:
+Examples of  commands for `cms transfer`:
+
+```bash
+$ cms transfer list --target=local:'~/cmStorage/a'
+```
+
+> Copies bla bla
+
+
+
+
+
 
 |**Function**|**Details**|
 |-|-|
 |**list**|**enlilst objects from the target storage provider**|
 |**Provider**| transfer.Provider > transfer.{taregt_storage}.Provider|
 |**Commands**|cms transfer list --target=local:|
-||cms transfer list --target=local:'~/cmStorage/a'|
 ||cms transfer list --target=local:"~\\cmStorage\\a"|
 ||cms transfer list --target=awss3:|
 ||cms transfer list --target=awss3:'/folder1'|
@@ -210,6 +211,9 @@ Benchmarking on `cms transfer` with cloudmesh's stopwatch utility.
 
 ## Project direction
 
+:o2: remove the section. what are the current features instead.
+what are the limitations. 
+
 * `cms transfer` command:
   * Initially `transfer` command was thought as part of `cms storage`.
     Modifications to `cms storage` were done to incorporate `transfer`.
@@ -233,7 +237,14 @@ Benchmarking on `cms transfer` with cloudmesh's stopwatch utility.
 
 ## Configuration
 
-Cloudmesh .yaml file configuration and `azcopy` installation is required:
+Cloudmesh.yaml file configuration and `azcopy` installation is required:
+
+:o2: can this be automated such as 
+
+cms config storage add --whatever options are needed
+
+cms config storage add --name=NAME --provider=PROVIDER --directory=DIRECTORY
+
 
 ### .yaml file configuration
 
@@ -241,28 +252,33 @@ Cloudmesh .yaml file configuration and `azcopy` installation is required:
 * Local storage configuration:
 
 ```bash
-    storage:
-        local:
-          cm:
-            s3active: true
-            blobactive: true
-            heading: local_to_CSP
-            host: localhost
-            kind: local
-            label: local_storage
-            version: 0.1
-            service: storage
-          default:
-            directory: ~\cmStorage
-          credentials:
-            userid: None
-            password: None
+cloudmesh:   
+  storage:
+    ...
+    local:
+      cm:
+        s3active: true
+        blobactive: true
+        heading: local_to_CSP
+        host: localhost
+        kind: local
+        label: local_storage
+        version: 0.1
+        service: storage
+      default:
+        directory: ~\cmStorage
+      credentials:
+        userid: None
+        password: None
 ```
 
 * default.directory is the location of local storage
 * AWS S3 storage configuration:
 
 ```bash
+cloudmesh:
+  storage
+    ...
     awss3:
       cm:
         active: false
@@ -284,6 +300,9 @@ Cloudmesh .yaml file configuration and `azcopy` installation is required:
 * Azure Blob storage configuration:
 
 ```bash
+cloudmesh:
+  storage:
+    ...
     azure:
       cm:
         active: false
@@ -313,6 +332,8 @@ TBD
 
 ## Progress
 
+:o2: remove and evaluate if thsi si to be put into featuer section
+
 * done. Installation of Cloudmesh and mongoDB in Windows10 Pro system
 * done. Creation of AWS EC2 instance and S3 buckets
 * done. Access AWS account using Cloudmesh CLI
@@ -334,15 +355,26 @@ TBD
 
 ## Limitations
 
+:o2: as a colleague to test on other os
+
 * `transfer` command is developed and tested on Windows 10 Pro
-* Currently `transfer` command uses local storage as intermediate storage for
- copying objects between two CSPs
+* Currently `transfer` command uses local storage as intermediate 
+  storage for copying objects between two CSPs
+* add azcopy, identify if there are other copy commands for example 
+  oracle, google (e.g. if one line commands easy to implement, aslo as 
+  these exist, you should be able to leverage other peoples implementation 
+  and just add google and oragcle anyways to your storage copy. They have 
+  provided instructions on how to get accounts. just get them and try it out ;-)
+  that will be significantly boost your project ...
+
 
 ## References
 
-* AzCopy: <https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-s3?toc=%2fazure%2fstorage%2fblobs%2ftoc.json>
-* AWS Boto3 API: <https://boto3.amazonaws.com/v1/documentation/api/latest/index.html?id=docs_gateway>
-* Cloudmesh manual: <https://cloudmesh.github.io/cloudmesh-manual/preface/about.html>
-* Install Azure python SDK: <https://docs.microsoft.com/en-us/azure/python/python-sdk-azure-install>
-* Azure python API usage: <https://github.com/Azure-Samples/storage-blobs-python-quickstart/blob/master/example.py>
-* Cloud computing book by Prof. Grogor: <https://laszewski.github.io/book/cloud/>
+* AzCopy <https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-s3?toc=%2fazure%2fstorage%2fblobs%2ftoc.json>
+* AWS Boto3 API <https://boto3.amazonaws.com/v1/documentation/api/latest/index.html?id=docs_gateway>
+* Cloudmesh manual <https://cloudmesh.github.io/cloudmesh-manual/preface/about.html>
+* Install Azure python SDK <https://docs.microsoft.com/en-us/azure/python/python-sdk-azure-install>
+* Azure python API usage <https://github.com/Azure-Samples/storage-blobs-python-quickstart/blob/master/example.py>
+* Cloud computing book by Gregor von Laszewski <https://laszewski.github.io/book/cloud/>
+* cloudmesh-cloud link missing (see manual)
+* cloudmesh-storage link missing (see manual)
