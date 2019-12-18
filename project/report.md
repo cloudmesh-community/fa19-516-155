@@ -48,8 +48,10 @@ Diagram credit: Prof. Gregor
 * [cms transfer manual](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/transfer.md)
 * The code developed for `cms transfer` command is available [here](https://github.com/cloudmesh/cloudmesh-transfer)
 
+:o2: make sure the manual is in the code and her 80 chars wide so it can be printed better it seems slighty to wide.
+
 ```
- Usage:
+Usage:
    transfer copy --source=awss3:source_obj --target=azure:target_obj [-r]
    transfer list --target=awss3:target_obj
    transfer delete --target=awss3:target_obj
@@ -111,7 +113,7 @@ $ cms transfer list --target=local:'~/cmStorage/a'
 
 
 
-
+:o: please simplify and do not use a table
 
 |**Function**|**Details**|
 |-|-|
@@ -168,6 +170,9 @@ storage.](https://github.com/cloudmesh/cloudmesh-storage)
 
 * Sample commands for `cms storage copy`:
 
+:o2: 
+please simplify as discussed
+
 |Source|Target|storage copy command|
 |-|-|-|
 |awss3|local|cms storage copy awss3:'/a1.txt' local:'/cmStorage'|
@@ -201,6 +206,7 @@ Benchmarking on `cms transfer` with cloudmesh's stopwatch utility.
   * Delete azure
 
 * PyTests:
+
   * [cms transfer pytests](https://github.com/cloudmesh/cloudmesh-transfer/blob/master/cloudmesh/transfer/tests/test_transfer.py)
   * [cms storage pytests](https://github.com/cloudmesh/cloudmesh-storage/blob/transfer/tests/test_storage.py)
 
@@ -328,7 +334,7 @@ cloudmesh:
 
 ### azcopy installation
 
-TBD
+:o2: TBD
 
 ## Progress
 
