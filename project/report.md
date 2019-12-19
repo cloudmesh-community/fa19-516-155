@@ -3,6 +3,8 @@
 
 Ketan Pimparkar, kpimpark@iu.edu, [fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155)
 
+Gregor von Laszewski
+
 * [Contributors](https://github.com/cloudmesh-community/fa19-516-155/graphs/contributors)
 * [Insights](https://github.com/cloudmesh-community/fa19-516-155/pulse/monthly)
 * [Code](https://github.com/cloudmesh/cloudmesh-storage)
@@ -29,11 +31,7 @@ available to cloudmesh users.
 
 ## Architecture
 
-* Architecture diagram:
-
 ![CM Transfer Architecture Diagram](images/gregor-cloudmesh-storage.png)
-
-Diagram credit: Prof. Gregor
 
 ## Technology
 
@@ -48,8 +46,9 @@ Diagram credit: Prof. Gregor
 
 ### cms storage copy command
 
-`cms storage` code base is enhanced to allow copying of files between two
-cloud storage providers. This code is available at [cloudmesh storage.](https://github.com/cloudmesh/cloudmesh-storage)
+`cms storage` code base is enhanced to allow copying of files between
+two cloud storage providers. This code is available at [cloudmesh
+storage](https://github.com/cloudmesh/cloudmesh-storage).
 
 * Supported cloud storages:
   * AWS S3
@@ -188,6 +187,7 @@ cms transfer copy --source=awss3:anew.txt --target=azure:
 ## Project features
 
 * `cms storage copy` command:
+
   * Copy command allows users to copy files between five cloud storage, which
     are: AWS S3, Azure blob storage, Google cloud storage, Oracle cloud
     storage and local storage.
@@ -197,7 +197,8 @@ cms transfer copy --source=awss3:anew.txt --target=azure:
     mentioned cloud storages.
 
 * `cms transfer` command:
-  * Methods such as list/delete/copy are implemented using cloudmesh storage
+
+  * Methods such as list, delete, and copy are implemented using cloudmesh storage
     providers. [cms-transfer](https://github.com/cloudmesh/cloudmesh-transfer)
   * Pytests and benchmarks are done.
 
@@ -208,7 +209,7 @@ cms transfer copy --source=awss3:anew.txt --target=azure:
 
 ### .yaml file configuration
 
-* Location of .yaml file: `C:\Users\{User}\.cloudmesh\cloudmesh.yaml`
+* The location of the yaml file  `~/.cloudmesh/cloudmes.yaml`
 * Local storage configuration:
 
 ```bash
