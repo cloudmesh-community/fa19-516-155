@@ -1,0 +1,1185 @@
+============================= test session starts =============================
+platform win32 -- Python 3.7.4, pytest-5.2.2, py-1.8.0, pluggy-0.13.0 -- c:\study\iumsds\fall2019\cloudcomputing\env3\scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Study\IUMSDS\Fall2019\CloudComputing\cm\cloudmesh-storage, inifile: pytest.ini
+collecting ... collected 3 items
+
+tests/test_storage_copy.py::TestStorage::test_create_local_source 
+[35m
+# ######################################################################
+# test_create_local_source \tests\test_storage_copy.py 37
+# ######################################################################
+[0m
+PASSED
+tests/test_storage_copy.py::TestStorage::test_copy 
+[35m
+# ######################################################################
+# test_copy \tests\test_storage_copy.py 55
+# ######################################################################
+[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+size-1-file.txt
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy local:~\.cloudmesh\storage\test\size-1-file.txt to awss3:size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  local C:\Users\kpimp\.cloudmesh\storage\test\size-1-file.txt awss3 size-1-file.txt
+CALL PUT METHOD OF awss3 PROVIDER.
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\.cloudmesh\\storage\\test\\size-1-file.txt'}
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '1048576',
+              'fileName': 'size-1-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:37:26 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\.cloudmesh\\storage\\test\\size-1-file.txt'}
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy local:~\.cloudmesh\storage\test\size-1-file.txt to azure:/
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  local C:\Users\kpimp\.cloudmesh\storage\test\size-1-file.txt azure \
+CALL PUT METHOD OF azureblob PROVIDER.
+
+[35m
+# ######################################################################
+# put c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 249
+# ######################################################################
+[0m
+[{'cm': {'cloud': 'azure',
+         'created': '2',
+         'kind': 'storage',
+         'name': 'size-1-file.txt',
+         'size': 1048576,
+         'status': 'exists',
+         'updated': '2'},
+  'content': b'',
+  'deleted': False,
+  'metadata': {},
+  'name': 'size-1-file.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': 'Cool',
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': True,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 1048576,
+                 'content_range': None,
+                 'deleted_time': None,
+                 'etag': '"0x8D7845EAF69B5A6"',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy local:~\.cloudmesh\storage\test\size-1-file.txt to oracle:size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  local C:\Users\kpimp\.cloudmesh\storage\test\size-1-file.txt oracle size-1-file.txt
+CALL PUT METHOD OF oracle PROVIDER.
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\.cloudmesh\\storage\\test\\size-1-file.txt'}
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '1048576',
+              'fileName': 'size-1-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:37:36 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\.cloudmesh\\storage\\test\\size-1-file.txt'}
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy local:~\.cloudmesh\storage\test\size-1-file.txt to google:size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  local C:\Users\kpimp\.cloudmesh\storage\test\size-1-file.txt google size-1-file.txt
+CALL PUT METHOD OF google PROVIDER.
+<Bucket: cloudmesh_gcp1>
+Bucket:  <Bucket: cloudmesh_gcp1>
+Source:  C:\Users\kpimp\.cloudmesh\storage\test\size-1-file.txt
+Destination:  size-1-file.txt
+File C:\Users\kpimp\.cloudmesh\storage\test\size-1-file.txt uploaded to size-1-file.txt.
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy awss3:size-1-file.txt to local:~\.cloudmesh\storage\test\size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  awss3 size-1-file.txt local C:\Users\kpimp\.cloudmesh\storage\test\size-1-file.txt
+CALL GET METHOD OF awss3 PROVIDER.
+{'action': 'get',
+ 'destination': 'C:\\Users\\kpimp\\.cloudmesh\\storage\\test\\size-1-file.txt',
+ 'message': 'Source downloaded',
+ 'objlist': [{'contentLength': '1048576',
+              'fileName': 'size-1-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:37:26 GMT'}],
+ 'recursive': False,
+ 'source': 'size-1-file.txt'}
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy awss3:size-1-file.txt to azure:/
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  awss3 size-1-file.txt azure \
+{'action': 'get',
+ 'destination': 'C:\\Users\\kpimp\\cmStorage',
+ 'message': 'Source downloaded',
+ 'objlist': [{'contentLength': '1048576',
+              'fileName': 'size-1-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:37:26 GMT'}],
+ 'recursive': False,
+ 'source': 'size-1-file.txt'}
+[32mFetched size-1-file.txt from awss3 CSP[0m
+
+[35m
+# ######################################################################
+# put c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 249
+# ######################################################################
+[0m
+[{'cm': {'cloud': 'azure',
+         'created': '2',
+         'kind': 'storage',
+         'name': 'size-1-file.txt',
+         'size': 1048576,
+         'status': 'exists',
+         'updated': '2'},
+  'content': b'',
+  'deleted': False,
+  'metadata': {},
+  'name': 'size-1-file.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': 'Cool',
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': True,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 1048576,
+                 'content_range': None,
+                 'deleted_time': None,
+                 'etag': '"0x8D7845EBA768C75"',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+[32mCopied C:\Users\kpimp\cmStorage\size-1-file.txt to azure CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy awss3:size-1-file.txt to oracle:size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  awss3 size-1-file.txt oracle size-1-file.txt
+{'action': 'get',
+ 'destination': 'C:\\Users\\kpimp\\cmStorage',
+ 'message': 'Source downloaded',
+ 'objlist': [{'contentLength': '1048576',
+              'fileName': 'size-1-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:37:26 GMT'}],
+ 'recursive': False,
+ 'source': 'size-1-file.txt'}
+[32mFetched size-1-file.txt from awss3 CSP[0m
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-1-file.txt'}
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '1048576',
+              'fileName': 'size-1-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:37:52 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-1-file.txt'}
+[32mCopied C:\Users\kpimp\cmStorage\size-1-file.txt to oracle CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy awss3:size-1-file.txt to google:size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  awss3 size-1-file.txt google size-1-file.txt
+{'action': 'get',
+ 'destination': 'C:\\Users\\kpimp\\cmStorage',
+ 'message': 'Source downloaded',
+ 'objlist': [{'contentLength': '1048576',
+              'fileName': 'size-1-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:37:26 GMT'}],
+ 'recursive': False,
+ 'source': 'size-1-file.txt'}
+[32mFetched size-1-file.txt from awss3 CSP[0m
+<Bucket: cloudmesh_gcp1>
+Bucket:  <Bucket: cloudmesh_gcp1>
+Source:  C:\Users\kpimp\cmStorage\size-1-file.txt
+Destination:  size-1-file.txt
+File C:\Users\kpimp\cmStorage\size-1-file.txt uploaded to size-1-file.txt.
+[31mERROR: C:\Users\kpimp\cmStorage\size-1-file.txt couldn't be copied to google CSP.[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy azure:size-1-file.txt to local:~\.cloudmesh\storage\test\size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  azure size-1-file.txt local C:\Users\kpimp\.cloudmesh\storage\test\size-1-file.txt
+CALL GET METHOD OF azureblob PROVIDER.
+
+[35m
+# ######################################################################
+# get c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 94
+# ######################################################################
+[0m
+File  :  size-1-file.txt
+Folder:  None
+WARNING: A file already exists with same name, overwrite issued
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy azure:size-1-file.txt to awss3:size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  azure size-1-file.txt awss3 size-1-file.txt
+
+[35m
+# ######################################################################
+# get c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 94
+# ######################################################################
+[0m
+File  :  size-1-file.txt
+Folder:  None
+[32mFetched size-1-file.txt from azure CSP[0m
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-1-file.txt'}
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '1048576',
+              'fileName': 'size-1-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:38:02 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-1-file.txt'}
+[32mCopied C:\Users\kpimp\cmStorage\size-1-file.txt to awss3 CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy azure:size-1-file.txt to oracle:size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  azure size-1-file.txt oracle size-1-file.txt
+
+[35m
+# ######################################################################
+# get c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 94
+# ######################################################################
+[0m
+File  :  size-1-file.txt
+Folder:  None
+[32mFetched size-1-file.txt from azure CSP[0m
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-1-file.txt'}
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '1048576',
+              'fileName': 'size-1-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:38:06 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-1-file.txt'}
+[32mCopied C:\Users\kpimp\cmStorage\size-1-file.txt to oracle CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy azure:size-1-file.txt to google:size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  azure size-1-file.txt google size-1-file.txt
+
+[35m
+# ######################################################################
+# get c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 94
+# ######################################################################
+[0m
+File  :  size-1-file.txt
+Folder:  None
+[32mFetched size-1-file.txt from azure CSP[0m
+<Bucket: cloudmesh_gcp1>
+Bucket:  <Bucket: cloudmesh_gcp1>
+Source:  C:\Users\kpimp\cmStorage\size-1-file.txt
+Destination:  size-1-file.txt
+File C:\Users\kpimp\cmStorage\size-1-file.txt uploaded to size-1-file.txt.
+[31mERROR: C:\Users\kpimp\cmStorage\size-1-file.txt couldn't be copied to google CSP.[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy oracle:size-1-file.txt to local:~\.cloudmesh\storage\test\size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  oracle size-1-file.txt local C:\Users\kpimp\.cloudmesh\storage\test\size-1-file.txt
+CALL GET METHOD OF oracle PROVIDER.
+
+[31mERROR: uploading document
+{'fileName': WindowsPath('size-1-file.txt'), 'lastModificationDate': 'Thu, 19 Dec 2019 08:38:06 GMT', 'contentLength': '1048576', 'cm': {'kind': 'storage', 'cloud': 'oracle', 'name': WindowsPath('size-1-file.txt'), 'collection': 'oracle-storage'}}
+-------
+
+[0m
+[34m
+# ----------------------------------------------------------------------
+# e
+# ----------------------------------------------------------------------
+# 462:update c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-cloud\cloudmesh\mongo\CmDatabase.py
+# ----------------------------------------------------------------------
+# InvalidDocument("cannot encode object: WindowsPath('size-1-file.txt'), of type: <class 'pathlib.WindowsPath'>")
+# ----------------------------------------------------------------------
+[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy oracle:size-1-file.txt to awss3:size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  oracle size-1-file.txt awss3 size-1-file.txt
+[32mFetched size-1-file.txt from oracle CSP[0m
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-1-file.txt'}
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '1048576',
+              'fileName': 'size-1-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:38:15 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-1-file.txt'}
+[32mCopied C:\Users\kpimp\cmStorage\size-1-file.txt to awss3 CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy oracle:size-1-file.txt to azure:/
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  oracle size-1-file.txt azure \
+[32mFetched size-1-file.txt from oracle CSP[0m
+
+[35m
+# ######################################################################
+# put c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 249
+# ######################################################################
+[0m
+[{'cm': {'cloud': 'azure',
+         'created': '2',
+         'kind': 'storage',
+         'name': 'size-1-file.txt',
+         'size': 1048576,
+         'status': 'exists',
+         'updated': '2'},
+  'content': b'',
+  'deleted': False,
+  'metadata': {},
+  'name': 'size-1-file.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': 'Cool',
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': True,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 1048576,
+                 'content_range': None,
+                 'deleted_time': None,
+                 'etag': '"0x8D7845ECCFD1F47"',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+[32mCopied C:\Users\kpimp\cmStorage\size-1-file.txt to azure CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy oracle:size-1-file.txt to google:size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  oracle size-1-file.txt google size-1-file.txt
+[32mFetched size-1-file.txt from oracle CSP[0m
+<Bucket: cloudmesh_gcp1>
+Bucket:  <Bucket: cloudmesh_gcp1>
+Source:  C:\Users\kpimp\cmStorage\size-1-file.txt
+Destination:  size-1-file.txt
+File C:\Users\kpimp\cmStorage\size-1-file.txt uploaded to size-1-file.txt.
+[31mERROR: C:\Users\kpimp\cmStorage\size-1-file.txt couldn't be copied to google CSP.[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy google:size-1-file.txt to local:~\.cloudmesh\storage\test\size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  google size-1-file.txt local C:\Users\kpimp\.cloudmesh\storage\test\size-1-file.txt
+CALL GET METHOD OF google PROVIDER.
+GET
+Source <Bucket: cloudmesh_gcp1>:size-1-file.txt
+Destination local:C:\Users\kpimp\.cloudmesh\storage\test\size-1-file.txt
+Blobs in google bucket(files/folders): <google.api_core.page_iterator.HTTPIterator object at 0x000002163EABAE48>
+size-1-file.txt ->  C:\Users\kpimp\.cloudmesh\storage\test\size-1-file.txt/size-1-file.txt. downloading. Failed to download : [Errno 2] No such file or directory: 'C:\\Users\\kpimp\\.cloudmesh\\storage\\test\\size-1-file.txt\\size-1-file.txt'
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy google:size-1-file.txt to awss3:size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  google size-1-file.txt awss3 size-1-file.txt
+GET
+Source <Bucket: cloudmesh_gcp1>:size-1-file.txt
+Destination local:C:\Users\kpimp\cmStorage
+Blobs in google bucket(files/folders): <google.api_core.page_iterator.HTTPIterator object at 0x000002163D7F0908>
+size-1-file.txt ->  C:\Users\kpimp\cmStorage/size-1-file.txt. downloading. ok.
+[32mFetched size-1-file.txt from google CSP[0m
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-1-file.txt'}
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '1048576',
+              'fileName': 'size-1-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:38:26 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-1-file.txt'}
+[32mCopied C:\Users\kpimp\cmStorage\size-1-file.txt to awss3 CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy google:size-1-file.txt to azure:/
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  google size-1-file.txt azure \
+GET
+Source <Bucket: cloudmesh_gcp1>:size-1-file.txt
+Destination local:C:\Users\kpimp\cmStorage
+Blobs in google bucket(files/folders): <google.api_core.page_iterator.HTTPIterator object at 0x000002163D9FBAC8>
+size-1-file.txt ->  C:\Users\kpimp\cmStorage/size-1-file.txt. downloading. ok.
+[32mFetched size-1-file.txt from google CSP[0m
+
+[35m
+# ######################################################################
+# put c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 249
+# ######################################################################
+[0m
+[{'cm': {'cloud': 'azure',
+         'created': '2',
+         'kind': 'storage',
+         'name': 'size-1-file.txt',
+         'size': 1048576,
+         'status': 'exists',
+         'updated': '2'},
+  'content': b'',
+  'deleted': False,
+  'metadata': {},
+  'name': 'size-1-file.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': 'Cool',
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': True,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 1048576,
+                 'content_range': None,
+                 'deleted_time': None,
+                 'etag': '"0x8D7845ED3747ED2"',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+[32mCopied C:\Users\kpimp\cmStorage\size-1-file.txt to azure CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy google:size-1-file.txt to oracle:size-1-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  google size-1-file.txt oracle size-1-file.txt
+GET
+Source <Bucket: cloudmesh_gcp1>:size-1-file.txt
+Destination local:C:\Users\kpimp\cmStorage
+Blobs in google bucket(files/folders): <google.api_core.page_iterator.HTTPIterator object at 0x000002163DA40DC8>
+size-1-file.txt ->  C:\Users\kpimp\cmStorage/size-1-file.txt. downloading. ok.
+[32mFetched size-1-file.txt from google CSP[0m
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-1-file.txt'}
+{'action': 'put',
+ 'destination': 'size-1-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '1048576',
+              'fileName': 'size-1-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:38:34 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-1-file.txt'}
+[32mCopied C:\Users\kpimp\cmStorage\size-1-file.txt to oracle CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+size-10-file.txt
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy local:~\.cloudmesh\storage\test\size-10-file.txt to awss3:size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  local C:\Users\kpimp\.cloudmesh\storage\test\size-10-file.txt awss3 size-10-file.txt
+CALL PUT METHOD OF awss3 PROVIDER.
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\.cloudmesh\\storage\\test\\size-10-file.txt'}
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '10485760',
+              'fileName': 'size-10-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:38:36 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\.cloudmesh\\storage\\test\\size-10-file.txt'}
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy local:~\.cloudmesh\storage\test\size-10-file.txt to azure:/
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  local C:\Users\kpimp\.cloudmesh\storage\test\size-10-file.txt azure \
+CALL PUT METHOD OF azureblob PROVIDER.
+
+[35m
+# ######################################################################
+# put c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 249
+# ######################################################################
+[0m
+[{'cm': {'cloud': 'azure',
+         'created': '2',
+         'kind': 'storage',
+         'name': 'size-10-file.txt',
+         'size': 10485760,
+         'status': 'exists',
+         'updated': '2'},
+  'content': b'',
+  'deleted': False,
+  'metadata': {},
+  'name': 'size-10-file.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': 'Cool',
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': True,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 10485760,
+                 'content_range': None,
+                 'deleted_time': None,
+                 'etag': '"0x8D7845EE85A2FC3"',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy local:~\.cloudmesh\storage\test\size-10-file.txt to oracle:size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  local C:\Users\kpimp\.cloudmesh\storage\test\size-10-file.txt oracle size-10-file.txt
+CALL PUT METHOD OF oracle PROVIDER.
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\.cloudmesh\\storage\\test\\size-10-file.txt'}
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '10485760',
+              'fileName': 'size-10-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:39:20 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\.cloudmesh\\storage\\test\\size-10-file.txt'}
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy local:~\.cloudmesh\storage\test\size-10-file.txt to google:size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  local C:\Users\kpimp\.cloudmesh\storage\test\size-10-file.txt google size-10-file.txt
+CALL PUT METHOD OF google PROVIDER.
+<Bucket: cloudmesh_gcp1>
+Bucket:  <Bucket: cloudmesh_gcp1>
+Source:  C:\Users\kpimp\.cloudmesh\storage\test\size-10-file.txt
+Destination:  size-10-file.txt
+File C:\Users\kpimp\.cloudmesh\storage\test\size-10-file.txt uploaded to size-10-file.txt.
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy awss3:size-10-file.txt to local:~\.cloudmesh\storage\test\size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  awss3 size-10-file.txt local C:\Users\kpimp\.cloudmesh\storage\test\size-10-file.txt
+CALL GET METHOD OF awss3 PROVIDER.
+{'action': 'get',
+ 'destination': 'C:\\Users\\kpimp\\.cloudmesh\\storage\\test\\size-10-file.txt',
+ 'message': 'Source downloaded',
+ 'objlist': [{'contentLength': '10485760',
+              'fileName': 'size-10-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:38:36 GMT'}],
+ 'recursive': False,
+ 'source': 'size-10-file.txt'}
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy awss3:size-10-file.txt to azure:/
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  awss3 size-10-file.txt azure \
+{'action': 'get',
+ 'destination': 'C:\\Users\\kpimp\\cmStorage',
+ 'message': 'Source downloaded',
+ 'objlist': [{'contentLength': '10485760',
+              'fileName': 'size-10-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:38:36 GMT'}],
+ 'recursive': False,
+ 'source': 'size-10-file.txt'}
+[32mFetched size-10-file.txt from awss3 CSP[0m
+
+[35m
+# ######################################################################
+# put c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 249
+# ######################################################################
+[0m
+[{'cm': {'cloud': 'azure',
+         'created': '2',
+         'kind': 'storage',
+         'name': 'size-10-file.txt',
+         'size': 10485760,
+         'status': 'exists',
+         'updated': '2'},
+  'content': b'',
+  'deleted': False,
+  'metadata': {},
+  'name': 'size-10-file.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': 'Cool',
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': True,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 10485760,
+                 'content_range': None,
+                 'deleted_time': None,
+                 'etag': '"0x8D7845F0B887AE4"',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+[32mCopied C:\Users\kpimp\cmStorage\size-10-file.txt to azure CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy awss3:size-10-file.txt to oracle:size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  awss3 size-10-file.txt oracle size-10-file.txt
+{'action': 'get',
+ 'destination': 'C:\\Users\\kpimp\\cmStorage',
+ 'message': 'Source downloaded',
+ 'objlist': [{'contentLength': '10485760',
+              'fileName': 'size-10-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:38:36 GMT'}],
+ 'recursive': False,
+ 'source': 'size-10-file.txt'}
+[32mFetched size-10-file.txt from awss3 CSP[0m
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-10-file.txt'}
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '10485760',
+              'fileName': 'size-10-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:40:25 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-10-file.txt'}
+[32mCopied C:\Users\kpimp\cmStorage\size-10-file.txt to oracle CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy awss3:size-10-file.txt to google:size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  awss3 size-10-file.txt google size-10-file.txt
+{'action': 'get',
+ 'destination': 'C:\\Users\\kpimp\\cmStorage',
+ 'message': 'Source downloaded',
+ 'objlist': [{'contentLength': '10485760',
+              'fileName': 'size-10-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:38:36 GMT'}],
+ 'recursive': False,
+ 'source': 'size-10-file.txt'}
+[32mFetched size-10-file.txt from awss3 CSP[0m
+<Bucket: cloudmesh_gcp1>
+Bucket:  <Bucket: cloudmesh_gcp1>
+Source:  C:\Users\kpimp\cmStorage\size-10-file.txt
+Destination:  size-10-file.txt
+File C:\Users\kpimp\cmStorage\size-10-file.txt uploaded to size-10-file.txt.
+[31mERROR: C:\Users\kpimp\cmStorage\size-10-file.txt couldn't be copied to google CSP.[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy azure:size-10-file.txt to local:~\.cloudmesh\storage\test\size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  azure size-10-file.txt local C:\Users\kpimp\.cloudmesh\storage\test\size-10-file.txt
+CALL GET METHOD OF azureblob PROVIDER.
+
+[35m
+# ######################################################################
+# get c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 94
+# ######################################################################
+[0m
+File  :  size-10-file.txt
+Folder:  None
+WARNING: A file already exists with same name, overwrite issued
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy azure:size-10-file.txt to awss3:size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  azure size-10-file.txt awss3 size-10-file.txt
+
+[35m
+# ######################################################################
+# get c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 94
+# ######################################################################
+[0m
+File  :  size-10-file.txt
+Folder:  None
+[32mFetched size-10-file.txt from azure CSP[0m
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-10-file.txt'}
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '10485760',
+              'fileName': 'size-10-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:40:51 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-10-file.txt'}
+[32mCopied C:\Users\kpimp\cmStorage\size-10-file.txt to awss3 CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy azure:size-10-file.txt to oracle:size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  azure size-10-file.txt oracle size-10-file.txt
+
+[35m
+# ######################################################################
+# get c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 94
+# ######################################################################
+[0m
+File  :  size-10-file.txt
+Folder:  None
+[32mFetched size-10-file.txt from azure CSP[0m
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-10-file.txt'}
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '10485760',
+              'fileName': 'size-10-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:41:30 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-10-file.txt'}
+[32mCopied C:\Users\kpimp\cmStorage\size-10-file.txt to oracle CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy azure:size-10-file.txt to google:size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  azure size-10-file.txt google size-10-file.txt
+
+[35m
+# ######################################################################
+# get c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 94
+# ######################################################################
+[0m
+File  :  size-10-file.txt
+Folder:  None
+[32mFetched size-10-file.txt from azure CSP[0m
+<Bucket: cloudmesh_gcp1>
+Bucket:  <Bucket: cloudmesh_gcp1>
+Source:  C:\Users\kpimp\cmStorage\size-10-file.txt
+Destination:  size-10-file.txt
+File C:\Users\kpimp\cmStorage\size-10-file.txt uploaded to size-10-file.txt.
+[31mERROR: C:\Users\kpimp\cmStorage\size-10-file.txt couldn't be copied to google CSP.[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy oracle:size-10-file.txt to local:~\.cloudmesh\storage\test\size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  oracle size-10-file.txt local C:\Users\kpimp\.cloudmesh\storage\test\size-10-file.txt
+CALL GET METHOD OF oracle PROVIDER.
+
+[31mERROR: uploading document
+{'fileName': WindowsPath('size-10-file.txt'), 'lastModificationDate': 'Thu, 19 Dec 2019 08:41:30 GMT', 'contentLength': '10485760', 'cm': {'kind': 'storage', 'cloud': 'oracle', 'name': WindowsPath('size-10-file.txt'), 'collection': 'oracle-storage'}}
+-------
+
+[0m
+[34m
+# ----------------------------------------------------------------------
+# e
+# ----------------------------------------------------------------------
+# 462:update c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-cloud\cloudmesh\mongo\CmDatabase.py
+# ----------------------------------------------------------------------
+# InvalidDocument("cannot encode object: WindowsPath('size-10-file.txt'), of type: <class 'pathlib.WindowsPath'>")
+# ----------------------------------------------------------------------
+[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy oracle:size-10-file.txt to awss3:size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  oracle size-10-file.txt awss3 size-10-file.txt
+[32mFetched size-10-file.txt from oracle CSP[0m
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-10-file.txt'}
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '10485760',
+              'fileName': 'size-10-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:41:54 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-10-file.txt'}
+[32mCopied C:\Users\kpimp\cmStorage\size-10-file.txt to awss3 CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy oracle:size-10-file.txt to azure:/
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  oracle size-10-file.txt azure \
+[32mFetched size-10-file.txt from oracle CSP[0m
+
+[35m
+# ######################################################################
+# put c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 249
+# ######################################################################
+[0m
+[{'cm': {'cloud': 'azure',
+         'created': '2',
+         'kind': 'storage',
+         'name': 'size-10-file.txt',
+         'size': 10485760,
+         'status': 'exists',
+         'updated': '2'},
+  'content': b'',
+  'deleted': False,
+  'metadata': {},
+  'name': 'size-10-file.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': 'Cool',
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': True,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 10485760,
+                 'content_range': None,
+                 'deleted_time': None,
+                 'etag': '"0x8D7845F5FDC5649"',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+[32mCopied C:\Users\kpimp\cmStorage\size-10-file.txt to azure CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy oracle:size-10-file.txt to google:size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  oracle size-10-file.txt google size-10-file.txt
+[32mFetched size-10-file.txt from oracle CSP[0m
+<Bucket: cloudmesh_gcp1>
+Bucket:  <Bucket: cloudmesh_gcp1>
+Source:  C:\Users\kpimp\cmStorage\size-10-file.txt
+Destination:  size-10-file.txt
+File C:\Users\kpimp\cmStorage\size-10-file.txt uploaded to size-10-file.txt.
+[31mERROR: C:\Users\kpimp\cmStorage\size-10-file.txt couldn't be copied to google CSP.[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy google:size-10-file.txt to local:~\.cloudmesh\storage\test\size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  google size-10-file.txt local C:\Users\kpimp\.cloudmesh\storage\test\size-10-file.txt
+CALL GET METHOD OF google PROVIDER.
+GET
+Source <Bucket: cloudmesh_gcp1>:size-10-file.txt
+Destination local:C:\Users\kpimp\.cloudmesh\storage\test\size-10-file.txt
+Blobs in google bucket(files/folders): <google.api_core.page_iterator.HTTPIterator object at 0x000002163D7F0048>
+size-10-file.txt ->  C:\Users\kpimp\.cloudmesh\storage\test\size-10-file.txt/size-10-file.txt. downloading. Failed to download : [Errno 2] No such file or directory: 'C:\\Users\\kpimp\\.cloudmesh\\storage\\test\\size-10-file.txt\\size-10-file.txt'
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy google:size-10-file.txt to awss3:size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  google size-10-file.txt awss3 size-10-file.txt
+GET
+Source <Bucket: cloudmesh_gcp1>:size-10-file.txt
+Destination local:C:\Users\kpimp\cmStorage
+Blobs in google bucket(files/folders): <google.api_core.page_iterator.HTTPIterator object at 0x000002163D805CC8>
+size-10-file.txt ->  C:\Users\kpimp\cmStorage/size-10-file.txt. downloading. ok.
+[32mFetched size-10-file.txt from google CSP[0m
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-10-file.txt'}
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '10485760',
+              'fileName': 'size-10-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:42:48 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-10-file.txt'}
+[32mCopied C:\Users\kpimp\cmStorage\size-10-file.txt to awss3 CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy google:size-10-file.txt to azure:/
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  google size-10-file.txt azure \
+GET
+Source <Bucket: cloudmesh_gcp1>:size-10-file.txt
+Destination local:C:\Users\kpimp\cmStorage
+Blobs in google bucket(files/folders): <google.api_core.page_iterator.HTTPIterator object at 0x000002163D8F7A08>
+size-10-file.txt ->  C:\Users\kpimp\cmStorage/size-10-file.txt. downloading. ok.
+[32mFetched size-10-file.txt from google CSP[0m
+
+[35m
+# ######################################################################
+# put c:\study\iumsds\fall2019\cloudcomputing\cm\cloudmesh-storage\cloudmesh\storage\provider\azureblob\Provider.py 249
+# ######################################################################
+[0m
+[{'cm': {'cloud': 'azure',
+         'created': '2',
+         'kind': 'storage',
+         'name': 'size-10-file.txt',
+         'size': 10485760,
+         'status': 'exists',
+         'updated': '2'},
+  'content': b'',
+  'deleted': False,
+  'metadata': {},
+  'name': 'size-10-file.txt',
+  'properties': {'append_blob_committed_block_count': None,
+                 'blob_tier': 'Cool',
+                 'blob_tier_change_time': None,
+                 'blob_tier_inferred': True,
+                 'blob_type': 'BlockBlob',
+                 'content_length': 10485760,
+                 'content_range': None,
+                 'deleted_time': None,
+                 'etag': '"0x8D7845F7F87DD2B"',
+                 'page_blob_sequence_number': None,
+                 'remaining_retention_days': None,
+                 'server_encrypted': True},
+  'snapshot': None}]
+[32mCopied C:\Users\kpimp\cmStorage\size-10-file.txt to azure CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+[34m
+# ----------------------------------------------------------------------
+# copy google:size-10-file.txt to oracle:size-10-file.txt
+# ----------------------------------------------------------------------
+[0m
+DEBUG Provider: values=  google size-10-file.txt oracle size-10-file.txt
+GET
+Source <Bucket: cloudmesh_gcp1>:size-10-file.txt
+Destination local:C:\Users\kpimp\cmStorage
+Blobs in google bucket(files/folders): <google.api_core.page_iterator.HTTPIterator object at 0x000002163D7F0D88>
+size-10-file.txt ->  C:\Users\kpimp\cmStorage/size-10-file.txt. downloading. ok.
+[32mFetched size-10-file.txt from google CSP[0m
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-10-file.txt'}
+{'action': 'put',
+ 'destination': 'size-10-file.txt',
+ 'message': 'Source uploaded',
+ 'objlist': [{'contentLength': '10485760',
+              'fileName': 'size-10-file.txt',
+              'lastModificationDate': 'Thu, 19 Dec 2019 08:43:36 GMT'}],
+ 'recursive': False,
+ 'source': 'C:\\Users\\kpimp\\cmStorage\\size-10-file.txt'}
+[32mCopied C:\Users\kpimp\cmStorage\size-10-file.txt to oracle CSP[0m
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+PASSED
+tests/test_storage_copy.py::TestStorage::test_benchmark 
++----------------------------------------------------------------------------------+--------+---------------------+--------------+----------------------+------+---------+-------------+---------------------------------+
+| timer                                                                            | time   | start               | tag          | node                 | user | system  | mac_version | win_version                     |
++----------------------------------------------------------------------------------+--------+---------------------+--------------+----------------------+------+---------+-------------+---------------------------------+
+| create size-1 file                                                               | 0.005  | 2019-12-19 08:37:24 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| create size-10 file                                                              | 0.016  | 2019-12-19 08:37:24 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy local:~\.cloudmesh\storage\test\size-1-file.txt to awss3:size-1-file.txt    | 2.972  | 2019-12-19 08:37:25 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy local:~\.cloudmesh\storage\test\size-1-file.txt to azure:/                  | 2.811  | 2019-12-19 08:37:28 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy local:~\.cloudmesh\storage\test\size-1-file.txt to oracle:size-1-file.txt   | 2.367  | 2019-12-19 08:37:34 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy local:~\.cloudmesh\storage\test\size-1-file.txt to google:size-1-file.txt   | 2.768  | 2019-12-19 08:37:38 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy awss3:size-1-file.txt to local:~\.cloudmesh\storage\test\size-1-file.txt    | 2.111  | 2019-12-19 08:37:40 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy awss3:size-1-file.txt to azure:/                                            | 6.756  | 2019-12-19 08:37:42 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy awss3:size-1-file.txt to oracle:size-1-file.txt                             | 4.072  | 2019-12-19 08:37:49 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy awss3:size-1-file.txt to google:size-1-file.txt                             | 4.288  | 2019-12-19 08:37:54 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy azure:size-1-file.txt to local:~\.cloudmesh\storage\test\size-1-file.txt    | 1.473  | 2019-12-19 08:37:58 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy azure:size-1-file.txt to awss3:size-1-file.txt                              | 3.443  | 2019-12-19 08:38:00 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy azure:size-1-file.txt to oracle:size-1-file.txt                             | 3.427  | 2019-12-19 08:38:03 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy azure:size-1-file.txt to google:size-1-file.txt                             | 5.096  | 2019-12-19 08:38:07 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy oracle:size-1-file.txt to local:~\.cloudmesh\storage\test\size-1-file.txt   | 0.847  | 2019-12-19 08:38:13 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy oracle:size-1-file.txt to awss3:size-1-file.txt                             | 3.253  | 2019-12-19 08:38:14 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy oracle:size-1-file.txt to azure:/                                           | 3.405  | 2019-12-19 08:38:17 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy oracle:size-1-file.txt to google:size-1-file.txt                            | 3.196  | 2019-12-19 08:38:21 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy google:size-1-file.txt to local:~\.cloudmesh\storage\test\size-1-file.txt   | 0.062  | 2019-12-19 08:38:24 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy google:size-1-file.txt to awss3:size-1-file.txt                             | 3.173  | 2019-12-19 08:38:24 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy google:size-1-file.txt to azure:/                                           | 3.592  | 2019-12-19 08:38:28 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy google:size-1-file.txt to oracle:size-1-file.txt                            | 3.271  | 2019-12-19 08:38:31 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy local:~\.cloudmesh\storage\test\size-10-file.txt to awss3:size-10-file.txt  | 16.081 | 2019-12-19 08:38:35 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy local:~\.cloudmesh\storage\test\size-10-file.txt to azure:/                 | 15.345 | 2019-12-19 08:38:51 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy local:~\.cloudmesh\storage\test\size-10-file.txt to oracle:size-10-file.txt | 14.908 | 2019-12-19 08:39:06 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy local:~\.cloudmesh\storage\test\size-10-file.txt to google:size-10-file.txt | 15.434 | 2019-12-19 08:39:22 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy awss3:size-10-file.txt to local:~\.cloudmesh\storage\test\size-10-file.txt  | 9.842  | 2019-12-19 08:39:37 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy awss3:size-10-file.txt to azure:/                                           | 18.204 | 2019-12-19 08:39:47 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy awss3:size-10-file.txt to oracle:size-10-file.txt                           | 20.427 | 2019-12-19 08:40:05 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy awss3:size-10-file.txt to google:size-10-file.txt                           | 18.186 | 2019-12-19 08:40:26 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy azure:size-10-file.txt to local:~\.cloudmesh\storage\test\size-10-file.txt  | 3.131  | 2019-12-19 08:40:44 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy azure:size-10-file.txt to awss3:size-10-file.txt                            | 19.041 | 2019-12-19 08:40:48 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy azure:size-10-file.txt to oracle:size-10-file.txt                           | 24.087 | 2019-12-19 08:41:07 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy azure:size-10-file.txt to google:size-10-file.txt                           | 18.65  | 2019-12-19 08:41:31 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy oracle:size-10-file.txt to local:~\.cloudmesh\storage\test\size-10-file.txt | 1.672  | 2019-12-19 08:41:50 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy oracle:size-10-file.txt to awss3:size-10-file.txt                           | 17.461 | 2019-12-19 08:41:52 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy oracle:size-10-file.txt to azure:/                                          | 17.152 | 2019-12-19 08:42:09 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy oracle:size-10-file.txt to google:size-10-file.txt                          | 17.323 | 2019-12-19 08:42:27 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy google:size-10-file.txt to local:~\.cloudmesh\storage\test\size-10-file.txt | 0.069  | 2019-12-19 08:42:45 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy google:size-10-file.txt to awss3:size-10-file.txt                           | 17.79  | 2019-12-19 08:42:45 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy google:size-10-file.txt to azure:/                                          | 17.102 | 2019-12-19 08:43:03 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| copy google:size-10-file.txt to oracle:size-10-file.txt                          | 16.904 | 2019-12-19 08:43:20 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
+| benchmark_start_stop                                                             | 0.0    | 2019-12-19 08:43:37 | storage copy | ('DESKTOP-HUC37G2',) |      | Windows |             | ('10', '10.0.18362', 'SP0', '') |
++----------------------------------------------------------------------------------+--------+---------------------+--------------+----------------------+------+---------+-------------+---------------------------------+
+
+csv,timer,time,starttag,node,user,system,mac_version,win_version
+#csv,create size-1 file,0.005,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,create size-10 file,0.016,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy local:~\.cloudmesh\storage\test\size-1-file.txt to awss3:size-1-file.txt,2.972,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy local:~\.cloudmesh\storage\test\size-1-file.txt to azure:/,2.811,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy local:~\.cloudmesh\storage\test\size-1-file.txt to oracle:size-1-file.txt,2.367,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy local:~\.cloudmesh\storage\test\size-1-file.txt to google:size-1-file.txt,2.768,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy awss3:size-1-file.txt to local:~\.cloudmesh\storage\test\size-1-file.txt,2.111,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy awss3:size-1-file.txt to azure:/,6.756,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy awss3:size-1-file.txt to oracle:size-1-file.txt,4.072,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy awss3:size-1-file.txt to google:size-1-file.txt,4.288,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy azure:size-1-file.txt to local:~\.cloudmesh\storage\test\size-1-file.txt,1.473,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy azure:size-1-file.txt to awss3:size-1-file.txt,3.443,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy azure:size-1-file.txt to oracle:size-1-file.txt,3.427,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy azure:size-1-file.txt to google:size-1-file.txt,5.096,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy oracle:size-1-file.txt to local:~\.cloudmesh\storage\test\size-1-file.txt,0.847,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy oracle:size-1-file.txt to awss3:size-1-file.txt,3.253,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy oracle:size-1-file.txt to azure:/,3.405,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy oracle:size-1-file.txt to google:size-1-file.txt,3.196,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy google:size-1-file.txt to local:~\.cloudmesh\storage\test\size-1-file.txt,0.062,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy google:size-1-file.txt to awss3:size-1-file.txt,3.173,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy google:size-1-file.txt to azure:/,3.592,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy google:size-1-file.txt to oracle:size-1-file.txt,3.271,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy local:~\.cloudmesh\storage\test\size-10-file.txt to awss3:size-10-file.txt,16.081,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy local:~\.cloudmesh\storage\test\size-10-file.txt to azure:/,15.345,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy local:~\.cloudmesh\storage\test\size-10-file.txt to oracle:size-10-file.txt,14.908,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy local:~\.cloudmesh\storage\test\size-10-file.txt to google:size-10-file.txt,15.434,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy awss3:size-10-file.txt to local:~\.cloudmesh\storage\test\size-10-file.txt,9.842,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy awss3:size-10-file.txt to azure:/,18.204,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy awss3:size-10-file.txt to oracle:size-10-file.txt,20.427,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy awss3:size-10-file.txt to google:size-10-file.txt,18.186,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy azure:size-10-file.txt to local:~\.cloudmesh\storage\test\size-10-file.txt,3.131,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy azure:size-10-file.txt to awss3:size-10-file.txt,19.041,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy azure:size-10-file.txt to oracle:size-10-file.txt,24.087,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy azure:size-10-file.txt to google:size-10-file.txt,18.65,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy oracle:size-10-file.txt to local:~\.cloudmesh\storage\test\size-10-file.txt,1.672,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy oracle:size-10-file.txt to awss3:size-10-file.txt,17.461,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy oracle:size-10-file.txt to azure:/,17.152,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy oracle:size-10-file.txt to google:size-10-file.txt,17.323,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy google:size-10-file.txt to local:~\.cloudmesh\storage\test\size-10-file.txt,0.069,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy google:size-10-file.txt to awss3:size-10-file.txt,17.79,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy google:size-10-file.txt to azure:/,17.102,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,copy google:size-10-file.txt to oracle:size-10-file.txt,16.904,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+#csv,benchmark_start_stop,0.0,None,('DESKTOP-HUC37G2',),,Windows,,('10', '10.0.18362', 'SP0', '')
+
+PASSED
+
+============================== warnings summary ===============================
+c:\study\iumsds\fall2019\cloudcomputing\env3\lib\site-packages\win32\lib\pywintypes.py:2
+  c:\study\iumsds\fall2019\cloudcomputing\env3\lib\site-packages\win32\lib\pywintypes.py:2: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+    import imp, sys, os
+
+-- Docs: https://docs.pytest.org/en/latest/warnings.html
+================== 3 passed, 1 warnings in 376.00s (0:06:15) ==================
