@@ -1,4 +1,4 @@
-# Cloudmesh Data Transfer Service for AWS S3 and Azure Blob
+# Cloudmesh File Transfer Service for AWS S3, Azure Blob, Oracle and Google cloud storage
 
 Ketan Pimparkar, kpimpark@iu.edu, [fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155)
 
@@ -45,10 +45,49 @@ Diagram credit: Prof. Gregor
 
 ## Usage
 
-* [cms transfer manual](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/transfer.md)
-* The code developed for `cms transfer` command is available [here](https://github.com/cloudmesh/cloudmesh-transfer)
+### cms storage copy command:
 
-:o2: make sure the manual is in the code and her 80 chars wide so it can be printed better it seems slighty to wide.
+`cms storage` code base is enhanced to allow copying of files between two 
+cloud storage providers. This code is available at [cloudmesh storage.](https://github.com/cloudmesh/cloudmesh-storage)
+
+* Supported cloud storages:
+  * AWS S3
+  * Azure Blob Storage
+  * Oracle object storage
+  * Google cloud storage
+  * Local storage provider
+
+```
+   Usage:
+       storage copy SOURCE DESTINATION
+
+   Description:
+       Copies files from source storage to destination storage.
+       The syntax of SOURCE and DESTINATION is:
+       SOURCE - awss3:source.txt
+       DESTINATION - azure:target.txt
+   
+   Example:
+       storage copy azure:source.txt oracle:target.txt
+```
+
+* Sample commands for `cms storage copy`:
+
+> Copy file from google cloud storage to local storage
+
+```bash
+$ cms storage copy google:newfolder/anew.txt local:'~/cmStorage'
+```
+
+> Copy file from oracle storage to google storage 
+
+```bash
+$ cms storage copy oracle:a.txt google:
+```
+
+### cms transfer command (Deprecated - moved to storage copy)
+* [cms transfer manual](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/transfer.md)
+* [Code](https://github.com/cloudmesh/cloudmesh-transfer)
 
 ```
 Usage:
@@ -104,90 +143,35 @@ Usage:
 
 Examples of  commands for `cms transfer`:
 
+> Enlist content of the target location
+
 ```bash
-$ cms transfer list --target=local:'~/cmStorage/a'
+$ cms transfer list --target=azure:
 ```
 
-> Copies bla bla
+> Delete a file from target storage 
 
-
-
-
-:o: please simplify and do not use a table
-
-|**Function**|**Details**|
-|-|-|
-|**list**|**enlilst objects from the target storage provider**|
-|**Provider**| transfer.Provider > transfer.{taregt_storage}.Provider|
-|**Commands**|cms transfer list --target=local:|
-||cms transfer list --target=local:"~\\cmStorage\\a"|
-||cms transfer list --target=awss3:|
-||cms transfer list --target=awss3:'/folder1'|
-||cms transfer list --target=awss3:"\\folder1"|
-||cms transfer list --target=azure:|
-||cms transfer list --target=azure:'/folder1'|
-||cms transfer list --target=azure:"\\folder1"|
-||
-|**delete**|**delete objects from target storage provider**|
-|**Provider**| transfer.Provider > transfer.{target_storage}.Provider|
-|**Commands**|cms transfer delete --target=local:'xyz.txt'|
-||cms transfer delete --target=local:'a/a1.txt'|
-||cms transfer delete --target=awss3:a.txt|
-||cms transfer delete --target=awss3:'/folder1/fghh.txt'|
-||cms transfer delete --target=awss3:'/folder1'|
-||cms transfer delete --target=azure:anew.txt|
-||cms transfer delete --target=azure:'/a1.txt'|
-||cms transfer delete --target=azure:'/folder1'|
-||
-|**copy**|**copy objects from source storage provider to target storage provider**|
-|**Provider**|transfer.Provider > transfer.{target_storage}.Provider|
-|**Commands**|cms transfer copy --source=local:'~\cmStorage\a.txt' --target=awss3:|
-||cms transfer copy --source=local:'~\cmStorage\a.txt' --target=azure:|
-||cms transfer copy --source=awss3:a.txt --target=local:'~/cmStorage'|
-||cms transfer copy --source=azure:'a.txt' --target=local:'~/cmStorage/'|
-||cms transfer copy --source=awss3:anew.txt --target=azure:|
-||cms transfer copy --source=awss3:anew.txt --target=azure:'/folder1'|
-||cms transfer copy --source=azure:anew.txt --target=awss3:|
-||cms transfer copy --source=azure:anew.txt --target=awss3:'/folder1'|
-
-* cms storage copy command:
-
-Due to change in project direction, code modifications were done to `cms
-stoarge` in addition to `cms transfer` to implement object copy between two
-storage providers. This code is available in `transfer` [branch of cloudmesh
-storage.](https://github.com/cloudmesh/cloudmesh-storage)
-
-```
-   Usage:
-       storage copy SOURCE DESTINATION [--recursive]
-
-   Description:
-       storage copy SOURCE DESTINATION
-       Copies objects from SOURCE CSP to DESTINATION CSP
-       SOURCE: awss3:"source_object_name"
-       DESTINATION: azure:"target_object_name"
+```bash
+$ cms transfer delete --target=awss3:a.txt
 ```
 
-* Sample commands for `cms storage copy`:
+> Copy file from source storage to target storage
 
-:o2: 
-please simplify as discussed
+```bash
+cms transfer copy --source=awss3:anew.txt --target=azure:
+```
 
-|Source|Target|storage copy command|
-|-|-|-|
-|awss3|local|cms storage copy awss3:'/a1.txt' local:'/cmStorage'|
-|local|awss3|cms storage copy local:"~\cmStorage\folder1/" awss3:"/folder1/" --recursive|
-|local|azure|cms storage copy local:"~\cmStorage\a1.txt" azure:'/folder1' --recursive|
-|||cms storage copy local:"~\cmStorage\a1.txt" azure:'/' --recursive|
-|azure|local|cms storage copy azure:'test_transfer_local_azure.txt' local:'~/cmStorage/'|
-|awss3|azure|cms storage copy awss3:"anew.txt" azure:'/'|
-|azure|awss3|cms storage copy azure:"anew.txt" awss3:'/'|
 
 ## Benchmarks
 
-Benchmarking on `cms transfer` with cloudmesh's stopwatch utility.
+* [storage copy benchmarks]
 
-[Transfer Benchmarks](https://github.com/cloudmesh/cloudmesh-transfer/blob/master/cloudmesh/transfer/tests/transfer-kpimparkar.txt)
+* Benchmark results:
+
+![benchmark_results]()
+
+* [Transfer Benchmarks](https://github
+.com/cloudmesh/cloudmesh-transfer/blob/master/cloudmesh/transfer/tests/transfer-kpimparkar.txt)
 
 ## Testing
 
