@@ -208,7 +208,7 @@ cms transfer copy --source=awss3:anew.txt --target=azure:
 
 ### .yaml file configuration
 
-* Location of .yaml file: C:\Users\{User}\.cloudmesh\cloudmesh.yaml
+* Location of .yaml file: `C:\Users\{User}\.cloudmesh\cloudmesh.yaml`
 * Local storage configuration:
 
 ```bash
