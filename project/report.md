@@ -168,10 +168,9 @@ cms transfer copy --source=awss3:anew.txt --target=azure:
 
 * Benchmark results:
 
-![benchmark_results]()
+![benchmark_results](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/images/storage_copy_benchmarks.png)
 
-* [Transfer Benchmarks](https://github
-.com/cloudmesh/cloudmesh-transfer/blob/master/cloudmesh/transfer/tests/transfer-kpimparkar.txt)
+* [Transfer Benchmarks](https://github.com/cloudmesh/cloudmesh-transfer/blob/master/cloudmesh/transfer/tests/transfer-kpimparkar.txt)
 
 ## Testing
 
