@@ -1,5 +1,4 @@
-# Cloudmesh File Transfer Service for AWS S3, Azure Blob, Oracle and Google
-# cloud storage
+# Cloudmesh File Transfer Service for AWS S3 and Azure Blob
 
 Ketan Pimparkar, kpimpark@iu.edu, [fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155)
 
@@ -58,17 +57,17 @@ storage](https://github.com/cloudmesh/cloudmesh-storage).
   * Local storage provider
 
 ```
-   Usage:
-       storage copy SOURCE DESTINATION
+Usage:
+   storage copy SOURCE DESTINATION
 
-   Description:
-       Copies files from source storage to destination storage.
-       The syntax of SOURCE and DESTINATION is:
-       SOURCE - awss3:source.txt
-       DESTINATION - azure:target.txt
+Description:
+   Copies files from source storage to destination storage.
+   The syntax of SOURCE and DESTINATION is:
+   SOURCE - awss3:source.txt
+   DESTINATION - azure:target.txt
 
-   Example:
-       storage copy azure:source.txt oracle:target.txt
+Example:
+   storage copy azure:source.txt oracle:target.txt
 ```
 
 * Sample commands for `cms storage copy`:
@@ -168,7 +167,7 @@ cms transfer copy --source=awss3:anew.txt --target=azure:
 
 * Benchmark results:
 
-![benchmark_results](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/images/storage_copy_benchmarks.png)
+![benchmark_results](images/storage_copy_benchmarks.png)
 
 * [Transfer Benchmarks](https://github.com/cloudmesh/cloudmesh-transfer/blob/master/cloudmesh/transfer/tests/transfer-kpimparkar.txt)
 
