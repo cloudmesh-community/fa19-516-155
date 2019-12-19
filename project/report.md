@@ -1,4 +1,5 @@
-# Cloudmesh File Transfer Service for AWS S3, Azure Blob, Oracle and Google cloud storage
+# Cloudmesh File Transfer Service for AWS S3, Azure Blob, Oracle and Google
+# cloud storage
 
 Ketan Pimparkar, kpimpark@iu.edu, [fa19-516-155](https://github.com/cloudmesh-community/fa19-516-155)
 
@@ -45,9 +46,9 @@ Diagram credit: Prof. Gregor
 
 ## Usage
 
-### cms storage copy command:
+### cms storage copy command
 
-`cms storage` code base is enhanced to allow copying of files between two 
+`cms storage` code base is enhanced to allow copying of files between two
 cloud storage providers. This code is available at [cloudmesh storage.](https://github.com/cloudmesh/cloudmesh-storage)
 
 * Supported cloud storages:
@@ -66,7 +67,7 @@ cloud storage providers. This code is available at [cloudmesh storage.](https://
        The syntax of SOURCE and DESTINATION is:
        SOURCE - awss3:source.txt
        DESTINATION - azure:target.txt
-   
+
    Example:
        storage copy azure:source.txt oracle:target.txt
 ```
@@ -79,13 +80,14 @@ cloud storage providers. This code is available at [cloudmesh storage.](https://
 $ cms storage copy google:newfolder/anew.txt local:'~/cmStorage'
 ```
 
-> Copy file from oracle storage to google storage 
+> Copy file from oracle storage to google storage
 
 ```bash
 $ cms storage copy oracle:a.txt google:
 ```
 
 ### cms transfer command (Deprecated - moved to storage copy)
+
 * [cms transfer manual](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/transfer.md)
 * [Code](https://github.com/cloudmesh/cloudmesh-transfer)
 
@@ -149,7 +151,7 @@ Examples of  commands for `cms transfer`:
 $ cms transfer list --target=azure:
 ```
 
-> Delete a file from target storage 
+> Delete a file from target storage
 
 ```bash
 $ cms transfer delete --target=awss3:a.txt
@@ -161,10 +163,9 @@ $ cms transfer delete --target=awss3:a.txt
 cms transfer copy --source=awss3:anew.txt --target=azure:
 ```
 
-
 ## Benchmarks
 
-* [storage copy benchmarks]
+* [storage copy benchmarks](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/storage_copy_benchmarks.txt)
 
 * Benchmark results:
 
@@ -174,66 +175,36 @@ cms transfer copy --source=awss3:anew.txt --target=azure:
 
 ## Testing
 
-* Following PyTests are created to test the working of transfer command.
-  * List local.
-  * List s3.
-  * List azure.
-  * Transfer local to awss3
-  * Transfer awss3 to local
-  * Transfer awss3 to azure
-  * Transfer azure to awss3
-  * Transfer local to azure.
-  * Transfer azure to local.
-  * Delete s3
-  * Delete local
-  * Delete azure
-
 * PyTests:
 
+  * [cms storage pytests](https://github.com/cloudmesh/cloudmesh-storage/blob/master/tests/test_storage_copy.py)
   * [cms transfer pytests](https://github.com/cloudmesh/cloudmesh-transfer/blob/master/cloudmesh/transfer/tests/test_transfer.py)
-  * [cms storage pytests](https://github.com/cloudmesh/cloudmesh-storage/blob/transfer/tests/test_storage.py)
 
 * Results of pytest execution:
+
+  * [Results cms storage copy pytests](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/storage_copy_benchmarks.txt)
   * [Results cms transfer pytests](https://github.com/cloudmesh/cloudmesh-transfer/tree/master/cloudmesh/transfer/tests)
-  * [Results cms storage pytests for aws](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/test_storage_with_copy.txt)
-  * [Results cms storage pytests for azure](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/test_storage_azure_with_copy.txt)
 
-## Project direction
-
-:o2: remove the section. what are the current features instead.
-what are the limitations. 
-
-* `cms transfer` command:
-  * Initially `transfer` command was thought as part of `cms storage`.
-    Modifications to `cms storage` were done to incorporate `transfer`.
-  * This approach was changed later on to make `cms transfer` an independent
-    command.
-  * Initial development of `cms transfer` was done by using native python API
-    of AWS S3 `Boto3` and Azure Blob `BlockBlobService`. This approach was
-    changed to use `cms storage` providers.
-  * Code developed with native API was then discarded. It can be found at this
-    [location](https://github.com/cloudmesh-community/fa19-516-155/tree/master/bkp_cloudmesh-transfer).
-  * As per the current approach, list/delete/copy methods are implemented using
-    cloudmesh storage providers. [cms-transfer](https://github.com/cloudmesh/cloudmesh-transfer)
-  * Usage of azcopy was made less important due to time availability.
+## Project features
 
 * `cms storage copy` command:
-  * After code review of `cms transfer`, it was instructed to integrate a
-    `copy` method in `cms storage`. This code is available at [cms-storage](https://github.com/cloudmesh/cloudmesh-storage/tree/transfer)
+  * Copy command allows users to copy files between five cloud storage, which
+    are: AWS S3, Azure blob storage, Google cloud storage, Oracle cloud
+    storage and local storage.
+  * Pytests are created to test copy command with files of various sizes such
+    as 1 MB and 10 MB.
+  * Benchmarking is done to evaluate performance of copy command between
+    mentioned cloud storages.
+
+* `cms transfer` command:
+  * Methods such as list/delete/copy are implemented using cloudmesh storage
+    providers. [cms-transfer](https://github.com/cloudmesh/cloudmesh-transfer)
+  * Pytests and benchmarks are done.
 
 * cms cloud 1_local modifications:
   * Modifications to the 1_local test were done for windows. [Code](https://github.com/cloudmesh/cloudmesh-cloud/tree/master/tests/1_local)
 
 ## Configuration
-
-Cloudmesh.yaml file configuration and `azcopy` installation is required:
-
-:o2: can this be automated such as 
-
-cms config storage add --whatever options are needed
-
-cms config storage add --name=NAME --provider=PROVIDER --directory=DIRECTORY
-
 
 ### .yaml file configuration
 
@@ -241,7 +212,7 @@ cms config storage add --name=NAME --provider=PROVIDER --directory=DIRECTORY
 * Local storage configuration:
 
 ```bash
-cloudmesh:   
+cloudmesh:
   storage:
     ...
     local:
@@ -315,47 +286,16 @@ cloudmesh:
         AZURE_REGION: northcentralus    """
 ```
 
-### azcopy installation
-
-:o2: TBD
-
-## Progress
-
-:o2: remove and evaluate if thsi si to be put into featuer section
-
-* done. Installation of Cloudmesh and mongoDB in Windows10 Pro system
-* done. Creation of AWS EC2 instance and S3 buckets
-* done. Access AWS account using Cloudmesh CLI
-* done. Define architecture of the transfer service
-* done. Define docopt of the transfer service.
-* done. Define test cases
-* done. Creation of Azure account
-* done. Use cms list/delete/get/put in Transfer command
-* done. Copy files from local storage to AWS S3 and Azure Blob
-* done. Copy objects between S3 and Blob storage
-* done. Benchmarks
-* done. PyTest execution report
-* done. Update report.md
-* done. Create `cms transfer` [manual](https://github.com/cloudmesh-community/fa19-516-155/blob/master/project/transfer.md)
-* done. Validate formatting of report.md and manual with mdl
-* done. Integrate `copy` method in `cms storage`
-* done. Add pytest for `copy` and run `cms storage` pytests
-* Update storage manual
-
 ## Limitations
 
-:o2: as a colleague to test on other os
+* Currently `cms storage copy` command uses local storage as intermediate
+  storage for copying files between two cloud storage services.
 
-* `transfer` command is developed and tested on Windows 10 Pro
-* Currently `transfer` command uses local storage as intermediate 
-  storage for copying objects between two CSPs
-* add azcopy, identify if there are other copy commands for example 
-  oracle, google (e.g. if one line commands easy to implement, aslo as 
-  these exist, you should be able to leverage other peoples implementation 
-  and just add google and oragcle anyways to your storage copy. They have 
-  provided instructions on how to get accounts. just get them and try it out ;-)
-  that will be significantly boost your project ...
+* Further research is needed to check if utilities such as `azcopy` are
+  available to copy files from one cloud storage to another without using
+  intermediate local storage.
 
+* azcopy implementation from AWS S3 to Azure Blob copy is required
 
 ## References
 
@@ -365,5 +305,5 @@ cloudmesh:
 * Install Azure python SDK <https://docs.microsoft.com/en-us/azure/python/python-sdk-azure-install>
 * Azure python API usage <https://github.com/Azure-Samples/storage-blobs-python-quickstart/blob/master/example.py>
 * Cloud computing book by Gregor von Laszewski <https://laszewski.github.io/book/cloud/>
-* cloudmesh-cloud link missing (see manual)
-* cloudmesh-storage link missing (see manual)
+* cloudmesh-cloud <https://cloudmesh.github.io/cloudmesh-manual/manual-compute.html>
+* cloudmesh-storage <https://cloudmesh.github.io/cloudmesh-manual/concepts/storage.html>
