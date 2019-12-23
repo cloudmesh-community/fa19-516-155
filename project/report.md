@@ -206,7 +206,7 @@ cms transfer copy --source=awss3:anew.txt --target=azure:
 
 ## Configuration
 
-### Cloud storage confugurations
+### Cloud storage configurations
 
 * [AWS S3](https://cloudmesh.github.io/cloudmesh-manual/concepts/storage.html#aws-s3-cloudmesh-integration)
 * [Azure blob storage](https://cloudmesh.github.io/cloudmesh-manual/accounts/azure.html#azure-resource-group-for-storage)
