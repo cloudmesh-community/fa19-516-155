@@ -206,6 +206,13 @@ cms transfer copy --source=awss3:anew.txt --target=azure:
 
 ## Configuration
 
+### Cloud storage confugurations
+
+* [AWS S3](https://cloudmesh.github.io/cloudmesh-manual/concepts/storage.html#aws-s3-cloudmesh-integration)
+* [Azure blob storage](https://cloudmesh.github.io/cloudmesh-manual/accounts/azure.html#azure-resource-group-for-storage)
+* [Google cloud storage](https://cloudmesh.github.io/cloudmesh-manual/accounts/google.html#google-cloud-storage)
+* [Oracle cloud storage](https://cloudmesh.github.io/cloudmesh-manual/accounts/oracle.html#storage-entry)
+
 ### .yaml file configuration
 
 * The location of the yaml file  `~/.cloudmesh/cloudmes.yaml`
