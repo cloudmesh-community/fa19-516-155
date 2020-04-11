@@ -2,7 +2,7 @@ from cloudmesh.transfer.provider.awss3.Provider import Provider as AwsProvider
 # from cloudmesh.storage.provider.azureblob.Provider import \
 #    Provider as AzureblobProvider
 from cloudmesh.transfer.provider.local.Provider import Provider as LocalProvider
-from cloudmesh.storage.StorageNewABC import StorageABC
+from cloudmesh.storage.StorageABC import StorageABC
 from cloudmesh.mongo.DataBaseDecorator import DatabaseUpdate
 from cloudmesh.common.debug import VERBOSE
 from pprint import pprint

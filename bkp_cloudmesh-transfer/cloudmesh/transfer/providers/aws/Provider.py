@@ -41,7 +41,7 @@ class Provider(StorageABC):
         self.sourceCSP = self.service
 
         try:
-            self.config = Config(config_path=config)
+            self.config = Config()
             self.yaml_content_source = self.config["cloudmesh.storage."
                                                    f"{self.sourceCSP}"]
             self.source_kind = self.yaml_content_source["cm"]["kind"]

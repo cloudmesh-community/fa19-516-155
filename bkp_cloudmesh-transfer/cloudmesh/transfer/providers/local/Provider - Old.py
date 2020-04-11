@@ -1,6 +1,6 @@
 import boto3
 from botocore.exceptions import ClientError
-from cloudmesh.storage.StorageABC import StorageABC
+from cloudmesh.storage.StorageDeprecatedABC import StorageABC
 from cloudmesh.common.debug import VERBOSE
 from cloudmesh.common.StopWatch import StopWatch
 from cloudmesh.common.console import Console

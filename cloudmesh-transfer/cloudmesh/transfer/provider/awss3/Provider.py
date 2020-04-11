@@ -1,4 +1,4 @@
-from cloudmesh.storage.StorageNewABC import StorageABC
+from cloudmesh.storage.StorageABC import StorageABC
 from cloudmesh.common.debug import VERBOSE
 from cloudmesh.common.StopWatch import StopWatch
 from cloudmesh.common.util import banner
